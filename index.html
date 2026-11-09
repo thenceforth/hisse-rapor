@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Izleme Listesi — 20.11.2026</title>
+<style>
+  *{box-sizing:border-box}
+  :root{
+    --bg:#080d18; --bg2:#0e1626; --card:#111c30; --line:#1e2c47;
+    --txt:#e6edf7; --muted:#8497b3; --dim:#5b6b86;
+    --acc:#38bdf8; --grn:#10b981; --ylw:#eab308; --red:#ef4444; --org:#f97316;
+  }
+  body{margin:0;padding:34px 26px 60px;background:radial-gradient(1200px 600px at 20% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1560px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+  h1{font-size:30px;margin:0;font-weight:700;letter-spacing:-.7px;
+     background:linear-gradient(90deg,#e6edf7,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:13px;margin-top:6px}
+  .rozet{display:inline-flex;align-items:center;gap:7px;background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.28);
+         color:#7dd3fc;font-size:12px;padding:6px 12px;border-radius:999px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 10px var(--grn)}
+  .kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:26px}
+  .k{background:linear-gradient(180deg,var(--card),#0d1526);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+  .k .lb{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;font-weight:600}
+  .k .vl{font-size:27px;font-weight:700;margin-top:7px;letter-spacing:-.5px}
+  .k .vl.acc{color:var(--acc)} .k .vl.grn{color:var(--grn)}
+  h2{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;margin:30px 0 12px}
+  .ones{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .one{display:block;text-decoration:none;background:linear-gradient(180deg,#12203a,#0d1526);border:1px solid var(--line);
+       border-radius:14px;padding:14px 15px;transition:.15s;color:inherit}
+  .one:hover{border-color:#2f4a76;transform:translateY(-2px)}
+  .one-ust{display:flex;justify-content:space-between;align-items:center}
+  .one-hs{font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px}
+  .one-skor{background:rgba(16,185,129,.14);color:#34d399;font-size:12px;font-weight:700;padding:2px 8px;border-radius:8px}
+  .one-ad{color:var(--muted);font-size:12px;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .one-alt{color:var(--dim);font-size:11px;margin-top:4px}
+  .barlar{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .sbar{display:flex;align-items:center;gap:12px;margin:7px 0;font-size:12.5px}
+  .sbar-ad{width:168px;color:#b9c8dd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sbar-track{flex:1;height:7px;background:#16233b;border-radius:99px;overflow:hidden}
+  .sbar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#0ea5e9,#2dd4bf)}
+  .sbar-sayi{width:34px;text-align:right;color:var(--dim);font-variant-numeric:tabular-nums}
+  .arac{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+  .ara{flex:1;min-width:190px;background:var(--card);border:1px solid var(--line);color:var(--txt);
+       border-radius:10px;padding:10px 13px;font-size:13px;outline:none}
+  .ara:focus{border-color:#2f4a76}
+  .fbtn{background:var(--card);border:1px solid var(--line);color:var(--muted);border-radius:10px;
+        padding:9px 13px;font-size:12.5px;cursor:pointer;transition:.12s}
+  .fbtn:hover{color:var(--txt);border-color:#2f4a76}
+  .fbtn.on{background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:600}
+  .tbl-wrap{background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+  thead th{position:sticky;top:0;z-index:2;background:#0d1729;color:var(--dim);font-size:10.5px;font-weight:700;
+           text-transform:uppercase;letter-spacing:.7px;text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);
+           white-space:nowrap;cursor:pointer;user-select:none}
+  thead th:hover{color:#9fb3cd}
+  thead th.sag{text-align:right}
+  tbody td{padding:11px 10px;border-bottom:1px solid #14203a;vertical-align:middle}
+  tbody tr:hover td{background:#101c31}
+  tbody tr:last-child td{border-bottom:none}
+  .c-sira{color:#3c4a63;width:38px;font-variant-numeric:tabular-nums}
+  .c-hisse{white-space:nowrap}
+  .hs{font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#f1f5f9;font-size:13.5px}
+  .yildiz{color:#fbbf24;margin-left:5px;font-size:11px}
+  .c-ad{color:#a9b8cd;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .c-sektor{color:var(--dim);font-size:12px}
+  .c-sayi{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap}
+  .c-etiket{white-space:nowrap}
+  .c-roic{width:132px}
+  .bwrap{position:relative;height:22px;background:#16233b;border-radius:7px;overflow:hidden;display:flex;align-items:center;justify-content:flex-end}
+  .bfill{position:absolute;inset:0 auto 0 0;opacity:.28}
+  .bwrap span{position:relative;padding-right:8px;font-weight:700;font-size:12px;font-variant-numeric:tabular-nums}
+  .badge{display:inline-block;padding:3px 9px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.3px}
+  .b-AL{background:rgba(16,185,129,.16);color:#34d399}
+  .b-IZLE{background:rgba(234,179,8,.15);color:#fbbf24}
+  .b-BEKLE{background:rgba(100,116,139,.18);color:#94a3b8}
+  .b-GEC{background:rgba(71,85,105,.18);color:#7c8ba1}
+  footer{margin-top:34px;color:var(--dim);font-size:11.5px;line-height:1.8;border-top:1px solid var(--line);padding-top:18px}
+  footer b{color:#9fb3cd}
+  .bos{display:none;padding:34px;text-align:center;color:var(--dim)}
+
+  @media (max-width:1200px){ .ones{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:1000px){ .kpi{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:860px){
+    body{padding:20px 14px 44px}
+    h1{font-size:23px}
+    .kpi{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .k .vl{font-size:22px}
+    .ones{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .c-mhide{display:none}
+    .c-ad{max-width:150px}
+    .sbar-ad{width:120px}
+    table{font-size:12.5px}
+  }
+  @media (max-width:560px){
+    body{padding:16px 10px 40px}
+    h1{font-size:20px}
+    .sub{font-size:11.5px}
+    .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .ones{grid-template-columns:1fr 1fr;gap:8px}
+    .one-ad{display:none}
+    .c-shide{display:none}
+    .c-ad{display:none}
+    .c-sektor{display:none}
+    .c-roic{width:88px}
+    .bwrap span{font-size:11px;padding-right:6px}
+    .sbar-ad{width:92px;font-size:11.5px}
+    thead th{padding:9px 6px;font-size:9.5px}
+    tbody td{padding:9px 6px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Izleme Listesi</h1>
+      <div class="sub">20.11.2026 · Kalite kapısını geçen 97 şirket · ROIC'e göre sıralı</div>
+    </div>
+    <div class="rozet"><span class="dot"></span> canlı veri · kalite + değerleme + teknik</div>
+  </header>
+
+  <div class="kpi">
+    <div class="k"><div class="lb">Şirket</div><div class="vl acc">97</div></div>
+    <div class="k"><div class="lb">Medyan ROIC</div><div class="vl grn">22%</div></div>
+    <div class="k"><div class="lb">Borçsuz</div><div class="vl grn">37</div></div>
+    <div class="k"><div class="lb">AL sinyali</div><div class="vl grn">23</div></div>
+    <div class="k"><div class="lb">Kısa liste</div><div class="vl acc">12</div></div>
+  </div>
+
+  <h2>Öne çıkanlar</h2><div class="ones">
+    <a class="one" href="#tbl" data-ticker="AUTO.L">
+      <div class="one-ust"><span class="one-hs">AUTO.L</span><span class="one-skor">74</span></div>
+      <div class="one-ad">Autotrader Group plc</div>
+      <div class="one-alt">ROIC 45% · Communication Services</div>
+    </a>
+    <a class="one" href="#tbl" data-ticker="AMP">
+      <div class="one-ust"><span class="one-hs">AMP</span><span class="one-skor">67</span></div>
+      <div class="one-ad">Ameriprise Financial, Inc.</div>
+      <div class="one-alt">ROIC 30% · Financial Services</div>
+    </a>
+    <a class="one" href="#tbl" data-ticker="CAH">
+      <div class="one-ust"><span class="one-hs">CAH</span><span class="one-skor">66</span></div>
+      <div class="one-ad">Cardinal Health, Inc.</div>
+      <div class="one-alt">ROIC 36% · Healthcare</div>
+    </a>
+    <a class="one" href="#tbl" data-ticker="RMV.L">
+      <div class="one-ust"><span class="one-hs">RMV.L</span><span class="one-skor">65</span></div>
+      <div class="one-ad">Rightmove plc</div>
+      <div class="one-alt">ROIC 200% · Communication Services</div>
+    </a>
+    <a class="one" href="#tbl" data-ticker="RMD">
+      <div class="one-ust"><span class="one-hs">RMD</span><span class="one-skor">63</span></div>
+      <div class="one-ad">ResMed Inc.</div>
+      <div class="one-alt">ROIC 18% · Healthcare</div>
+    </a></div>
+
+  <h2>Sektör dağılımı</h2>
+  <div class="barlar">
+      <div class="sbar"><span class="sbar-ad">Technology</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:100%"></div></div>
+        <span class="sbar-sayi">27</span></div>
+      <div class="sbar"><span class="sbar-ad">Industrials</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:78%"></div></div>
+        <span class="sbar-sayi">21</span></div>
+      <div class="sbar"><span class="sbar-ad">Consumer Cyclical</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:67%"></div></div>
+        <span class="sbar-sayi">18</span></div>
+      <div class="sbar"><span class="sbar-ad">Healthcare</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:33%"></div></div>
+        <span class="sbar-sayi">9</span></div>
+      <div class="sbar"><span class="sbar-ad">Financial Services</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:33%"></div></div>
+        <span class="sbar-sayi">9</span></div>
+      <div class="sbar"><span class="sbar-ad">Communication Services</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:15%"></div></div>
+        <span class="sbar-sayi">4</span></div>
+      <div class="sbar"><span class="sbar-ad">Consumer Defensive</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:15%"></div></div>
+        <span class="sbar-sayi">4</span></div>
+      <div class="sbar"><span class="sbar-ad">Energy</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:11%"></div></div>
+        <span class="sbar-sayi">3</span></div>
+      <div class="sbar"><span class="sbar-ad">Basic Materials</span>
+        <div class="sbar-track"><div class="sbar-fill" style="width:7%"></div></div>
+        <span class="sbar-sayi">2</span></div></div>
+
+  <h2 id="liste">Tüm liste</h2>
+  <div class="arac">
+    <input class="ara" id="ara" type="search" placeholder="Hisse veya şirket ara…" autocomplete="off">
+    <button class="fbtn on" data-f="ALL">Tümü</button>
+    <button class="fbtn" data-f="AL">AL</button>
+    <button class="fbtn" data-f="IZLE">İZLE</button>
+    <button class="fbtn" data-f="BEKLE">BEKLE</button>
+    <button class="fbtn" data-f="GEC">GEÇ</button>
+    <button class="fbtn" data-f="KISA">★ Kısa liste</button>
+    <span class="sub" style="margin:0"><b id="sayac">97</b> kayıt</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <table id="tbl">
+      <thead><tr>
+        <th>#</th><th data-key="t">Hisse</th><th class="c-ad" data-key="a">Şirket</th><th class="c-sektor" data-key="s">Sektör</th>
+        <th class="sag c-mhide" data-key="m">Piyasa</th><th data-key="r">ROIC</th>
+        <th class="sag c-mhide" data-key="b">Net Borç/FAVÖK</th><th class="sag c-mhide" data-key="n">Nakit/Kâr</th>
+        <th data-key="e">Teknik</th><th class="sag" data-key="d">Dipten</th><th class="sag" data-key="r2">RSI</th>
+        <th class="sag c-shide" data-key="f">F/K yüzd.</th><th class="sag c-shide" data-key="p">Piotroski</th>
+        <th class="c-mhide" data-key="be">Beneish</th><th class="sag c-mhide" data-key="ep">EPV</th><th class="sag c-mhide" data-key="rd">İma. büyüme</th>
+      </tr></thead>
+      <tbody>
+      
+      <tr data-etiket="AL" data-ticker="RMV.L" data-ad="Rightmove plc" data-kisa="1">
+        <td class="c-sira">1</td>
+        <td class="c-hisse"><span class="hs">RMV.L</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Rightmove plc</td>
+        <td class="c-sektor">Communication Services</td>
+        <td class="c-sayi c-mhide" data-sort="5.268639226588643">5.3B</td>
+        <td class="c-roic" data-sort="200.0">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">200%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.1003348068409181" style="color:#38bdf8">-0.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.05935904510497" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="32.6">33</td>
+        <td class="c-sayi" data-sort="51.0">51</td>
+        <td class="c-sayi c-shide" data-sort="23.0">23</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#64748b">—</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5250142974215306" style="color:#94a3b8">-53%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0766996295144349" style="color:#94a3b8">8%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="VRSN" data-ad="VeriSign, Inc." data-kisa="0">
+        <td class="c-sira">2</td>
+        <td class="c-hisse"><span class="hs">VRSN</span></td>
+        <td class="c-ad">VeriSign, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="27.68770048">28B</td>
+        <td class="c-roic" data-sort="200.0">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">200%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2663380640775048" style="color:#eab308">1.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.1855743199690605" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="50.7">51</td>
+        <td class="c-sayi" data-sort="58.0">58</td>
+        <td class="c-sayi c-shide" data-sort="95.0">95</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.705818230996281" style="color:#94a3b8">-71%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0907578447608356" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="MCK" data-ad="McKesson Corporation" data-kisa="0">
+        <td class="c-sira">3</td>
+        <td class="c-hisse"><span class="hs">MCK</span></td>
+        <td class="c-ad">McKesson Corporation</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="122.481041408">122B</td>
+        <td class="c-roic" data-sort="65.87791555143723">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">66%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6463703497282988" style="color:#10b981">0.6</td>
+        <td class="c-sayi c-mhide" data-sort="1.485258909638142" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="49.3">49</td>
+        <td class="c-sayi" data-sort="70.0">70</td>
+        <td class="c-sayi c-shide" data-sort="63.0">63</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6390121206074602" style="color:#94a3b8">-64%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0729020430858996" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="AAPL" data-ad="Apple Inc." data-kisa="0">
+        <td class="c-sira">4</td>
+        <td class="c-hisse"><span class="hs">AAPL</span></td>
+        <td class="c-ad">Apple Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="5126.663176192">5.1T</td>
+        <td class="c-roic" data-sort="56.3854728668554">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">56%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.2554494244428116" style="color:#10b981">0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.1160224043263527" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="42.2">42</td>
+        <td class="c-sayi" data-sort="60.0">60</td>
+        <td class="c-sayi c-shide" data-sort="100.0">100</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7614958714961514" style="color:#94a3b8">-76%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1402903343230094" style="color:#94a3b8">14%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="MANH" data-ad="Manhattan Associates, Inc." data-kisa="0">
+        <td class="c-sira">5</td>
+        <td class="c-hisse"><span class="hs">MANH</span></td>
+        <td class="c-ad">Manhattan Associates, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="14.67688448">15B</td>
+        <td class="c-roic" data-sort="53.61280760319149">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">54%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.9429622146726908" style="color:#38bdf8">-0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.4926899503790472" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="106.1">106</td>
+        <td class="c-sayi" data-sort="45.0">45</td>
+        <td class="c-sayi c-shide" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8350036433651077" style="color:#94a3b8">-84%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1456859863118159" style="color:#94a3b8">15%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="MA" data-ad="Mastercard Incorporated" data-kisa="1">
+        <td class="c-sira">6</td>
+        <td class="c-hisse"><span class="hs">MA</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Mastercard Incorporated</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="568.616681472">569B</td>
+        <td class="c-roic" data-sort="48.64604899930442">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">49%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.4125617570806633" style="color:#10b981">0.4</td>
+        <td class="c-sayi c-mhide" data-sort="1.1355198398921722" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="35.0">35</td>
+        <td class="c-sayi" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="34.0">34</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7431127023760269" style="color:#94a3b8">-74%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1289803706635067" style="color:#94a3b8">13%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="AUTO.L" data-ad="Autotrader Group plc" data-kisa="1">
+        <td class="c-sira">7</td>
+        <td class="c-hisse"><span class="hs">AUTO.L</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Autotrader Group plc</td>
+        <td class="c-sektor">Communication Services</td>
+        <td class="c-sayi c-mhide" data-sort="5.602444214381085">5.6B</td>
+        <td class="c-roic" data-sort="44.74647217198013">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">45%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.4623501199040767" style="color:#10b981">0.5</td>
+        <td class="c-sayi c-mhide" data-sort="1.1072800524688466" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="27.2">27</td>
+        <td class="c-sayi" data-sort="49.0">49</td>
+        <td class="c-sayi c-shide" data-sort="11.0">11</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4595415412885792" style="color:#94a3b8">-46%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0494917755530929" style="color:#94a3b8">5%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="MEDP" data-ad="Medpace Holdings, Inc." data-kisa="0">
+        <td class="c-sira">8</td>
+        <td class="c-hisse"><span class="hs">MEDP</span></td>
+        <td class="c-ad">Medpace Holdings, Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="18.268588032">18B</td>
+        <td class="c-roic" data-sort="44.40871166415474">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">44%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.6809339696195248" style="color:#38bdf8">-0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.549094556789216" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="59.5">60</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="68.0">68</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7468455210530051" style="color:#94a3b8">-75%</td>
+        <td class="c-sayi c-mhide" data-sort="0.095140618101254" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ADP" data-ad="Automatic Data Processing, Inc." data-kisa="0">
+        <td class="c-sira">9</td>
+        <td class="c-hisse"><span class="hs">ADP</span></td>
+        <td class="c-ad">Automatic Data Processing, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="123.729444864">124B</td>
+        <td class="c-roic" data-sort="42.67317493229757">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">43%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1535975204781935" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.1972830391129958" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="65.2">65</td>
+        <td class="c-sayi" data-sort="59.0">59</td>
+        <td class="c-sayi c-shide" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.599702697591848" style="color:#94a3b8">-60%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0906988494301231" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="PJT" data-ad="PJT Partners Inc." data-kisa="0">
+        <td class="c-sira">10</td>
+        <td class="c-hisse"><span class="hs">PJT</span></td>
+        <td class="c-ad">PJT Partners Inc.</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="6.555283456">6.6B</td>
+        <td class="c-roic" data-sort="39.4161708737629">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">39%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3170213089879372" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="3.5771699589804475" style="color:#10b981">3.6</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="12.5">12</td>
+        <td class="c-sayi" data-sort="40.0">40</td>
+        <td class="c-sayi c-shide" data-sort="11.0">11</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5388582811741969" style="color:#94a3b8">-54%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0056787269747123" style="color:#94a3b8">1%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="BKNG" data-ad="Booking Holdings Inc." data-kisa="0">
+        <td class="c-sira">11</td>
+        <td class="c-hisse"><span class="hs">BKNG</span></td>
+        <td class="c-ad">Booking Holdings Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="119.486758912">119B</td>
+        <td class="c-roic" data-sort="38.92467321957549">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">39%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.2238166630970229" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.6975258949176193" style="color:#10b981">1.7</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="1.8">2</td>
+        <td class="c-sayi" data-sort="46.0">46</td>
+        <td class="c-sayi c-shide" data-sort="5.0">5</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#64748b">—</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4426574116796904" style="color:#94a3b8">-44%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0007212064196376" style="color:#94a3b8">0%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="SCT.L" data-ad="Softcat plc" data-kisa="0">
+        <td class="c-sira">12</td>
+        <td class="c-hisse"><span class="hs">SCT.L</span></td>
+        <td class="c-ad">Softcat plc</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="4.335761859007584">4.3B</td>
+        <td class="c-roic" data-sort="38.50960709122661">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">39%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.7448275862068966" style="color:#38bdf8">-0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.0082372130730035" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="43.7">44</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="6.0">6</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#eab308">gri</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4544304312913665" style="color:#94a3b8">-45%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1043801490116224" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="CAH" data-ad="Cardinal Health, Inc." data-kisa="1">
+        <td class="c-sira">13</td>
+        <td class="c-hisse"><span class="hs">CAH</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Cardinal Health, Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="62.804451328">63B</td>
+        <td class="c-roic" data-sort="35.963804411847796">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">36%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.1587119033927544" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="3.1808391294592777" style="color:#10b981">3.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="51.4">51</td>
+        <td class="c-sayi" data-sort="72.0">72</td>
+        <td class="c-sayi c-shide" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8037457552100377" style="color:#94a3b8">-80%</td>
+        <td class="c-sayi c-mhide" data-sort="0.007965473079334" style="color:#94a3b8">1%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ASML.AS" data-ad="ASML Holding N.V." data-kisa="0">
+        <td class="c-sira">14</td>
+        <td class="c-hisse"><span class="hs">ASML.AS</span></td>
+        <td class="c-ad">ASML Holding N.V.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="552.6795000545279">553B</td>
+        <td class="c-roic" data-sort="35.37762141956905">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">35%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.6792745990135693" style="color:#38bdf8">-0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.2320406471697745" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="38.6">39</td>
+        <td class="c-sayi" data-sort="33.0">33</td>
+        <td class="c-sayi c-shide" data-sort="70.0">70</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8218232696482046" style="color:#94a3b8">-82%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1783529939766538" style="color:#f97316">18%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="IDXX" data-ad="IDEXX Laboratories, Inc." data-kisa="0">
+        <td class="c-sira">15</td>
+        <td class="c-hisse"><span class="hs">IDXX</span></td>
+        <td class="c-ad">IDEXX Laboratories, Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="55.201599488">55B</td>
+        <td class="c-roic" data-sort="34.40420036597628">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">34%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.5277677586353221" style="color:#10b981">0.5</td>
+        <td class="c-sayi c-mhide" data-sort="1.0255909469842963" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="37.4">37</td>
+        <td class="c-sayi" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8214662680112935" style="color:#94a3b8">-82%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1855934391902191" style="color:#f97316">19%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="KLAC" data-ad="KLA Corporation" data-kisa="0">
+        <td class="c-sira">16</td>
+        <td class="c-hisse"><span class="hs">KLAC</span></td>
+        <td class="c-ad">KLA Corporation</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="180.447281152">180B</td>
+        <td class="c-roic" data-sort="32.41045699267381">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">32%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.7163630311076273" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.0107551816174716" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="22.1">22</td>
+        <td class="c-sayi" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#eab308">gri</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7752840168327615" style="color:#94a3b8">-78%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1722859932954937" style="color:#f97316">17%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="LRCX" data-ad="Lam Research Corporation" data-kisa="0">
+        <td class="c-sira">17</td>
+        <td class="c-hisse"><span class="hs">LRCX</span></td>
+        <td class="c-ad">Lam Research Corporation</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="250.383826944">250B</td>
+        <td class="c-roic" data-sort="31.57375581120118">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">32%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.2081741224639962" style="color:#38bdf8">-0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.0429252187592248" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="36.6">37</td>
+        <td class="c-sayi" data-sort="37.0">37</td>
+        <td class="c-sayi c-shide" data-sort="55.0">55</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#ef4444">riskli</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7460454426123317" style="color:#94a3b8">-75%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1811895367442962" style="color:#f97316">18%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="EVD.DE" data-ad="CTS Eventim AG &amp; Co. KGaA" data-kisa="0">
+        <td class="c-sira">18</td>
+        <td class="c-hisse"><span class="hs">EVD.DE</span></td>
+        <td class="c-ad">CTS Eventim AG &amp; Co. KGaA</td>
+        <td class="c-sektor">Communication Services</td>
+        <td class="c-sayi c-mhide" data-sort="6.6039516999679995">6.6B</td>
+        <td class="c-roic" data-sort="31.35802212925875">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">31%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-2.152118250347569" style="color:#38bdf8">-2.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.7197030118536538" style="color:#10b981">1.7</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="31.7">32</td>
+        <td class="c-sayi" data-sort="44.0">44</td>
+        <td class="c-sayi c-shide" data-sort="23.0">23</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.120976534098263" style="color:#94a3b8">-12%</td>
+        <td class="c-sayi c-mhide" data-sort="0.236378313437693" style="color:#f97316">24%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="GWW" data-ad="W.W. Grainger, Inc." data-kisa="0">
+        <td class="c-sira">19</td>
+        <td class="c-hisse"><span class="hs">GWW</span></td>
+        <td class="c-ad">W.W. Grainger, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="70.023667712">70B</td>
+        <td class="c-roic" data-sort="31.20996956126742">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">31%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.8235081374321881" style="color:#10b981">0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.071377485338292" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="53.1">53</td>
+        <td class="c-sayi" data-sort="55.0">55</td>
+        <td class="c-sayi c-shide" data-sort="100.0">100</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7100663356389629" style="color:#94a3b8">-71%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1848633165093577" style="color:#f97316">18%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="DECK" data-ad="Deckers Outdoor Corporation" data-kisa="0">
+        <td class="c-sira">20</td>
+        <td class="c-hisse"><span class="hs">DECK</span></td>
+        <td class="c-ad">Deckers Outdoor Corporation</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="11.14023936">11B</td>
+        <td class="c-roic" data-sort="31.03585100571492">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">31%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-1.0906953217827244" style="color:#38bdf8">-1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.1624152354152566" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="2.7">3</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="5.0">5</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="0.1030709138201779" style="color:#38bdf8">10%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0343095217801318" style="color:#94a3b8">-3%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="HRB" data-ad="H&amp;R Block, Inc." data-kisa="0">
+        <td class="c-sira">21</td>
+        <td class="c-hisse"><span class="hs">HRB</span></td>
+        <td class="c-ad">H&amp;R Block, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="6.45415936">6.5B</td>
+        <td class="c-roic" data-sort="30.67543875403203">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">31%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.0820369008996735" style="color:#eab308">1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.2306286082625444" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="71.7">72</td>
+        <td class="c-sayi" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="11.0">11</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0015050248373196" style="color:#94a3b8">-0%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0582306087506085" style="color:#94a3b8">-6%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="COR" data-ad="Cencora, Inc." data-kisa="0">
+        <td class="c-sira">22</td>
+        <td class="c-hisse"><span class="hs">COR</span></td>
+        <td class="c-ad">Cencora, Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="63.65231104">64B</td>
+        <td class="c-roic" data-sort="30.47973686899393">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">30%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.8820580781288161" style="color:#10b981">0.9</td>
+        <td class="c-sayi c-mhide" data-sort="2.147435643287444" style="color:#10b981">2.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="37.6">38</td>
+        <td class="c-sayi" data-sort="55.0">55</td>
+        <td class="c-sayi c-shide" data-sort="86.0">86</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6848769613513718" style="color:#94a3b8">-68%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0555030755924083" style="color:#94a3b8">6%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="AMP" data-ad="Ameriprise Financial, Inc." data-kisa="1">
+        <td class="c-sira">23</td>
+        <td class="c-hisse"><span class="hs">AMP</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Ameriprise Financial, Inc.</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="43.53558528">44B</td>
+        <td class="c-roic" data-sort="30.14003251968202">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">30%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.8614665854153971" style="color:#38bdf8">-0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.8951772041992263" style="color:#10b981">1.9</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="16.4">16</td>
+        <td class="c-sayi" data-sort="47.0">47</td>
+        <td class="c-sayi c-shide" data-sort="34.0">34</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#64748b">—</td>
+        <td class="c-sayi c-mhide" data-sort="0.030532637413204" style="color:#38bdf8">3%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1259892284420425" style="color:#94a3b8">-13%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="DDS" data-ad="Dillard&#x27;s, Inc." data-kisa="0">
+        <td class="c-sira">24</td>
+        <td class="c-hisse"><span class="hs">DDS</span></td>
+        <td class="c-ad">Dillard&#x27;s, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="9.10614016">9.1B</td>
+        <td class="c-roic" data-sort="30.010827406723788">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#10b981"></div>
+          <span style="color:#10b981">30%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3316313335290324" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.1678397736411148" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="9.8">10</td>
+        <td class="c-sayi" data-sort="37.0">37</td>
+        <td class="c-sayi c-shide" data-sort="70.0">70</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.197744303000829" style="color:#94a3b8">-20%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0147487903813839" style="color:#94a3b8">1%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="EXPD" data-ad="Expeditors International of Washington, Inc." data-kisa="0">
+        <td class="c-sira">25</td>
+        <td class="c-hisse"><span class="hs">EXPD</span></td>
+        <td class="c-ad">Expeditors International of Washington, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="25.220478976">25B</td>
+        <td class="c-roic" data-sort="29.20435485464431">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">29%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.6704101179556754" style="color:#38bdf8">-0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.3168427155641842" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="44.1">44</td>
+        <td class="c-sayi" data-sort="47.0">47</td>
+        <td class="c-sayi c-shide" data-sort="98.0">98</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6060506668000134" style="color:#94a3b8">-61%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0934596564447863" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ODFL" data-ad="Old Dominion Freight Line, Inc." data-kisa="0">
+        <td class="c-sira">26</td>
+        <td class="c-hisse"><span class="hs">ODFL</span></td>
+        <td class="c-ad">Old Dominion Freight Line, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="33.98009856">34B</td>
+        <td class="c-roic" data-sort="28.98508841445225">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">29%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.0463976319227015" style="color:#38bdf8">-0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.3032663639865183" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="40.2">40</td>
+        <td class="c-sayi" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="80.0">80</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6277144586530166" style="color:#94a3b8">-63%</td>
+        <td class="c-sayi c-mhide" data-sort="0.132666979996512" style="color:#94a3b8">13%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="QLYS" data-ad="Qualys, Inc." data-kisa="0">
+        <td class="c-sira">27</td>
+        <td class="c-hisse"><span class="hs">QLYS</span></td>
+        <td class="c-ad">Qualys, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="6.705670656">6.7B</td>
+        <td class="c-roic" data-sort="28.569572404006237">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">29%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.8373434612147537" style="color:#38bdf8">-0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.5784887909345822" style="color:#10b981">1.6</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="151.6">152</td>
+        <td class="c-sayi" data-sort="44.0">44</td>
+        <td class="c-sayi c-shide" data-sort="61.0">61</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7200935861307871" style="color:#94a3b8">-72%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0692862012769727" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="PAYX" data-ad="Paychex, Inc." data-kisa="0">
+        <td class="c-sira">28</td>
+        <td class="c-hisse"><span class="hs">PAYX</span></td>
+        <td class="c-ad">Paychex, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="41.671073792">42B</td>
+        <td class="c-roic" data-sort="28.50206937760837">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">29%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.1644392987098908" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.2095092346701477" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="38.7">39</td>
+        <td class="c-sayi" data-sort="49.0">49</td>
+        <td class="c-sayi c-shide" data-sort="23.0">23</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.546747967325292" style="color:#94a3b8">-55%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0421847379293317" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="—" data-ticker="HONA" data-ad="Honeywell Aerospace Inc." data-kisa="0">
+        <td class="c-sira">29</td>
+        <td class="c-hisse"><span class="hs">HONA</span></td>
+        <td class="c-ad">Honeywell Aerospace Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="51.790319616">52B</td>
+        <td class="c-roic" data-sort="28.393201519205828">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">28%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.0161740100390407" style="color:#10b981">0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.2330616063076307" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-—">—</span></td>
+        <td class="c-sayi" data-sort="-1">-</td>
+        <td class="c-sayi" data-sort="-1">-</td>
+        <td class="c-sayi c-shide" data-sort="101">-</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.3648890953945253" style="color:#94a3b8">-36%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0284159675845036" style="color:#94a3b8">3%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="ADBE" data-ad="Adobe Inc." data-kisa="0">
+        <td class="c-sira">30</td>
+        <td class="c-hisse"><span class="hs">ADBE</span></td>
+        <td class="c-ad">Adobe Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="95.743197184">96B</td>
+        <td class="c-roic" data-sort="28.269455606477926">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">28%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1239938869077942" style="color:#10b981">0.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.4526099501617558" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="18.1">18</td>
+        <td class="c-sayi" data-sort="31.0">31</td>
+        <td class="c-sayi c-shide" data-sort="4.0">4</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.2847650640787129" style="color:#94a3b8">-28%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0402984640724495" style="color:#94a3b8">-4%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ULTA" data-ad="Ulta Beauty, Inc." data-kisa="0">
+        <td class="c-sira">31</td>
+        <td class="c-hisse"><span class="hs">ULTA</span></td>
+        <td class="c-ad">Ulta Beauty, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="27.568308224">28B</td>
+        <td class="c-roic" data-sort="28.08578087883174">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">28%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.9503850863842428" style="color:#10b981">1.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.186488161849096" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="40.3">40</td>
+        <td class="c-sayi" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="93.0">93</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#ef4444">riskli</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5201215221588062" style="color:#94a3b8">-52%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0902302930421367" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="V" data-ad="Visa Inc." data-kisa="0">
+        <td class="c-sira">32</td>
+        <td class="c-hisse"><span class="hs">V</span></td>
+        <td class="c-ad">Visa Inc.</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="788.580401152">789B</td>
+        <td class="c-roic" data-sort="27.94501926929665">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">28%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.3079260085374764" style="color:#10b981">0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.1469089697491357" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="38.6">39</td>
+        <td class="c-sayi" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="98.0">98</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7351653881568936" style="color:#94a3b8">-74%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1362353014853711" style="color:#94a3b8">14%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="AMAT" data-ad="Applied Materials, Inc." data-kisa="0">
+        <td class="c-sira">33</td>
+        <td class="c-hisse"><span class="hs">AMAT</span></td>
+        <td class="c-ad">Applied Materials, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="277.95750912">278B</td>
+        <td class="c-roic" data-sort="27.47890060181875">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">27%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.0191478696741854" style="color:#38bdf8">-0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.1153287850195963" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="45.2">45</td>
+        <td class="c-sayi" data-sort="38.0">38</td>
+        <td class="c-sayi c-shide" data-sort="71.0">71</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7388044293604923" style="color:#94a3b8">-74%</td>
+        <td class="c-sayi c-mhide" data-sort="0.174727171542654" style="color:#f97316">17%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="MLI" data-ad="Mueller Industries, Inc." data-kisa="0">
+        <td class="c-sira">34</td>
+        <td class="c-hisse"><span class="hs">MLI</span></td>
+        <td class="c-ad">Mueller Industries, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="11.543922688">12B</td>
+        <td class="c-roic" data-sort="27.094756644122768">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">27%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-1.239106926628376" style="color:#38bdf8">-1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.063382768026092" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="2.5">2</td>
+        <td class="c-sayi" data-sort="37.0">37</td>
+        <td class="c-sayi c-shide" data-sort="61.0">61</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1864518484041059" style="color:#94a3b8">-19%</td>
+        <td class="c-sayi c-mhide" data-sort="0.033513856699222" style="color:#94a3b8">3%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="NTAP" data-ad="NetApp, Inc." data-kisa="0">
+        <td class="c-sira">35</td>
+        <td class="c-hisse"><span class="hs">NTAP</span></td>
+        <td class="c-ad">NetApp, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="33.232132096">33B</td>
+        <td class="c-roic" data-sort="26.13350995553439">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">26%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.3387838528359734" style="color:#10b981">0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.3479457856840322" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="76.8">77</td>
+        <td class="c-sayi" data-sort="34.0">34</td>
+        <td class="c-sayi c-shide" data-sort="75.0">75</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6449600910268878" style="color:#94a3b8">-64%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0409451678521503" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="EME" data-ad="EMCOR Group, Inc." data-kisa="0">
+        <td class="c-sira">36</td>
+        <td class="c-hisse"><span class="hs">EME</span></td>
+        <td class="c-ad">EMCOR Group, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="27.964440576">28B</td>
+        <td class="c-roic" data-sort="25.955898813513713">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">26%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3352799698343388" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.2375560321269945" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="7.5">8</td>
+        <td class="c-sayi" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="9.0">9</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5579661866722352" style="color:#94a3b8">-56%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0779008848932486" style="color:#94a3b8">8%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="CRVL" data-ad="CorVel Corporation" data-kisa="0">
+        <td class="c-sira">37</td>
+        <td class="c-hisse"><span class="hs">CRVL</span></td>
+        <td class="c-ad">CorVel Corporation</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="4.186741248">4.2B</td>
+        <td class="c-roic" data-sort="25.93565224811516">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">26%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-1.1719317304668515" style="color:#38bdf8">-1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.3342295605614058" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="94.7">95</td>
+        <td class="c-sayi" data-sort="64.0">64</td>
+        <td class="c-sayi c-shide" data-sort="34.0">34</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7082810016104826" style="color:#94a3b8">-71%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1412846843081442" style="color:#94a3b8">14%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="IT" data-ad="Gartner, Inc." data-kisa="1">
+        <td class="c-sira">38</td>
+        <td class="c-hisse"><span class="hs">IT</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Gartner, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="11.991764992">12B</td>
+        <td class="c-roic" data-sort="25.05857358076396">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">25%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.256414914076172" style="color:#eab308">1.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.3700400004246966" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="43.3">43</td>
+        <td class="c-sayi" data-sort="19.0">19</td>
+        <td class="c-sayi c-shide" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1708785752531342" style="color:#94a3b8">-17%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0336146421866122" style="color:#94a3b8">-3%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="MSFT" data-ad="Microsoft Corporation" data-kisa="0">
+        <td class="c-sira">39</td>
+        <td class="c-hisse"><span class="hs">MSFT</span></td>
+        <td class="c-ad">Microsoft Corporation</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="3940.412817408">3.9T</td>
+        <td class="c-roic" data-sort="24.80985649604408">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">25%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.172952838053383" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.3260696125510631" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="8.0">8</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6936591616738292" style="color:#94a3b8">-69%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1999005239265739" style="color:#f97316">20%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="NXT.L" data-ad="NEXT plc" data-kisa="0">
+        <td class="c-sira">40</td>
+        <td class="c-hisse"><span class="hs">NXT.L</span></td>
+        <td class="c-ad">NEXT plc</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="23.184890581305307">23B</td>
+        <td class="c-roic" data-sort="24.56937715367589">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">25%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.054170514004309" style="color:#eab308">1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.3657681768941563" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="32.8">33</td>
+        <td class="c-sayi" data-sort="59.0">59</td>
+        <td class="c-sayi c-shide" data-sort="88.0">88</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6086977224159685" style="color:#94a3b8">-61%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0680492563260596" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="LOPE" data-ad="Grand Canyon Education, Inc." data-kisa="0">
+        <td class="c-sira">41</td>
+        <td class="c-hisse"><span class="hs">LOPE</span></td>
+        <td class="c-ad">Grand Canyon Education, Inc.</td>
+        <td class="c-sektor">Consumer Defensive</td>
+        <td class="c-sayi c-mhide" data-sort="3.002332672">3.0B</td>
+        <td class="c-roic" data-sort="24.49862361116559">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">24%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.0129332824431929" style="color:#38bdf8">-0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.2353977578647797" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="2.4">2</td>
+        <td class="c-sayi" data-sort="19.0">19</td>
+        <td class="c-sayi c-shide" data-sort="2.0">2</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1820039638981117" style="color:#94a3b8">-18%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0051866577937653" style="color:#94a3b8">-1%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="SEIC" data-ad="SEI Investments Company" data-kisa="0">
+        <td class="c-sira">42</td>
+        <td class="c-hisse"><span class="hs">SEIC</span></td>
+        <td class="c-ad">SEI Investments Company</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="12.487302144">12B</td>
+        <td class="c-roic" data-sort="24.01898463412268">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">24%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3734765099590852" style="color:#38bdf8">-0.4</td>
+        <td class="c-sayi c-mhide" data-sort="1.0039982615864769" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="38.5">38</td>
+        <td class="c-sayi" data-sort="44.0">44</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#eab308">gri</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4630231911160863" style="color:#94a3b8">-46%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0720835468769348" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="CHE" data-ad="Chemed Corporation" data-kisa="0">
+        <td class="c-sira">43</td>
+        <td class="c-hisse"><span class="hs">CHE</span></td>
+        <td class="c-ad">Chemed Corporation</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="6.84350464">6.8B</td>
+        <td class="c-roic" data-sort="23.24726819427974">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1639419559674123" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.3273304754123942" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="50.5">50</td>
+        <td class="c-sayi" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5284948500550743" style="color:#94a3b8">-53%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0631328075394926" style="color:#94a3b8">6%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="ROL" data-ad="Rollins, Inc." data-kisa="0">
+        <td class="c-sira">44</td>
+        <td class="c-hisse"><span class="hs">ROL</span></td>
+        <td class="c-ad">Rollins, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="18.124746752">18B</td>
+        <td class="c-roic" data-sort="23.04620797355238">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.0980885665185407" style="color:#eab308">1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.2690667022887168" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="30.1">30</td>
+        <td class="c-sayi" data-sort="65.0">65</td>
+        <td class="c-sayi c-shide" data-sort="11.0">11</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7161901245898784" style="color:#94a3b8">-72%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1004149407798554" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="CTAS" data-ad="Cintas Corporation" data-kisa="1">
+        <td class="c-sira">45</td>
+        <td class="c-hisse"><span class="hs">CTAS</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Cintas Corporation</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="88.29362176">88B</td>
+        <td class="c-roic" data-sort="23.032150626460858">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.7735529122585787" style="color:#10b981">0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.202776621170017" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="39.1">39</td>
+        <td class="c-sayi" data-sort="52.0">52</td>
+        <td class="c-sayi c-shide" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7908636169208643" style="color:#94a3b8">-79%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1695623494377319" style="color:#f97316">17%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="FIX" data-ad="Comfort Systems USA, Inc." data-kisa="0">
+        <td class="c-sira">46</td>
+        <td class="c-hisse"><span class="hs">FIX</span></td>
+        <td class="c-ad">Comfort Systems USA, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="37.003894784">37B</td>
+        <td class="c-roic" data-sort="22.769068366901347">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3456339569035623" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.4077762474838436" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="20.5">20</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="36.0">36</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8104281085385542" style="color:#94a3b8">-81%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1337733298677293" style="color:#94a3b8">13%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="GOOGL" data-ad="Alphabet Inc." data-kisa="0">
+        <td class="c-sira">47</td>
+        <td class="c-hisse"><span class="hs">GOOGL</span></td>
+        <td class="c-ad">Alphabet Inc.</td>
+        <td class="c-sektor">Communication Services</td>
+        <td class="c-sayi c-mhide" data-sort="3501.08516352">3.5T</td>
+        <td class="c-roic" data-sort="22.67803205093099">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1581810534704313" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.320165002526943" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="2.7">3</td>
+        <td class="c-sayi" data-sort="51.0">51</td>
+        <td class="c-sayi c-shide" data-sort="14.0">14</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7095205493784508" style="color:#94a3b8">-71%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1719657093074261" style="color:#f97316">17%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="EMSN.SW" data-ad="EMS-CHEMIE HOLDING AG" data-kisa="0">
+        <td class="c-sira">48</td>
+        <td class="c-hisse"><span class="hs">EMSN.SW</span></td>
+        <td class="c-ad">EMS-CHEMIE HOLDING AG</td>
+        <td class="c-sektor">Basic Materials</td>
+        <td class="c-sayi c-mhide" data-sort="23.31329312058983">23B</td>
+        <td class="c-roic" data-sort="22.63758010589508">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">23%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.920264564429922" style="color:#38bdf8">-0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.0209163310243086" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="57.8">58</td>
+        <td class="c-sayi" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="98.0">98</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7962877846467239" style="color:#94a3b8">-80%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1670977684012423" style="color:#f97316">17%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="EXPO" data-ad="Exponent, Inc." data-kisa="0">
+        <td class="c-sira">49</td>
+        <td class="c-hisse"><span class="hs">EXPO</span></td>
+        <td class="c-ad">Exponent, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="3.994821888">4.0B</td>
+        <td class="c-roic" data-sort="22.41993566972048">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">22%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-1.071040271040271" style="color:#38bdf8">-1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.1909260678031028" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="69.3">69</td>
+        <td class="c-sayi" data-sort="63.0">63</td>
+        <td class="c-sayi c-shide" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#64748b">—</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7093355261704894" style="color:#94a3b8">-71%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1213006190336515" style="color:#94a3b8">12%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="TJX" data-ad="The TJX Companies, Inc." data-kisa="0">
+        <td class="c-sira">50</td>
+        <td class="c-hisse"><span class="hs">TJX</span></td>
+        <td class="c-ad">The TJX Companies, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="149.466513408">149B</td>
+        <td class="c-roic" data-sort="21.991443172802942">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">22%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.8421113689095128" style="color:#10b981">0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.2619203491543918" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="14.9">15</td>
+        <td class="c-sayi" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="19.0">19</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6650275945997444" style="color:#94a3b8">-67%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1118286678907681" style="color:#94a3b8">11%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ACN" data-ad="Accenture plc" data-kisa="0">
+        <td class="c-sira">51</td>
+        <td class="c-hisse"><span class="hs">ACN</span></td>
+        <td class="c-ad">Accenture plc</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="153.887113216">154B</td>
+        <td class="c-roic" data-sort="21.48568613236523">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.0437885493732021" style="color:#10b981">0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.4079012364822243" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="86.5">86</td>
+        <td class="c-sayi" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="25.0">25</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.3989736772017831" style="color:#94a3b8">-40%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0016713126984772" style="color:#94a3b8">0%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="GALP.LS" data-ad="Galp Energia, SGPS, S.A." data-kisa="0">
+        <td class="c-sira">52</td>
+        <td class="c-hisse"><span class="hs">GALP.LS</span></td>
+        <td class="c-ad">Galp Energia, SGPS, S.A.</td>
+        <td class="c-sektor">Energy</td>
+        <td class="c-sayi c-mhide" data-sort="15.176220910591999">15B</td>
+        <td class="c-roic" data-sort="21.34222325086671">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.8796136598827182" style="color:#10b981">0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.9743694894402295" style="color:#10b981">2.0</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="35.8">36</td>
+        <td class="c-sayi" data-sort="19.0">19</td>
+        <td class="c-sayi c-shide" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="0.1450015538731617" style="color:#38bdf8">15%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1578416752778811" style="color:#f97316">16%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="JBL" data-ad="Jabil Inc." data-kisa="0">
+        <td class="c-sira">53</td>
+        <td class="c-hisse"><span class="hs">JBL</span></td>
+        <td class="c-ad">Jabil Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="24.62016512">25B</td>
+        <td class="c-roic" data-sort="21.00765307754745">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.0048458149779735" style="color:#eab308">1.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.816133162612036" style="color:#10b981">1.8</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="22.0">22</td>
+        <td class="c-sayi" data-sort="35.0">35</td>
+        <td class="c-sayi c-shide" data-sort="72.0">72</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#eab308">gri</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5663237515880701" style="color:#94a3b8">-57%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0419693653453604" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="JKHY" data-ad="Jack Henry &amp; Associates, Inc." data-kisa="0">
+        <td class="c-sira">54</td>
+        <td class="c-hisse"><span class="hs">JKHY</span></td>
+        <td class="c-ad">Jack Henry &amp; Associates, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="12.060049408">12B</td>
+        <td class="c-roic" data-sort="20.81940643087213">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.0320672742587369" style="color:#10b981">0.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.378490509002417" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="41.6">42</td>
+        <td class="c-sayi" data-sort="61.0">61</td>
+        <td class="c-sayi c-shide" data-sort="21.0">21</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5744084783793939" style="color:#94a3b8">-57%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0795594328283376" style="color:#94a3b8">8%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="LOGN.SW" data-ad="Logitech International S.A." data-kisa="1">
+        <td class="c-sira">55</td>
+        <td class="c-hisse"><span class="hs">LOGN.SW</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Logitech International S.A.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="13.191283363486937">13B</td>
+        <td class="c-roic" data-sort="20.807607045370467">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-1.9169572919903357" style="color:#38bdf8">-1.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.5343786458248003" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="28.7">29</td>
+        <td class="c-sayi" data-sort="61.0">61</td>
+        <td class="c-sayi c-shide" data-sort="20.0">20</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4401408458048379" style="color:#94a3b8">-44%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0044569983450665" style="color:#94a3b8">0%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="RACE.MI" data-ad="Ferrari N.V." data-kisa="1">
+        <td class="c-sira">56</td>
+        <td class="c-hisse"><span class="hs">RACE.MI</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Ferrari N.V.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="71.82606534656">72B</td>
+        <td class="c-roic" data-sort="20.76239646266439">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6729888735430347" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.3945503103823955" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="35.9">36</td>
+        <td class="c-sayi" data-sort="56.0">56</td>
+        <td class="c-sayi c-shide" data-sort="32.0">32</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7866673303095922" style="color:#94a3b8">-79%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1809031977404144" style="color:#f97316">18%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="AWI" data-ad="Armstrong World Industries, Inc." data-kisa="0">
+        <td class="c-sira">57</td>
+        <td class="c-hisse"><span class="hs">AWI</span></td>
+        <td class="c-ad">Armstrong World Industries, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="7.163218432">7.2B</td>
+        <td class="c-roic" data-sort="20.616124206525722">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">21%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6884594545782915" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.037888633409977" style="color:#eab308">1.0</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="13.5">14</td>
+        <td class="c-sayi" data-sort="51.0">51</td>
+        <td class="c-sayi c-shide" data-sort="45.0">45</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5583481859876844" style="color:#94a3b8">-56%</td>
+        <td class="c-sayi c-mhide" data-sort="0.106090684020763" style="color:#94a3b8">11%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="ADSK" data-ad="Autodesk, Inc." data-kisa="0">
+        <td class="c-sira">58</td>
+        <td class="c-hisse"><span class="hs">ADSK</span></td>
+        <td class="c-ad">Autodesk, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="55.495770112">55B</td>
+        <td class="c-roic" data-sort="20.499537417119402">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">20%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.2438411261940673" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.8771752837326607" style="color:#10b981">1.9</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="33.7">34</td>
+        <td class="c-sayi" data-sort="45.0">45</td>
+        <td class="c-sayi c-shide" data-sort="21.0">21</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.776910176082367" style="color:#94a3b8">-78%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0770201196610272" style="color:#94a3b8">8%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="VACN.SW" data-ad="VAT Group AG" data-kisa="0">
+        <td class="c-sira">59</td>
+        <td class="c-hisse"><span class="hs">VACN.SW</span></td>
+        <td class="c-ad">VAT Group AG</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="18.63966869997181">19B</td>
+        <td class="c-roic" data-sort="20.49914910869315">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">20%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.3466906100723793" style="color:#10b981">0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.180920482512392" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="58.0">58</td>
+        <td class="c-sayi" data-sort="29.0">29</td>
+        <td class="c-sayi c-shide" data-sort="79.0">79</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8816454407655594" style="color:#94a3b8">-88%</td>
+        <td class="c-sayi c-mhide" data-sort="0.2429968560771856" style="color:#f97316">24%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="LECO" data-ad="Lincoln Electric Holdings, Inc." data-kisa="0">
+        <td class="c-sira">60</td>
+        <td class="c-hisse"><span class="hs">LECO</span></td>
+        <td class="c-ad">Lincoln Electric Holdings, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="14.912121856">15B</td>
+        <td class="c-roic" data-sort="20.4441604227857">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">20%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.1901552527566237" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.1531675110136006" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="16.1">16</td>
+        <td class="c-sayi" data-sort="28.0">28</td>
+        <td class="c-sayi c-shide" data-sort="59.0">59</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6670520513940547" style="color:#94a3b8">-67%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1005645672089551" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="FHI" data-ad="Federated Hermes, Inc." data-kisa="0">
+        <td class="c-sira">61</td>
+        <td class="c-hisse"><span class="hs">FHI</span></td>
+        <td class="c-ad">Federated Hermes, Inc.</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="4.642107392">4.6B</td>
+        <td class="c-roic" data-sort="20.07927489331653">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">20%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.2155040702604898" style="color:#38bdf8">-0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.0575073403691797" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="28.4">28</td>
+        <td class="c-sayi" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1569063494023025" style="color:#94a3b8">-16%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0249071445547802" style="color:#94a3b8">2%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="FTDR" data-ad="Frontdoor, Inc." data-kisa="0">
+        <td class="c-sira">62</td>
+        <td class="c-hisse"><span class="hs">FTDR</span></td>
+        <td class="c-ad">Frontdoor, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="6.562166272">6.6B</td>
+        <td class="c-roic" data-sort="20.0757479682099">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#84cc16"></div>
+          <span style="color:#84cc16">20%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2351778656126482" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.407103825136612" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="83.4">83</td>
+        <td class="c-sayi" data-sort="53.0">53</td>
+        <td class="c-sayi c-shide" data-sort="68.0">68</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6427717773343617" style="color:#94a3b8">-64%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0336232223573259" style="color:#94a3b8">3%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="TT" data-ad="Trane Technologies plc" data-kisa="0">
+        <td class="c-sira">63</td>
+        <td class="c-hisse"><span class="hs">TT</span></td>
+        <td class="c-ad">Trane Technologies plc</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="87.943397376">88B</td>
+        <td class="c-roic" data-sort="19.459193282609778">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">19%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6660594170403588" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.1043283082800073" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="6.0">6</td>
+        <td class="c-sayi" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="20.0">20</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6950949158581881" style="color:#94a3b8">-70%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1156122707976957" style="color:#94a3b8">12%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ROP.SW" data-ad="Roche Holding AG" data-kisa="0">
+        <td class="c-sira">64</td>
+        <td class="c-hisse"><span class="hs">ROP.SW</span></td>
+        <td class="c-ad">Roche Holding AG</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="378.0571857141148">378B</td>
+        <td class="c-roic" data-sort="19.31351498709701">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">19%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2720110573600554" style="color:#eab308">1.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.6160262667494898" style="color:#10b981">1.6</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="33.3">33</td>
+        <td class="c-sayi" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="70.0">70</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7183142997081977" style="color:#94a3b8">-72%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1052341240496753" style="color:#94a3b8">11%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="GGG" data-ad="Graco Inc." data-kisa="0">
+        <td class="c-sira">65</td>
+        <td class="c-hisse"><span class="hs">GGG</span></td>
+        <td class="c-ad">Graco Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="11.460407296">11B</td>
+        <td class="c-roic" data-sort="19.17638732224378">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">19%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.7617660599899405" style="color:#38bdf8">-0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.1815740028626702" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="7.0">7</td>
+        <td class="c-sayi" data-sort="57.0">57</td>
+        <td class="c-sayi c-shide" data-sort="5.0">5</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4948155211456635" style="color:#94a3b8">-49%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0423137112717729" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="CDNS" data-ad="Cadence Design Systems, Inc." data-kisa="0">
+        <td class="c-sira">66</td>
+        <td class="c-hisse"><span class="hs">CDNS</span></td>
+        <td class="c-ad">Cadence Design Systems, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="87.779336192">88B</td>
+        <td class="c-roic" data-sort="19.042154220384848">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">19%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.2055502267643936" style="color:#38bdf8">-0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.3763586246087034" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="11.5">12</td>
+        <td class="c-sayi" data-sort="34.0">34</td>
+        <td class="c-sayi c-shide" data-sort="23.0">23</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.8381053812222294" style="color:#94a3b8">-84%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1916070941442943" style="color:#f97316">19%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="MCO" data-ad="Moody&#x27;s Corporation" data-kisa="0">
+        <td class="c-sira">67</td>
+        <td class="c-hisse"><span class="hs">MCO</span></td>
+        <td class="c-ad">Moody&#x27;s Corporation</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="87.189684224">87B</td>
+        <td class="c-roic" data-sort="18.20948471082609">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2765355949627346" style="color:#eab308">1.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.2488663643638305" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="16.5">16</td>
+        <td class="c-sayi" data-sort="37.0">37</td>
+        <td class="c-sayi c-shide" data-sort="11.0">11</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7581698620863926" style="color:#94a3b8">-76%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1261071247052353" style="color:#94a3b8">13%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ROST" data-ad="Ross Stores, Inc." data-kisa="0">
+        <td class="c-sira">68</td>
+        <td class="c-hisse"><span class="hs">ROST</span></td>
+        <td class="c-ad">Ross Stores, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="73.822420992">74B</td>
+        <td class="c-roic" data-sort="17.83725275617866">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1823123832789003" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.2578473656694438" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="34.4">34</td>
+        <td class="c-sayi" data-sort="40.0">40</td>
+        <td class="c-sayi c-shide" data-sort="77.0">77</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6853813287749904" style="color:#94a3b8">-69%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1244531544075319" style="color:#94a3b8">12%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="RMD" data-ad="ResMed Inc." data-kisa="1">
+        <td class="c-sira">69</td>
+        <td class="c-hisse"><span class="hs">RMD</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">ResMed Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="33.100828672">33B</td>
+        <td class="c-roic" data-sort="17.767826735899">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.2988532071734247" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.1671552205327678" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="32.0">32</td>
+        <td class="c-sayi" data-sort="58.0">58</td>
+        <td class="c-sayi c-shide" data-sort="4.0">4</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5372771927371547" style="color:#94a3b8">-54%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0586435098549859" style="color:#94a3b8">6%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="PG" data-ad="The Procter &amp; Gamble Company" data-kisa="1">
+        <td class="c-sira">70</td>
+        <td class="c-hisse"><span class="hs">PG</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">The Procter &amp; Gamble Company</td>
+        <td class="c-sektor">Consumer Defensive</td>
+        <td class="c-sayi c-mhide" data-sort="385.111228416">385B</td>
+        <td class="c-roic" data-sort="17.76050966477584">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.0274432702547718" style="color:#eab308">1.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.2033240187158825" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="27.4">27</td>
+        <td class="c-sayi" data-sort="64.0">64</td>
+        <td class="c-sayi c-shide" data-sort="47.0">47</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.61460327576599" style="color:#94a3b8">-61%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0882236180019767" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="YETI" data-ad="YETI Holdings, Inc." data-kisa="0">
+        <td class="c-sira">71</td>
+        <td class="c-hisse"><span class="hs">YETI</span></td>
+        <td class="c-ad">YETI Holdings, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="3.282306304">3.3B</td>
+        <td class="c-roic" data-sort="17.75504604466661">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1459142553717685" style="color:#10b981">0.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.503293077212505" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="4.9">5</td>
+        <td class="c-sayi" data-sort="32.0">32</td>
+        <td class="c-sayi c-shide" data-sort="25.0">25</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.4139663510291099" style="color:#94a3b8">-41%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0658771652862065" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="AIT" data-ad="Applied Industrial Technologies, Inc." data-kisa="0">
+        <td class="c-sira">72</td>
+        <td class="c-hisse"><span class="hs">AIT</span></td>
+        <td class="c-ad">Applied Industrial Technologies, Inc.</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="10.347981824">10B</td>
+        <td class="c-roic" data-sort="17.517075347387888">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">18%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.215373633499945" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.0985783246126335" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="19.4">19</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="64.0">64</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5593829475729108" style="color:#94a3b8">-56%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0719100849924984" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="IBP" data-ad="Installed Building Products, Inc." data-kisa="0">
+        <td class="c-sira">73</td>
+        <td class="c-hisse"><span class="hs">IBP</span></td>
+        <td class="c-ad">Installed Building Products, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="5.848861184">5.8B</td>
+        <td class="c-roic" data-sort="17.31442278577226">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.255247376311844" style="color:#eab308">1.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.3441512486098472" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="26.2">26</td>
+        <td class="c-sayi" data-sort="53.0">53</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5618147432269559" style="color:#94a3b8">-56%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0527910807321027" style="color:#94a3b8">5%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="LAUR" data-ad="Laureate Education, Inc." data-kisa="0">
+        <td class="c-sira">74</td>
+        <td class="c-hisse"><span class="hs">LAUR</span></td>
+        <td class="c-ad">Laureate Education, Inc.</td>
+        <td class="c-sektor">Consumer Defensive</td>
+        <td class="c-sayi c-mhide" data-sort="4.559704576">4.6B</td>
+        <td class="c-roic" data-sort="17.20055566427804">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.7059665861983808" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.3610219961947232" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="11.9">12</td>
+        <td class="c-sayi" data-sort="42.0">42</td>
+        <td class="c-sayi c-shide" data-sort="27.0">27</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.3764415426891985" style="color:#94a3b8">-38%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0375206382557439" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ENI.MI" data-ad="Eni S.p.A." data-kisa="0">
+        <td class="c-sira">75</td>
+        <td class="c-hisse"><span class="hs">ENI.MI</span></td>
+        <td class="c-ad">Eni S.p.A.</td>
+        <td class="c-sektor">Energy</td>
+        <td class="c-sayi c-mhide" data-sort="78.04112536371201">78B</td>
+        <td class="c-roic" data-sort="17.15390466627186">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2256655867023525" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="2.4696944328170782" style="color:#10b981">2.5</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="61.6">62</td>
+        <td class="c-sayi" data-sort="27.0">27</td>
+        <td class="c-sayi c-shide" data-sort="95.0">95</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="0.2879943329600714" style="color:#38bdf8">29%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0499388407548492" style="color:#94a3b8">5%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="ASM.AS" data-ad="ASM International NV" data-kisa="0">
+        <td class="c-sira">76</td>
+        <td class="c-hisse"><span class="hs">ASM.AS</span></td>
+        <td class="c-ad">ASM International NV</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="35.226089658368">35B</td>
+        <td class="c-roic" data-sort="17.08235038506367">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.8607239972807614" style="color:#38bdf8">-0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.268718247492929" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="39.5">40</td>
+        <td class="c-sayi" data-sort="40.0">40</td>
+        <td class="c-sayi c-shide" data-sort="50.0">50</td>
+        <td class="c-sayi c-shide" data-sort="9" style="color:#10b981">9</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7504187548469782" style="color:#94a3b8">-75%</td>
+        <td class="c-sayi c-mhide" data-sort="0.2013160300736846" style="color:#f97316">20%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="BBY" data-ad="Best Buy Co., Inc." data-kisa="0">
+        <td class="c-sira">77</td>
+        <td class="c-hisse"><span class="hs">BBY</span></td>
+        <td class="c-ad">Best Buy Co., Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="20.89517056">21B</td>
+        <td class="c-roic" data-sort="17.0175336046964">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.0495179666958807" style="color:#eab308">1.0</td>
+        <td class="c-sayi c-mhide" data-sort="1.57946735395189" style="color:#10b981">1.6</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="84.8">85</td>
+        <td class="c-sayi" data-sort="56.0">56</td>
+        <td class="c-sayi c-shide" data-sort="100.0">100</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5051891853068348" style="color:#94a3b8">-51%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0319053147473661" style="color:#94a3b8">3%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ALSN" data-ad="Allison Transmission Holdings, Inc." data-kisa="0">
+        <td class="c-sira">78</td>
+        <td class="c-hisse"><span class="hs">ALSN</span></td>
+        <td class="c-ad">Allison Transmission Holdings, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="9.599814656">9.6B</td>
+        <td class="c-roic" data-sort="17.00417851801619">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.3676470588235294" style="color:#eab308">1.4</td>
+        <td class="c-sayi c-mhide" data-sort="1.2032838154808445" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="49.7">50</td>
+        <td class="c-sayi" data-sort="59.0">59</td>
+        <td class="c-sayi c-shide" data-sort="95.0">95</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.3569899004331591" style="color:#94a3b8">-36%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0140266400028666" style="color:#94a3b8">1%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="CVCO" data-ad="Cavco Industries, Inc." data-kisa="0">
+        <td class="c-sira">79</td>
+        <td class="c-hisse"><span class="hs">CVCO</span></td>
+        <td class="c-ad">Cavco Industries, Inc.</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="4.872398848">4.9B</td>
+        <td class="c-roic" data-sort="16.97911137580868">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.767746119783513" style="color:#38bdf8">-0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.2189647322615198" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="44.3">44</td>
+        <td class="c-sayi" data-sort="49.0">49</td>
+        <td class="c-sayi c-shide" data-sort="78.0">78</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5332342096125844" style="color:#94a3b8">-53%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0629311931697303" style="color:#94a3b8">6%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="PCTY" data-ad="Paylocity Holding Corporation" data-kisa="0">
+        <td class="c-sira">80</td>
+        <td class="c-hisse"><span class="hs">PCTY</span></td>
+        <td class="c-ad">Paylocity Holding Corporation</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="8.997446656">9.0B</td>
+        <td class="c-roic" data-sort="16.9381111151989">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.2791237268727777" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.917057845524219" style="color:#10b981">1.9</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="85.8">86</td>
+        <td class="c-sayi" data-sort="53.0">53</td>
+        <td class="c-sayi c-shide" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6761017456675038" style="color:#94a3b8">-68%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0631700163418932" style="color:#94a3b8">6%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="NEM.DE" data-ad="Nemetschek SE" data-kisa="0">
+        <td class="c-sira">81</td>
+        <td class="c-hisse"><span class="hs">NEM.DE</span></td>
+        <td class="c-ad">Nemetschek SE</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="8.472202464768">8.5B</td>
+        <td class="c-roic" data-sort="16.81090381950262">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.4069675312722587" style="color:#10b981">0.4</td>
+        <td class="c-sayi c-mhide" data-sort="1.643427421889734" style="color:#10b981">1.6</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="5.4">5</td>
+        <td class="c-sayi" data-sort="14.0">14</td>
+        <td class="c-sayi c-shide" data-sort="5.0">5</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7261516140636215" style="color:#94a3b8">-73%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0677237349969134" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="CNQ" data-ad="Canadian Natural Resources Limited" data-kisa="0">
+        <td class="c-sira">82</td>
+        <td class="c-hisse"><span class="hs">CNQ</span></td>
+        <td class="c-ad">Canadian Natural Resources Limited</td>
+        <td class="c-sektor">Energy</td>
+        <td class="c-sayi c-mhide" data-sort="98.8055552">99B</td>
+        <td class="c-roic" data-sort="16.65130714421263">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">17%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.7284689541737104" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.6687721631205674" style="color:#10b981">1.7</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="50.7">51</td>
+        <td class="c-sayi" data-sort="14.0">14</td>
+        <td class="c-sayi c-shide" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.1256873099170848" style="color:#94a3b8">-13%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0129148700967683" style="color:#94a3b8">-1%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="EXLS" data-ad="ExlService Holdings, Inc." data-kisa="0">
+        <td class="c-sira">83</td>
+        <td class="c-hisse"><span class="hs">EXLS</span></td>
+        <td class="c-ad">ExlService Holdings, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="6.5065344">6.5B</td>
+        <td class="c-roic" data-sort="16.33149265878657">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6176833513383747" style="color:#10b981">0.6</td>
+        <td class="c-sayi c-mhide" data-sort="1.2828618946967336" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="67.7">68</td>
+        <td class="c-sayi" data-sort="49.0">49</td>
+        <td class="c-sayi c-shide" data-sort="27.0">27</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6295995899698974" style="color:#94a3b8">-63%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0680623632548916" style="color:#94a3b8">7%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="ABBN.SW" data-ad="ABB Ltd" data-kisa="0">
+        <td class="c-sira">84</td>
+        <td class="c-hisse"><span class="hs">ABBN.SW</span></td>
+        <td class="c-ad">ABB Ltd</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="145.3134786646601">145B</td>
+        <td class="c-roic" data-sort="16.3049904442294">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.625175611126721" style="color:#10b981">0.6</td>
+        <td class="c-sayi c-mhide" data-sort="1.0558801799986568" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="22.6">23</td>
+        <td class="c-sayi" data-sort="32.0">32</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7256716125725089" style="color:#94a3b8">-73%</td>
+        <td class="c-sayi c-mhide" data-sort="0.120771275640153" style="color:#94a3b8">12%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="HWDN.L" data-ad="Howden Joinery Group Plc" data-kisa="0">
+        <td class="c-sira">85</td>
+        <td class="c-hisse"><span class="hs">HWDN.L</span></td>
+        <td class="c-ad">Howden Joinery Group Plc</td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="6.044396041569237">6.0B</td>
+        <td class="c-roic" data-sort="16.251144720349288">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.6685216100908923" style="color:#10b981">0.7</td>
+        <td class="c-sayi c-mhide" data-sort="1.4429219759120264" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="13.1">13</td>
+        <td class="c-sayi" data-sort="43.0">43</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5553670530149797" style="color:#94a3b8">-56%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0452405222940187" style="color:#94a3b8">5%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="SCHP.SW" data-ad="Schindler Holding AG" data-kisa="1">
+        <td class="c-sira">86</td>
+        <td class="c-hisse"><span class="hs">SCHP.SW</span><span class="yildiz" title="Kisa listede">★</span></td>
+        <td class="c-ad">Schindler Holding AG</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="38.930344402090434">39B</td>
+        <td class="c-roic" data-sort="16.202096749735908">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.9398843930635838" style="color:#38bdf8">-0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.4658529497239174" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="16.9">17</td>
+        <td class="c-sayi" data-sort="31.0">31</td>
+        <td class="c-sayi c-shide" data-sort="30.0">30</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6978682304257013" style="color:#94a3b8">-70%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1016688908331741" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="WST" data-ad="West Pharmaceutical Services, Inc." data-kisa="0">
+        <td class="c-sira">87</td>
+        <td class="c-hisse"><span class="hs">WST</span></td>
+        <td class="c-ad">West Pharmaceutical Services, Inc.</td>
+        <td class="c-sektor">Healthcare</td>
+        <td class="c-sayi c-mhide" data-sort="27.851180032">28B</td>
+        <td class="c-roic" data-sort="16.19654573640556">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.6084368530020704" style="color:#38bdf8">-0.6</td>
+        <td class="c-sayi c-mhide" data-sort="1.3430761416632035" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="71.2">71</td>
+        <td class="c-sayi" data-sort="41.0">41</td>
+        <td class="c-sayi c-shide" data-sort="98.0">98</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7639764441523227" style="color:#94a3b8">-76%</td>
+        <td class="c-sayi c-mhide" data-sort="0.2012104494369652" style="color:#f97316">20%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="CSCO" data-ad="Cisco Systems, Inc." data-kisa="0">
+        <td class="c-sira">88</td>
+        <td class="c-hisse"><span class="hs">CSCO</span></td>
+        <td class="c-ad">Cisco Systems, Inc.</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="370.011766784">370B</td>
+        <td class="c-roic" data-sort="16.12721264509296">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.1146910435086668" style="color:#eab308">1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.27503234152652" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="30.0">30</td>
+        <td class="c-sayi" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="88.0">88</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6879986421218118" style="color:#94a3b8">-69%</td>
+        <td class="c-sayi c-mhide" data-sort="0.105521562368296" style="color:#94a3b8">11%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="OR.PA" data-ad="L&#x27;Oréal S.A." data-kisa="0">
+        <td class="c-sira">89</td>
+        <td class="c-hisse"><span class="hs">OR.PA</span></td>
+        <td class="c-ad">L&#x27;Oréal S.A.</td>
+        <td class="c-sektor">Consumer Defensive</td>
+        <td class="c-sayi c-mhide" data-sort="262.05120207257596">262B</td>
+        <td class="c-roic" data-sort="15.999158886698881">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1917919658886894" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.2619818639592246" style="color:#10b981">1.3</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="29.4">29</td>
+        <td class="c-sayi" data-sort="51.0">51</td>
+        <td class="c-sayi c-shide" data-sort="80.0">80</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7259461885801292" style="color:#94a3b8">-73%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1363945974435557" style="color:#94a3b8">14%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="G1A.DE" data-ad="GEA Group Aktiengesellschaft" data-kisa="0">
+        <td class="c-sira">90</td>
+        <td class="c-hisse"><span class="hs">G1A.DE</span></td>
+        <td class="c-ad">GEA Group Aktiengesellschaft</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="12.318575015936">12B</td>
+        <td class="c-roic" data-sort="15.54749767375575">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.3976475715850504" style="color:#38bdf8">-0.4</td>
+        <td class="c-sayi c-mhide" data-sort="1.534485150174078" style="color:#10b981">1.5</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="28.3">28</td>
+        <td class="c-sayi" data-sort="51.0">51</td>
+        <td class="c-sayi c-shide" data-sort="93.0">93</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5892954733525113" style="color:#94a3b8">-59%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0904223191986138" style="color:#94a3b8">9%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="IGG.L" data-ad="IG Group Holdings plc" data-kisa="0">
+        <td class="c-sira">91</td>
+        <td class="c-hisse"><span class="hs">IGG.L</span></td>
+        <td class="c-ad">IG Group Holdings plc</td>
+        <td class="c-sektor">Financial Services</td>
+        <td class="c-sayi c-mhide" data-sort="4.0646202959336">4.1B</td>
+        <td class="c-roic" data-sort="15.50186238322574">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">16%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.8387418871692461" style="color:#38bdf8">-0.8</td>
+        <td class="c-sayi c-mhide" data-sort="1.1436095054592164" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="0.5">0</td>
+        <td class="c-sayi" data-sort="40.0">40</td>
+        <td class="c-sayi c-shide" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="0.1034743723414102" style="color:#38bdf8">10%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0610844982329232" style="color:#94a3b8">-6%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="CTSH" data-ad="Cognizant Technology Solutions Corporation" data-kisa="0">
+        <td class="c-sira">92</td>
+        <td class="c-hisse"><span class="hs">CTSH</span></td>
+        <td class="c-ad">Cognizant Technology Solutions Corporation</td>
+        <td class="c-sektor">Technology</td>
+        <td class="c-sayi c-mhide" data-sort="28.93180928">29B</td>
+        <td class="c-roic" data-sort="15.3658846856368">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.1842105263157894" style="color:#38bdf8">-0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.1146747693000223" style="color:#eab308">1.1</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="55.9">56</td>
+        <td class="c-sayi" data-sort="37.0">37</td>
+        <td class="c-sayi c-shide" data-sort="14.0">14</td>
+        <td class="c-sayi c-shide" data-sort="7" style="color:#10b981">7</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.038370615011455" style="color:#94a3b8">-4%</td>
+        <td class="c-sayi c-mhide" data-sort="-0.0215457035737737" style="color:#94a3b8">-2%</td>
+      </tr>
+      <tr data-etiket="AL" data-ticker="AIR.PA" data-ad="Airbus SE" data-kisa="0">
+        <td class="c-sira">93</td>
+        <td class="c-hisse"><span class="hs">AIR.PA</span></td>
+        <td class="c-ad">Airbus SE</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="172.707385360384">173B</td>
+        <td class="c-roic" data-sort="15.30493749677764">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="-0.302838193699405" style="color:#38bdf8">-0.3</td>
+        <td class="c-sayi c-mhide" data-sort="1.5975756189604895" style="color:#10b981">1.6</td>
+        <td class="c-etiket"><span class="badge b-AL">AL</span></td>
+        <td class="c-sayi" data-sort="23.4">23</td>
+        <td class="c-sayi" data-sort="46.0">46</td>
+        <td class="c-sayi c-shide" data-sort="48.0">48</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6547965153588445" style="color:#94a3b8">-65%</td>
+        <td class="c-sayi c-mhide" data-sort="0.1573839022122612" style="color:#f97316">16%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="SSD" data-ad="Simpson Manufacturing Co., Inc." data-kisa="0">
+        <td class="c-sira">94</td>
+        <td class="c-hisse"><span class="hs">SSD</span></td>
+        <td class="c-ad">Simpson Manufacturing Co., Inc.</td>
+        <td class="c-sektor">Basic Materials</td>
+        <td class="c-sayi c-mhide" data-sort="7.982208">8.0B</td>
+        <td class="c-roic" data-sort="15.22509682860756">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.1942303395364819" style="color:#10b981">0.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.1980190202975158" style="color:#eab308">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="23.3">23</td>
+        <td class="c-sayi" data-sort="43.0">43</td>
+        <td class="c-sayi c-shide" data-sort="82.0">82</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.5117110785667205" style="color:#94a3b8">-51%</td>
+        <td class="c-sayi c-mhide" data-sort="0.095281409803693" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="TTC" data-ad="The Toro Company" data-kisa="0">
+        <td class="c-sira">95</td>
+        <td class="c-hisse"><span class="hs">TTC</span></td>
+        <td class="c-ad">The Toro Company</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="9.924507648">9.9B</td>
+        <td class="c-roic" data-sort="15.21194500527068">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.2079020013802622" style="color:#eab308">1.2</td>
+        <td class="c-sayi c-mhide" data-sort="1.2174403183023872" style="color:#10b981">1.2</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="53.3">53</td>
+        <td class="c-sayi" data-sort="27.0">27</td>
+        <td class="c-sayi c-shide" data-sort="98.0">98</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.6421497938819325" style="color:#94a3b8">-64%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0362437517418533" style="color:#94a3b8">4%</td>
+      </tr>
+      <tr data-etiket="IZLE" data-ticker="IMI.L" data-ad="IMI plc" data-kisa="0">
+        <td class="c-sira">96</td>
+        <td class="c-hisse"><span class="hs">IMI.L</span></td>
+        <td class="c-ad">IMI plc</td>
+        <td class="c-sektor">Industrials</td>
+        <td class="c-sayi c-mhide" data-sort="8.703497513594076">8.7B</td>
+        <td class="c-roic" data-sort="15.16640071623358">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="0.94875" style="color:#10b981">0.9</td>
+        <td class="c-sayi c-mhide" data-sort="1.40293542074364" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-IZLE">IZLE</span></td>
+        <td class="c-sayi" data-sort="17.7">18</td>
+        <td class="c-sayi" data-sort="39.0">39</td>
+        <td class="c-sayi c-shide" data-sort="68.0">68</td>
+        <td class="c-sayi c-shide" data-sort="8" style="color:#10b981">8</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.7165554333957944" style="color:#94a3b8">-72%</td>
+        <td class="c-sayi c-mhide" data-sort="0.098540476994375" style="color:#94a3b8">10%</td>
+      </tr>
+      <tr data-etiket="BEKLE" data-ticker="MC.PA" data-ad="LVMH Moët Hennessy - Louis Vuitton, Société Européenne" data-kisa="0">
+        <td class="c-sira">97</td>
+        <td class="c-hisse"><span class="hs">MC.PA</span></td>
+        <td class="c-ad">LVMH Moët Hennessy - Louis Vuitton, Société </td>
+        <td class="c-sektor">Consumer Cyclical</td>
+        <td class="c-sayi c-mhide" data-sort="216.40895851724798">216B</td>
+        <td class="c-roic" data-sort="15.039297117390928">
+          <div class="bwrap"><div class="bfill" style="width:100%;background:#eab308"></div>
+          <span style="color:#eab308">15%</span></div>
+        </td>
+        <td class="c-sayi c-mhide" data-sort="1.08073500967118" style="color:#eab308">1.1</td>
+        <td class="c-sayi c-mhide" data-sort="1.4052689519037316" style="color:#10b981">1.4</td>
+        <td class="c-etiket"><span class="badge b-BEKLE">BEKLE</span></td>
+        <td class="c-sayi" data-sort="1.9">2</td>
+        <td class="c-sayi" data-sort="45.0">45</td>
+        <td class="c-sayi c-shide" data-sort="2.0">2</td>
+        <td class="c-sayi c-shide" data-sort="6" style="color:#eab308">6</td>
+        <td class="c-etiket c-mhide" style="color:#10b981">temiz</td>
+        <td class="c-sayi c-mhide" data-sort="-0.3718413971488024" style="color:#94a3b8">-37%</td>
+        <td class="c-sayi c-mhide" data-sort="0.0204074710407909" style="color:#94a3b8">2%</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="bos" id="bos">Sonuç yok — aramayı temizle.</div>
+  </div>
+
+  <footer>
+    <b>Kolonlar</b> · ROIC = NOPAT / (özkaynak + borç), 5 yıl ortalama · Net Borç/FAVÖK negatif = net nakit ·
+    Nakit/Kâr = faaliyet nakit akışı / net kâr · F/K yüzd. = kendi 5 yıllık aralığındaki yeri (düşük = ucuz) ·
+    Piotroski 0-9 (yüksek iyi) · Beneish muhasebe uyarısı · EPV = büyümesiz değere göre iskonto ·
+    İma. büyüme = fiyatın varsaydığı büyüme.<br>
+    <b>Filtre</b> · piyasa değeri ≥ 1 milyar $, ciro &gt; 0, 5 kalite şartı, banka/sigorta/SPAC hariç.<br>
+    ★ = kısa listede. Bu rapor otomatik üretilmiştir, yatırım tavsiyesi değildir.
+  </footer>
+</div>
+<script>
+  const tb = document.querySelector('#tbl tbody');
+  const bos = document.getElementById('bos');
+  const ara = document.getElementById('ara');
+  const btns = [...document.querySelectorAll('.fbtn')];
+  const rows = [...tb.querySelectorAll('tr')];
+  let etiket = 'ALL', q = '';
+
+  function uygula(){
+    let n = 0;
+    rows.forEach(r=>{
+      const okE = etiket==='ALL' || r.dataset.etiket===etiket ||
+                  (etiket==='KISA' && r.dataset.kisa==='1');
+      const okQ = !q || r.dataset.ticker.toLowerCase().includes(q) || r.dataset.ad.toLowerCase().includes(q);
+      const gorun = okE && okQ;
+      r.style.display = gorun ? '' : 'none';
+      if(gorun) n++;
+    });
+    document.getElementById('sayac').textContent = n;
+    bos.style.display = n ? 'none' : 'block';
+  }
+
+  btns.forEach(b=>b.onclick=()=>{
+    btns.forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); etiket = b.dataset.f; uygula();
+  });
+  ara.oninput = e => { q = e.target.value.toLowerCase().trim(); uygula(); };
+
+  // siralama
+  let sonKolon = null, artan = true;
+  document.querySelectorAll('#tbl thead th[data-key]').forEach(th=>{
+    th.onclick = () => {
+      const key = th.dataset.key;
+      if(sonKolon === key){ artan = !artan; } else { sonKolon = key; artan = true; }
+      const idx = [...th.parentNode.children].indexOf(th);
+      rows.sort((a,b)=>{
+        const va = parseFloat(a.children[idx].dataset.sort ?? '0');
+        const vb = parseFloat(b.children[idx].dataset.sort ?? '0');
+        return artan ? va-vb : vb-va;
+      });
+      rows.forEach(r=>tb.appendChild(r));
+    };
+  });
+
+  document.querySelectorAll('.one').forEach(a=>{
+    a.onclick = e=>{ e.preventDefault(); ara.value = a.dataset.ticker; q = a.dataset.ticker.toLowerCase(); uygula(); location.hash='#tbl'; };
+  });
+</script>
+</body>
+</html>
