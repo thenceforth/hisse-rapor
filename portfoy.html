@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portföy</title>
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;
+        --acc:#38bdf8;--grn:#10b981;--red:#ef4444;--ylw:#eab308}
+  body{margin:0;padding:26px 22px 60px;background:radial-gradient(1100px 500px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1400px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  h1{margin:0;font-size:28px;font-weight:700;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin-top:5px}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  .kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+  .k{background:linear-gradient(180deg,var(--card),#0d1526);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .k .lb{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;font-weight:600}
+  .k .vl{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.4px;font-variant-numeric:tabular-nums}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+  h2{font-size:11.5px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.1px;margin:0 0 12px}
+  .form{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .alan{display:flex;flex-direction:column;gap:5px}
+  .alan label{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px}
+  input,select{background:#0d1729;border:1px solid var(--line);color:var(--txt);border-radius:9px;
+        padding:9px 11px;font-size:13px;outline:none}
+  input:focus,select:focus{border-color:#2f4a76}
+  button{background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.45);color:#7dd3fc;
+         border-radius:9px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer}
+  button:hover{background:rgba(56,189,248,.22)}
+  button.sil{background:none;border:none;color:#475569;font-size:15px;padding:0 4px;cursor:pointer}
+  button.sil:hover{color:var(--red)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:10px 8px;border-bottom:1px solid #14203a;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0d1729}
+  thead th{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;background:#0d1729}
+  tbody tr:hover td{background:#101c31}
+  tbody tr:hover td:first-child{background:#101c31}
+  .hs{font-family:ui-monospace,monospace;font-weight:700}
+  .uyari{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:6px;margin-left:5px}
+  .u-kirmizi{background:rgba(239,68,68,.16);color:#fca5a5}
+  .u-sari{background:rgba(234,179,8,.16);color:#fde047}
+  .u-mavi{background:rgba(56,189,248,.14);color:#7dd3fc}
+  .bos{padding:40px;text-align:center;color:var(--dim);font-size:13px}
+  .bar{height:7px;background:#16233b;border-radius:99px;overflow:hidden;min-width:80px}
+  .bar div{height:100%;border-radius:99px}
+  .dagitim{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:6px 0}
+  .dagitim .ad{width:150px;color:#b9c8dd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dagitim .sayi{width:52px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+  .mini{font-size:11.5px;color:var(--dim)}
+  @media (max-width:820px){
+    body{padding:16px 10px 40px}
+    .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+    th,td{padding:8px 6px;font-size:12px}
+    .gizle-m{display:none}
+  }
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+</style>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/portfoy.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt uv-alt-aktif"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html" aria-current="page"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <div id="yedekUyari" style="display:none;margin:12px 0;padding:11px 14px;border-radius:10px;background:rgba(234,179,8,.10);border:1px solid rgba(234,179,8,.35);color:#fde047;font-size:13px"></div>
+  <h1>Portföy</h1>
+  <div class="sub" id="alt">Pozisyon ekle · ağırlık, kâr/zarar ve kurallar otomatik hesaplanır</div>
+
+  <div class="kpi" id="kpi"></div>
+
+  <div class="panel">
+    <h2>Pozisyon ekle</h2>
+    <div class="form">
+      <div class="alan"><label>Hisse</label><input id="fTicker" list="tl" placeholder="AAPL" size="10"><datalist id="tl"></datalist></div>
+      <div class="alan"><label>Adet</label><input id="fAdet" type="number" min="0" step="any" placeholder="10" style="width:100px"></div>
+      <div class="alan"><label>Alış fiyatı</label><input id="fAlis" type="number" min="0" step="any" placeholder="100" style="width:120px"></div>
+      <div class="alan"><label>Tarih</label><input id="fTarih" type="date" style="width:150px"></div>
+      <div class="alan"><label>Tür</label><select id="fTip"><option value="hisse">Hisse</option><option value="etf">ETF</option></select></div>
+      <button id="ekle">Ekle</button>
+      <button id="disa" style="background:#0d1729;border-color:var(--line);color:var(--muted)">Dışa aktar</button>
+      <button id="ice" style="background:#0d1729;border-color:var(--line);color:var(--muted)">İçe aktar</button>
+      <input id="dosya" type="file" accept="application/json" style="display:none">
+    </div>
+    <div class="mini" id="mesaj" style="margin-top:10px"></div>
+  </div>
+
+  <div class="panel" style="padding:0;overflow:auto">
+    <table id="tablo"></table>
+  </div>
+
+  <div class="panel">
+    <h2>Sektör dağılımı</h2>
+    <div id="dagitim"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Gerçek maruziyet <span class="mini" style="text-transform:none;letter-spacing:0">ETF içeriği dahil</span></h2>
+    <div id="maruziyet"></div>
+    <div id="etfEditor" style="margin-top:12px"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Kural kontrolü</h2>
+    <div id="kurallar" class="mini" style="line-height:1.8"></div>
+  </div>
+</div>
+
+<script>
+const KEY = 'portfoy_v1';
+const KURAL = { tek_hisse_max: 12, min_gun: 90 };
+const RENK = ['#38bdf8','#34d399','#fbbf24','#f472b6','#a78bfa','#fb923c','#22d3ee','#a3e635'];
+const $ = id => document.getElementById(id);
+const num = (v,n=2) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:n,maximumFractionDigits:n});
+let POZ = JSON.parse(localStorage.getItem(KEY) || '[]');
+let LISTE = [], VERI = {};
+
+function kaydet(){ localStorage.setItem(KEY, JSON.stringify(POZ)); }
+
+function yukle(){
+  POZ.forEach(p => { if (!VERI[p.t]) VERI[p.t] = null; });
+  const tekil = [...new Set(POZ.map(p => p.t))];
+  Promise.all(tekil.map(t => fetch('veri/' + t + '.json').then(r => r.ok ? r.json() : null).catch(()=>null)))
+    .then(list => { tekil.forEach((t,i) => VERI[t] = list[i]); ciz(); });
+}
+
+fetch('veri/_liste.json').then(r=>r.json()).then(l => {
+  LISTE = l || [];
+  $('tl').innerHTML = LISTE.map(x => `<option value="${x.t}">${x.ad||''}</option>`).join('');
+}).catch(()=>{});
+
+$('fTarih').value = new Date().toISOString().slice(0,10);
+
+$('ekle').onclick = () => {
+  const t = $('fTicker').value.trim().toUpperCase();
+  const adet = parseFloat($('fAdet').value);
+  const alis = parseFloat($('fAlis').value);
+  const tarih = $('fTarih').value || new Date().toISOString().slice(0,10);
+  if (!t || !isFinite(adet) || adet <= 0 || !isFinite(alis) || alis <= 0){
+    $('mesaj').innerHTML = '<span style="color:#fca5a5">Hisse, adet ve alış fiyatı gerekli.</span>';
+    return;
+  }
+  const tip = ($('fTip') && $('fTip').value) || 'hisse';
+  POZ.push({ t, adet, alis, tarih, tip });
+  kaydet();
+  $('fTicker').value = ''; $('fAdet').value = ''; $('fAlis').value = '';
+  $('mesaj').textContent = t + ' eklendi.';
+  yukle();
+};
+
+$('disa').onclick = () => {
+  const blob = new Blob([JSON.stringify(POZ, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'portfoy-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+};
+$('ice').onclick = () => $('dosya').click();
+$('dosya').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const oku = new FileReader();
+  oku.onload = () => {
+    try {
+      const g = JSON.parse(oku.result);
+      if (Array.isArray(g)) { POZ = g; kaydet(); yukle(); $('mesaj').textContent = g.length + ' pozisyon yüklendi.'; }
+    } catch (err) { $('mesaj').innerHTML = '<span style="color:#fca5a5">Dosya okunamadı.</span>'; }
+  };
+  oku.readAsText(f);
+};
+
+function gunFark(tarih){
+  const d = new Date(tarih + 'T00:00:00');
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
+}
+
+const IC_KEY = 'etf_ic_v1';
+let ETF_IC = JSON.parse(localStorage.getItem(IC_KEY) || '{}');
+
+function etfIcKaydet(){ localStorage.setItem(IC_KEY, JSON.stringify(ETF_IC)); }
+
+function icAyristir(metin){
+  // "MSFT 4.5, AAPL 4.2" veya satir satir "MSFT 4.5"
+  const out = {};
+  String(metin || '').split(/[\n,;]+/).forEach(p => {
+    const m = p.trim().match(/^([A-Za-z0-9.\-]+)\s*[:=]?\s*([\d.,]+)\s*%?$/);
+    if (m){
+      const w = parseFloat(m[2].replace(',', '.'));
+      if (isFinite(w) && w > 0) out[m[1].toUpperCase()] = w;
+    }
+  });
+  return out;
+}
+
+function etfEditorCiz(){
+  const el = document.getElementById('etfEditor');
+  if (!el) return;
+  const etfler = [...new Set(POZ.filter(p => (p.tip || 'hisse') === 'etf').map(p => p.t))];
+  if (!etfler.length){ el.innerHTML = ''; return; }
+  el.innerHTML = '<div class="mini" style="margin-bottom:6px">ETF içeriğini ağırlık (%) olarak yaz — örn. <code>MSFT 4.5, AAPL 4.2, NVDA 3.1</code></div>' +
+    etfler.map(t => {
+      const metin = Object.entries(ETF_IC[t] || {}).map(([k,v]) => k + ' ' + v).join(', ');
+      return `<div style="margin-bottom:8px"><label class="mini" style="display:block;margin-bottom:4px">${t}</label>
+        <input class="icGirdi" data-t="${t}" value="${metin.replace(/"/g,'&quot;')}"
+          placeholder="MSFT 4.5, AAPL 4.2"
+          style="width:100%;background:#0d1729;border:1px solid var(--line);border-radius:9px;color:#e6edf7;padding:8px 11px;font-size:12.5px"></div>`;
+    }).join('');
+  el.querySelectorAll('.icGirdi').forEach(inp => {
+    inp.onchange = () => {
+      const t = inp.dataset.t;
+      const ic = icAyristir(inp.value);
+      if (Object.keys(ic).length) ETF_IC[t] = ic; else delete ETF_IC[t];
+      etfIcKaydet(); yukle();
+    };
+  });
+}
+
+function maruziyetCiz(hesaplanan, toplam){
+  const el = document.getElementById('maruziyet');
+  if (!el) return;
+  if (!toplam){ el.innerHTML = '<div class="mini">—</div>'; return; }
+
+  const mar = {};
+  hesaplanan.forEach(p => {
+    const tip = p.tip || 'hisse';
+    if (tip === 'etf'){
+      const ic = ETF_IC[p.t];
+      if (ic && Object.keys(ic).length){
+        const toplamAgirlik = Object.values(ic).reduce((a,b) => a+b, 0) || 100;
+        Object.entries(ic).forEach(([alt, w]) => {
+          mar[alt] = (mar[alt] || 0) + p.deger * (w / toplamAgirlik);
+        });
+        mar[p.t] = (mar[p.t] || 0) + p.deger * 0;  // ETF'nin kendisi ayri gosterilmez
+      } else {
+        mar[p.t] = (mar[p.t] || 0) + p.deger;      // icerik girilmediyse ETF olarak kalir
+      }
+    } else {
+      mar[p.t] = (mar[p.t] || 0) + p.deger;
+    }
+  });
+
+  const sirali = Object.entries(mar).filter(([,v]) => v > 0).sort((a,b) => b[1]-a[1]);
+  const enBuyuk = sirali.length ? sirali[0] : null;
+  const asan = sirali.filter(([,v]) => v/toplam*100 > KURAL.tek_hisse_max);
+
+  el.innerHTML =
+    `<div class="mini" style="margin-bottom:8px">Doğrudan pozisyonlar + ETF içeriği toplandı.
+      ${asan.length ? `<b style="color:#fca5a5">${asan.length} kalem %${KURAL.tek_hisse_max} tavanını aşıyor.</b>` : '<b style="color:#34d399">Tüm kalemler tavan içinde.</b>'}</div>` +
+    sirali.slice(0, 12).map(([t, v]) => {
+      const yuzde = v / toplam * 100;
+      const c = yuzde > KURAL.tek_hisse_max ? '#ef4444' : yuzde > 8 ? '#eab308' : '#38bdf8';
+      return `<div class="dagitim"><span class="ad"><a class="hs" href="hisse.html?t=${encodeURIComponent(t)}" target="_blank">${t}</a></span>
+        <div class="bar" style="flex:1"><div style="width:${Math.min(100,yuzde*2)}%;background:${c}"></div></div>
+        <span class="sayi" style="color:${c}">%${yuzde.toFixed(1)}</span></div>`;
+    }).join('');
+}
+
+function yedekKontrol(){
+  const el = document.getElementById('yedekUyari');
+  if (!el) return;
+  if (!POZ.length){ el.style.display = 'none'; return; }
+  const son = localStorage.getItem('portfoy_yedek');
+  let gun = 999;
+  if (son){ gun = Math.floor((Date.now() - new Date(son + 'T00:00:00').getTime()) / 86400000); }
+  if (gun >= 7){
+    el.style.display = 'block';
+    el.innerHTML = '💾 <b>Yedek zamanı</b> — portföy verisi yalnızca bu tarayıcıda tutuluyor' +
+      (son ? ' (' + gun + ' gündür yedek alınmadı)' : '') +
+      '. Tarayıcı verisi silinirse kaybolur. <a href="#" id="yedekSimdi" style="color:#fde047;text-decoration:underline">JSON indir</a>';
+    const b = document.getElementById('yedekSimdi');
+    if (b) b.onclick = e => { e.preventDefault(); document.getElementById('disa').click(); };
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+function ciz(){
+  const satirlar = [];
+  let toplam = 0, maliyet = 0;
+  const hesaplanan = POZ.map(p => {
+    const v = VERI[p.t];
+    const fiyat = v ? v.fiyat : null;
+    const deger = fiyat ? fiyat * p.adet : p.alis * p.adet;
+    const mal = p.alis * p.adet;
+    toplam += deger; maliyet += mal;
+    return { ...p, v, fiyat, deger, mal, gun: gunFark(p.tarih) };
+  });
+
+  const kz = toplam - maliyet;
+  const kzYuzde = maliyet ? (toplam / maliyet - 1) * 100 : 0;
+
+  // KPI
+  $('kpi').innerHTML = `
+    <div class="k"><div class="lb">Toplam değer</div><div class="vl">${num(toplam,0)} $</div></div>
+    <div class="k"><div class="lb">Toplam kâr/zarar</div><div class="vl" style="color:${kz>=0?'var(--grn)':'var(--red)'}">${kz>=0?'+':''}${num(kz,0)} $</div></div>
+    <div class="k"><div class="lb">Getiri</div><div class="vl" style="color:${kzYuzde>=0?'var(--grn)':'var(--red)'}">${kzYuzde>=0?'+':''}${num(kzYuzde,1)}%</div></div>
+    <div class="k"><div class="lb">Pozisyon</div><div class="vl">${POZ.length}</div></div>
+    <div class="k"><div class="lb">En büyük kalem</div><div class="vl">${(() => {
+      const m = {};
+      hesaplanan.forEach(p => { m[p.t] = (m[p.t]||0) + p.deger; });
+      const s2 = Object.entries(m).sort((a,b)=>b[1]-a[1])[0];
+      return s2 ? (s2[0] + ' %' + (s2[1]/toplam*100).toFixed(0)) : '—';
+    })()}</div></div>`;
+
+  if (!POZ.length){
+    $('tablo').innerHTML = '<tr><td class="bos">Henüz pozisyon yok. Yukarıdan ekle.</td></tr>';
+    $('dagitim').innerHTML = '<div class="mini">—</div>';
+    $('kurallar').innerHTML = '<div class="mini">Pozisyon eklenince kontrol edilir.</div>';
+    return;
+  }
+
+  hesaplanan.sort((a,b) => b.deger - a.deger);
+  hesaplanan.forEach(p => {
+    const agirlik = toplam ? p.deger / toplam * 100 : 0;
+    const kzP = p.mal ? (p.deger / p.mal - 1) * 100 : 0;
+    const uyarilar = [];
+    if (agirlik > KURAL.tek_hisse_max) uyarilar.push(`<span class="uyari u-kirmizi">ağırlık %${num(agirlik,0)} > %${KURAL.tek_hisse_max}</span>`);
+    if (p.gun < KURAL.min_gun) uyarilar.push(`<span class="uyari u-sari">${p.gun} gün · ${KURAL.min_gun - p.gun} gün kaldı</span>`);
+    const et = p.v && p.v.metrik ? p.v.metrik.etiket : null;
+    if (et === 'GEÇ') uyarilar.push('<span class="uyari u-kirmizi">sinyal GEÇ</span>');
+    if (p.v && p.v.donus && p.v.donus.yuzde != null && p.v.donus.yuzde >= 65) uyarilar.push('<span class="uyari u-mavi">dönüş teyitli</span>');
+    if (!p.v) uyarilar.push('<span class="uyari u-sari">veri yok</span>');
+
+    satirlar.push(`<tr>
+      <td><a class="hs" href="hisse.html?t=${encodeURIComponent(p.t)}" target="_blank">${p.t}</a>
+          ${p.v ? `<div class="mini">${(p.v.ad||'').slice(0,30)}</div>` : ''}</td>
+      <td>${num(p.adet, p.adet % 1 ? 2 : 0)}</td>
+      <td class="gizle-m">${num(p.alis)}</td>
+      <td>${p.fiyat ? num(p.fiyat) : '—'}</td>
+      <td>${num(p.deger,0)} $</td>
+      <td style="color:${kzP>=0?'var(--grn)':'var(--red)'}">${kzP>=0?'+':''}${num(kzP,1)}%</td>
+      <td class="gizle-m">%${num(agirlik,1)}</td>
+      <td class="gizle-m">${p.gun} g${p.gun < KURAL.min_gun ? `<div class="mini" style="color:#fde047">${KURAL.min_gun-p.gun} kaldı</div>` : ''}</td>
+      <td>${uyarilar.join('')}<button class="sil" data-sil="${p.t}|${p.tarih}|${p.adet}|${p.alis}">×</button></td>
+    </tr>`);
+  });
+
+  $('tablo').innerHTML = `<thead><tr>
+    <th>Hisse</th><th>Adet</th><th class="gizle-m">Alış</th><th>Güncel</th><th>Değer</th>
+    <th>K/Z</th><th class="gizle-m">Ağırlık</th><th class="gizle-m">Gün</th><th></th></tr></thead>
+    <tbody>${satirlar.join('')}</tbody>`;
+
+  document.querySelectorAll('[data-sil]').forEach(b => b.onclick = () => {
+    const [t, tarih, adet, alis] = b.dataset.sil.split('|');
+    POZ = POZ.filter(p => !(p.t === t && p.tarih === tarih && String(p.adet) === adet && String(p.alis) === alis));
+    kaydet(); yukle();
+  });
+
+  yedekKontrol();
+  maruziyetCiz(hesaplanan, toplam);
+  etfEditorCiz();
+
+  // sektor dagilimi
+  const sektor = {};
+  hesaplanan.forEach(p => {
+    const s = (p.tip === 'etf') ? 'ETF' : ((p.v && p.v.sektor) || 'Bilinmiyor');
+    sektor[s] = (sektor[s] || 0) + p.deger;
+  });
+  const sirali = Object.entries(sektor).sort((a,b) => b[1]-a[1]);
+  const enBuyuk = sirali.length ? sirali[0][1] : 1;
+  $('dagitim').innerHTML = sirali.map(([ad, deger], i) => `
+    <div class="dagitim"><span class="ad">${ad}</span>
+      <div class="bar" style="flex:1"><div style="width:${(deger/enBuyuk*100).toFixed(0)}%;background:${RENK[i%RENK.length]}"></div></div>
+      <span class="sayi">%${num(deger/toplam*100,1)}</span></div>`).join('');
+
+  // kural kontrolu (maruziyet dahil)
+  const maruzMap = {};
+  hesaplanan.forEach(p => {
+    if ((p.tip||'hisse') === 'etf'){
+      const ic = ETF_IC[p.t];
+      if (ic && Object.keys(ic).length){
+        const top = Object.values(ic).reduce((a,b)=>a+b,0)||100;
+        Object.entries(ic).forEach(([alt,w]) => { maruzMap[alt] = (maruzMap[alt]||0) + p.deger*(w/top); });
+      } else { maruzMap[p.t] = (maruzMap[p.t]||0) + p.deger; }
+    } else { maruzMap[p.t] = (maruzMap[p.t]||0) + p.deger; }
+  });
+  const asanMaruz = Object.entries(maruzMap).filter(([,v]) => v/toplam*100 > KURAL.tek_hisse_max);
+  const asan = hesaplanan.filter(p => p.deger/toplam*100 > KURAL.tek_hisse_max);
+  const genc = hesaplanan.filter(p => p.gun < KURAL.min_gun);
+  const kaliteDisi = hesaplanan.filter(p => p.v && p.v.metrik && p.v.metrik.etiket === 'GEÇ');
+  const sektorMax = sirali.length ? sirali[0][1]/toplam*100 : 0;
+  $('kurallar').innerHTML = `
+    <div>${asan.length ? `<span style="color:#fca5a5">⚠ ${asan.length} pozisyon %${KURAL.tek_hisse_max} tavanını aşıyor:</span> ${asan.map(p=>p.t).join(', ')}` : '<span style="color:#34d399">✓</span> Tek hisse %' + KURAL.tek_hisse_max + ' tavanına uygun'}</div>
+    <div>${genc.length ? `<span style="color:#fde047">⏳ ${genc.length} pozisyon ${KURAL.min_gun} günden kısa:</span> ${genc.map(p=>p.t+' ('+p.gun+'g)').join(', ')}` : '<span style="color:#34d399">✓</span> Tüm pozisyonlar ' + KURAL.min_gun + ' günü geçmiş'}</div>
+    <div>${kaliteDisi.length ? `<span style="color:#fca5a5">⚠ Kalite/sinyal sorunu:</span> ${kaliteDisi.map(p=>p.t).join(', ')}` : '<span style="color:#34d399">✓</span> Kalite sinyali sorunlu pozisyon yok'}</div>
+    <div>${(typeof asanMaruz !== 'undefined' && asanMaruz.length) ? `<span style="color:#fca5a5">⚠ Maruziyet tavanı (ETF dahil):</span> ${asanMaruz.map(x=>x[0]+' %'+ (x[1]/toplam*100).toFixed(0)).join(', ')}` : '<span style="color:#34d399">✓</span> ETF dahil maruziyette tavan aşımı yok'}</div>
+    <div>${sektorMax > 40 ? `<span style="color:#fde047">⚠ Sektör yoğunlaşması %${num(sektorMax,0)}</span> — tek sektöre fazla yüklenme` : '<span style="color:#34d399">✓</span> Sektör dağılımı dengeli (%' + num(sektorMax,0) + ')'}</div>`;
+}
+
+yukle();
+</script>
+<script src="olcum.js"></script>
+<script src="uyelik.js"></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>
+

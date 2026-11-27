@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodoloji · Uzun Vade</title>
+<meta name="description" content="Kalite kapısı eşikleri (global ve BIST), ROIC/Piotroski/Beneish hesapları, giriş ve dönüş skorları, etiketler, gösterim kuralları ve bilinen sınırlar.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://uzunvade.net/metodoloji.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8;--grn:#34d399;--amb:#f59e0b}
+  body{margin:0;padding:26px 18px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin:6px 0 20px;max-width:680px;line-height:1.6}
+  h2{font-size:12px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:24px 0 10px}
+  section{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+  p,li{color:#b9c8dd;font-size:13.5px;line-height:1.8}
+  ul{padding-left:20px;margin:6px 0}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+  th,td{padding:8px 8px;border-bottom:1px solid #14203a;text-align:left;vertical-align:top}
+  th{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.6px}
+  code{background:#0d1729;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:11.5px;color:#93c5fd}
+  .formul{background:#0a1322;border:1px solid #1b2942;border-radius:10px;padding:10px 12px;margin:8px 0;
+          font-family:ui-monospace,monospace;font-size:12px;color:#cbd5e1;overflow-x:auto}
+  .not{font-size:11.5px;color:#5b6b86;line-height:1.7;margin-top:8px}
+  .surum{display:flex;gap:10px;font-size:12px;color:var(--muted);border-bottom:1px solid #131f36;padding:7px 0}
+  .surum b{color:#cbd5e1;min-width:78px}
+  .uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:10px;padding:12px 14px;
+         color:#fde047;font-size:12px;line-height:1.7;margin-top:14px}
+</style>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html" aria-current="page">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Metodoloji</h1>
+  <div class="sub">Sitedeki her sayının nasıl hesaplandığı, hangi eşiklerin kullanıldığı ve nerede sınırların başladığı.
+    Amaç: sonuçları kendi başına doğrulayabilmen.</div>
+
+  <h2>1. Veri kaynakları</h2>
+  <section>
+    <table>
+      <tr><th>Veri</th><th>Kaynak</th><th>Güncelleme</th></tr>
+      <tr><td>Bilanço, gelir tablosu, nakit akışı</td><td>Yahoo Finance (yıllık; genelde 4 yıl, bazen 5)</td><td>Günlük</td></tr>
+      <tr><td>Fiyat / hacim</td><td>Yahoo Finance</td><td>Günde 2 kez</td></tr>
+      <tr><td>Haber başlıkları</td><td>Google News RSS</td><td>Saatlik</td></tr>
+      <tr><td>Endeks, emtia, faiz</td><td>Yahoo Finance + ECB</td><td>Günde 2 kez</td></tr>
+      <tr><td>Bilanço tarihleri</td><td>Yahoo Finance takvimi (tahmini)</td><td>Haftalık</td></tr>
+    </table>
+    <div class="not">Veriler gecikmeli ve eksik olabilir. Bilanço tarihleri tahminidir. Kritik kararlar için KAP/şirket bildirimi kontrol edilmeli.</div>
+    <div class="not"><b>Bilanço dönemi:</b> Yahoo Finance ücretsiz verisi yıllık bilançoları genellikle 4 yıl, bazen 5 yıl geriye dönük verir.
+      Bu yüzden metinde geçen "5 yıl ortalama" ifadesi <b>"mevcut 4-5 yıl (veriye göre)"</b> olarak okunmalıdır.</div>
+    <div class="not"><b>TMS 29 (enflasyon muhasebesi):</b> BIST bilançoları enflasyon düzeltmesine (TMS 29) tabi tutulmuş olabilir.
+      Düzeltilmiş ve düzeltilmemiş dönemler karşılaştırılırken ROIC, marj, büyüme ve borç oranları etkilenebilir; oranlar iki dönem arasında birebir kıyaslanamayabilir.</div>
+  </section>
+
+  <h2>2. Global kalite kapısı</h2>
+  <section>
+    <p>Global izleme listesine bir hisse girebilmek için aşağıdaki şartların <b>tamamını</b> sağlamalıdır. Hesaplar Yahoo Finance yıllık tabloları üzerinden yapılır.</p>
+    <table>
+      <tr><th>Şart</th><th>Eşik</th></tr>
+      <tr><td>ROIC ortalaması</td><td>≥ %15 (son 4-5 yıl ortalaması; veriye göre)</td></tr>
+      <tr><td>ROIC oynaklığı (std/ort)</td><td>≤ 0,35</td></tr>
+      <tr><td>Net Borç / FAVÖK</td><td>≤ 1,5</td></tr>
+      <tr><td>FCF pozitif yıl</td><td>son 4-5 yılın en az 4'ünde pozitif (4 yıl veri varsa 4/4)</td></tr>
+      <tr><td>Piotroski F-Skoru</td><td>≥ 6/9</td></tr>
+      <tr><td>CFO / Kâr</td><td>≥ 1,00</td></tr>
+      <tr><td>Seyreltme (yıllık hisse sayısı artışı)</td><td>≤ %0</td></tr>
+      <tr><td>Piyasa değeri</td><td>≥ 1 milyar $</td></tr>
+    </table>
+    <p class="not">ROIC en az iki yıl hesaplanabiliyorsa ortalaması ve oynaklığı alınır; hisse sayısı serisinde bölünmeler düzeltilir.
+      FCF = faaliyet nakit akışı + yatırım harcaması (Capital Expenditure negatif geldiği için toplanır).</p>
+    <p><b>Finansal şirketler global kalite listesine alınmaz.</b> Banka, sigorta, aracı kurum, varlık yönetimi, finansal veri/borsa işletmesi ve kredi şirketleri bu değerlendirmenin dışındadır; global listede bunlar için ayrı bir model yoktur.
+      Nedeni: net borç/FAVÖK, FCF ve ROIC bu iş modellerinde anlamlı kıyas sağlamaz. BIST'teki banka ve sigorta/finans modelleri ayrıdır (bkz. BIST kalite kapısı).</p>
+  </section>
+
+  <h2>3. BIST kalite kapısı (Türkiye'ye uyarlanmış)</h2>
+  <section>
+    <p>Global eşikler yüksek enflasyon, döviz borcu ve holding/GYO/banka yapısı nedeniyle BIST'te iyi şirketleri de eliyor.
+       Bu yüzden BIST hisseleri <b>ayrı modellerle</b> değerlendirilir; global izleme listesinin istatistiklerine karışmaz.</p>
+    <p><b>BIST evreni:</b> BIST 100 + seçilmiş ek hisseler (99 hisse).</p>
+    <table>
+      <tr><th>Model</th><th>Eşikler</th></tr>
+      <tr><td><b>Sanayi</b></td><td>ROIC ≥ %8 · ROIC oynaklığı (std/ort) ≤ 0,85 · ND/FAVÖK ≤ 3,0 · FCF ≥ 2/4 yıl · Piotroski ≥ 4/9 · CFO/Kâr ≥ 0,50 · seyreltme ≤ %5</td></tr>
+      <tr><td><b>Banka</b></td><td>ROE ≥ %12 · PD/DD ≤ 1,3 · Özkaynak/Aktif ≥ %8</td></tr>
+      <tr><td><b>GYO</b></td><td>PD/DD ≤ 0,9 · ND/FAVÖK ≤ 8 · ROE ≥ %5 · FCF ≥ 2/4 yıl</td></tr>
+      <tr><td><b>Holding</b></td><td>PD/DD ≤ 1,2 · ROE ≥ %8 · ND/FAVÖK ≤ 4</td></tr>
+      <tr><td><b>Sigorta / Finans</b></td><td>ROE ≥ %12 · PD/DD ≤ 1,5</td></tr>
+    </table>
+    <p><b>Piyasa değeri eşiği: 10 milyar TL.</b> Eşik TL cinsinden sabittir; dolar karşılığı kurla değişir (yaklaşık 200 milyon dolar civarı).</p>
+    <p><b>BIST kalite skoru (0-100):</b> kalite %60 (ROIC, ROIC istikrarı, FCF, Piotroski, CFO/Kâr) + değerleme %25 (PD/DD, F/K, temettü) +
+       kârlılık %15 (ROE, net marj). Eksik metrik varsa skor yalnızca mevcut metriklerin ağırlığına göre 0-100'e ölçeklenir ve aynı model türü içinde yüzdelik sıraya çevrilir.
+       Skor tür içi karşılaştırma içindir; tek başına karar ölçütü değildir.</p>
+  </section>
+
+  <h2>4. Formüller</h2>
+  <section>
+    <div class="formul">ROIC = NOPAT / (özkaynak + toplam borç)<br>NOPAT = EBIT × (1 − 0,25)</div>
+    <div class="not">Vergi oranı veri kaynağından gelmediği için hesaplarda %25 sabit kullanılır. ROIC = son 4-5 yılın ortalaması; oynaklık = standart sapma / ortalama.</div>
+    <div class="formul">Net Borç / FAVÖK = (toplam borç − nakit) / FAVÖK<br>FAVÖK = EBIT + amortisman (sağlayıcı vermezse)</div>
+    <div class="formul">FCF = faaliyet nakit akışı + yatırım harcaması<br>CFO / Kâr = faaliyet nakit akışı / net kâr (kârlı yılların toplamı üzerinden)</div>
+    <div class="formul">EV/EBIT = (piyasa değeri + net borç) / EBIT</div>
+    <div class="formul">Piotroski F-Skoru (0-9): kârlılık (4) + kaldıraç/likidite (3) + verimlilik (2)</div>
+    <div class="formul">Beneish M-skoru: &gt; -1,78 riskli · -2,22 ile -1,78 arası gri · &lt; -2,22 temiz</div>
+    <div class="formul">Giriş skoru (0-100) = değerleme %30 + Piotroski %20 + Beneish %15 + RSI zamanlaması %15 + WMA250 yakınlığı %20</div>
+    <div class="formul">Dönüş skoru (0-100) = konum %15 + yapı %25 + momentum %25 + hacim %25 + rejim %10</div>
+    <div class="formul">EPV iskontosu = (büyümesiz özkaynak değeri / piyasa değeri) − 1<br>Büyümesiz değer = normalize EBIT × (1 − 0,25) / %9 sermaye maliyeti; net borç düşülür, nakit eklenir</div>
+    <div class="not">Normalize EBIT, geçmiş yılların EBIT/ciro marjı medyanı ile son yıl ciro çarpımıdır. Piotroski ve Beneish yalnızca hesaplanabilen kriterler üzerinden üretilir.</div>
+  </section>
+
+  <h2>5. Etiketler ve kısa liste</h2>
+  <section>
+    <p>Kalite kapısını geçen hisseler teknik katmanda dört şarta bakılarak etiketlenir:</p>
+    <ul>
+      <li>fiyat 200 günlük ortalamanın üzerinde,</li>
+      <li>dipten %15-60 yukarıda (dip tamamlanmış ama hareket abartılmamış),</li>
+      <li>zirveden en fazla %35 aşağıda,</li>
+      <li>RSI(14) 75'in altında.</li>
+    </ul>
+    <table>
+      <tr><th>Etiket</th><th>Anlamı</th></tr>
+      <tr><td><b>Güçlü</b></td><td>Dört şartın tamamı sağlanmış kurulum.</td></tr>
+      <tr><td><b>Takip</b></td><td>Üç şart sağlanmış; giriş için teyit bekleniyor.</td></tr>
+      <tr><td><b>Nötr</b></td><td>Teknik şartların çoğu sağlanmıyor; giriş sinyali yok.</td></tr>
+      <tr><td><b>Zayıf</b></td><td>Fiyat 52 haftalık dibinden %60'tan fazla yükselmiş; hareket geç kalmış.</td></tr>
+    </table>
+    <p class="not">Güçlü etiketli bir hisse kendi F/K geçmişine göre pahalıysa Takip'e düşürülür (değerleme katmanı).</p>
+    <p><b>Kısa liste (★):</b> Güçlü etiketli, kendi tarihine göre ucuz ve Beneish'i riskli olmayan hisseler skorla sıralanır;
+       sektör başına en fazla 2, toplam en fazla 15 hisse listelenir.</p>
+  </section>
+
+  <h2>6. Giriş ve dönüş skorları</h2>
+  <section>
+    <p><b>Giriş skoru</b> "şimdi girmek ne kadar uygun" sorusunu ölçer; kısa listedeki kalite yıldızından farklıdır. Beş bileşen:</p>
+    <ul>
+      <li><b>Değerleme (%30):</b> şirketin kendi 5 yıllık F/K aralığındaki yeri (ters).</li>
+      <li><b>Piotroski (%20):</b> finansal güç skoru.</li>
+      <li><b>Beneish (%15):</b> temiz 100, gri 50, riskli 0 puan.</li>
+      <li><b>RSI zamanlaması (%15):</b> RSI 40-65 bandında tam puan; uzaklaştıkça düşer.</li>
+      <li><b>WMA250 yakınlığı (%20):</b> fiyatın 250 haftalık ortalamaya uzaklığı; yakınlaştıkça puan artar.</li>
+    </ul>
+    <p class="not">Eksik bileşen varsa o bileşen puan üretmez; skorun tavan puanı düşer.</p>
+    <p><b>Dönüş skoru</b> dipten dönüşün ne kadar olgun olduğunu 0-100 arasında gösterir; beş bileşen:</p>
+    <ul>
+      <li><b>Konum (%15):</b> fiyatın 52 haftalık dipten yüzde kaç yukarıda olduğu.</li>
+      <li><b>Yapı (%25):</b> yükselen dip, 20 günlük ortalama üstü, 40 günlük tepe kırılımı.</li>
+      <li><b>Momentum (%25):</b> RSI toparlanması, boğa uyumsuzluğu, MACD dönüşü.</li>
+      <li><b>Hacim (%25):</b> yukarı gün hacminin aşağıdan güçlü olması, hacim kuruması, kırılım hacmi.</li>
+      <li><b>Rejim (%10):</b> 200 günlük ortalamanın üstü ve ortalamanın eğimi.</li>
+    </ul>
+    <p class="not">Dönüş skoru bir kural değil, teşhis göstergesidir; "dönüş tamamlandı" iddiası taşımaz.</p>
+  </section>
+
+  <h2>7. Sinyal ölçümü</h2>
+  <section>
+    <p>Güçlü kurulumlar ve kısa liste sinyalleri ilk oluştuğu gün kaydedilir ve sabit ufuklarda ölçülür:
+       <b>hisse getirisi − S&amp;P 500 getirisi</b> (aynı tarihten itibaren). Amaç, sinyalin endekse göre fazla getiri üretip üretmediğini görmek.</p>
+    <ul>
+      <li>Sinyal yalnızca ilk oluştuğu gün yazılır; tekrar eden günler yeni gözlem sayılmaz (aynı gün güçlü ve kısa liste sinyali varsa tek sinyal sayılır).</li>
+      <li>Sabit ufuklar 21 / 63 / 126 / 252 işlem günüdür. İlk 21 günlük ufuk <b>3 Aralık 2026</b>'da doluyor; o tarihe kadar ölçüm sayfası "bekliyor" gösterir.</li>
+      <li>Aynı haftalarda izleme listesinde olup sinyal almayan hisseler kontrol grubu olarak izlenir.</li>
+      <li>Az sayıda sinyalde istatistiksel güç düşüktür; 60+ sinyal birikmeden yorum yanıltıcı olur.</li>
+      <li><b>10 yıllık geriye dönük test (backtest) henüz yapılmadı.</b> Canlı ölçüm dışında geçmiş getiri iddiası yoktur.</li>
+    </ul>
+  </section>
+
+  <h2>8. Gösterim kuralları — "—" ne zaman gösterilir?</h2>
+  <section>
+    <ul>
+      <li>Negatif F/K ve negatif PD/DD <b>"—"</b> gösterilir; negatif değerler "ucuz" gibi okunmasın diye.</li>
+      <li>100'ün üzerindeki F/K <b>"—"</b> gösterilir (kâr tabanı çok küçük, oran anlamsız).</li>
+      <li>50'nin üzerindeki PD/DD <b>"—"</b> gösterilir (defter değeri çok küçük).</li>
+      <li>%50 üzerindeki temettü verimi <b>"—"</b> gösterilir (tek seferlik dağıtım veya veri hatası olabilir).</li>
+      <li>|%100| üzerindeki net marj <b>"—"</b> gösterilir.</li>
+    </ul>
+    <p class="not">BIST sayfasında "Piyasa" sütunu milyar TL cinsindendir; fiyat ve getiriler TL bazındadır. F/K, PD/DD ve temettü verimi Yahoo Finance'ın güncel verisinden hesaplanır.</p>
+  </section>
+
+  <h2>9. Portföy kuralları (bizim yöntemimiz)</h2>
+  <section>
+    <p>Portföy aracındaki iki kural evrensel değil, <b>bizim yöntemimizin</b> parçasıdır:</p>
+    <ul>
+      <li><b>%12 tavanı:</b> tek bir şirkete portföyün en fazla %12'si. ETF içeriği dahil toplam maruziyete uygulanır; aşım uyarı verir.</li>
+      <li><b>90 gün kuralı:</b> alımdan sonra en az 90 gün elde tutma. Erken satışı engellemek için bir disiplin kuralıdır.</li>
+    </ul>
+    <p class="not">Bu kurallar başka bir yatırımcı için doğru olmak zorunda değildir; site bunları yatırım tavsiyesi olarak sunmaz.</p>
+  </section>
+
+  <h2>10. Bilinen sınırlar</h2>
+  <section>
+    <ul>
+      <li>Veri kaynağı ücretsiz katman; bilanço kalemlerinde eksik/gecikme olabilir.</li>
+      <li>Yahoo Finance yıllık bilanço verisi genelde 4 yıl, bazen 5 yıldır. Bu yüzden "5 yıl ortalama" ifadesi "mevcut 4-5 yıl (veriye göre)" okunmalıdır.</li>
+      <li>BIST bilançolarında TMS 29 enflasyon muhasebesi etkisi olabilir; oranlar dönemler arasında birebir kıyaslanamayabilir.</li>
+      <li>ROIC en az iki yıl hesaplanamıyorsa hisse kalite kapısına giremez; geçmişi kısa olan şirketler (yeni halka arz, yüksek büyüme) ayrı kovada izlenir.</li>
+      <li>ROIC küçük/negatif özkaynak durumunda anlamsızlaşır; uç değerler −%100 ile +%200 aralığına kırpılır.</li>
+      <li>Finansal şirketler (banka, sigorta, aracı kurum, varlık yönetimi, finansal veri/borsa işletmesi, kredi) global kalite listesine alınmaz.</li>
+      <li>Skorlar geçmiş veriye dayanır; gelecek getiriyi garanti etmez.</li>
+      <li><b>Seçim yanlılığı (survivorship bias):</b> Liste her gün kalite kapısından geçenlerden yeniden oluşturulduğu için geriye dönük getiri ölçümü seçim yanlılığı içerir; bu yüzden geçmiş getiri iddiası olarak sunulmaz.</li>
+      <li><b>Geriye dönük test:</b> 10 yıllık backtest henüz yok. Canlı ölçümün ilk 21 günlük ufku 3 Aralık 2026'da doluyor; o tarihe kadar geçmiş getiri iddiası yoktur.</li>
+    </ul>
+  </section>
+
+  <h2>11. Sürüm geçmişi</h2>
+  <section>
+    <div class="surum"><b>2026-11-28</b><span>Metinler koddaki eşiklerle hizalandı: finansal şirket istisnası, gösterim kuralları, TMS 29 ve ölçüm sınırları eklendi.</span></div>
+    <div class="surum"><b>2026-11-26</b><span>Nötr etiketler (Güçlü/Takip/Nötr/Zayıf), liste ücretli alanları sunucu tarafına taşındı, bilanço takvimi.</span></div>
+    <div class="surum"><b>2026-11-25</b><span>Alan adı uzunvade.net, Google girişi, içerik kilidi (Supabase), analitik.</span></div>
+    <div class="surum"><b>2026-11-24</b><span>Kısa liste, tez kırılma uyarıları, admin paneli, RSS/Spotify uyumu.</span></div>
+    <div class="surum"><b>2026-11-20</b><span>BIST modeli (banka ayrımı), endeks panosu, podcast.</span></div>
+    <div class="surum"><b>2026-10</b><span>İlk sürüm: kalite kapısı, giriş skoru, dönüş sinyali.</span></div>
+  </section>
+
+  <div class="uyari">Metodoloji bilgilendirme amaçlıdır; yatırım tavsiyesi değildir. Eşikler ve ağırlıklar önceden haber verilerek değiştirilebilir.</div>
+</div>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

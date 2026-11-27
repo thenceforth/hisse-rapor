@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giriş · Hisse-Tarayici</title>
+<meta name="robots" content="noindex">
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8}
+  body{margin:0;min-height:100vh;padding:26px 18px 60px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:430px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:14px}
+  h1{margin:0 0 4px;font-size:26px;font-weight:700;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  .panel{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px}
+  .sekme{display:flex;gap:6px;margin-bottom:16px;background:#0d1729;border:1px solid var(--line);border-radius:10px;padding:4px}
+  .sekme button{flex:1;background:transparent;border:0;color:var(--muted);font-size:13px;font-weight:600;padding:9px 0;border-radius:8px;cursor:pointer}
+  .sekme button.on{background:#123152;color:#e6edf7}
+  label{display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;font-weight:600;margin:0 0 6px}
+  input{width:100%;background:#0d1729;border:1px solid var(--line);border-radius:10px;color:var(--txt);
+        padding:12px 13px;font-size:14px;outline:none;margin-bottom:13px}
+  input:focus{border-color:#2f4a76}
+  button.birincil{width:100%;background:#1d4ed8;border:1px solid #2563eb;color:#fff;border-radius:10px;
+        padding:12px 0;font-size:14.5px;font-weight:700;cursor:pointer}
+  button.birincil:hover{background:#2563eb}
+  button.birincil:disabled{opacity:.6;cursor:default}
+  .mesaj{font-size:12.5px;line-height:1.55;margin-top:10px;min-height:18px}
+  .kucuk{font-size:11.5px;color:#5b6b86;line-height:1.6;margin-top:12px}
+  .uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:12px;padding:12px 14px;
+         color:#fde047;font-size:12.5px;line-height:1.7;margin-bottom:14px}
+  .kurulum{font-size:12.5px;color:#b9c8dd;line-height:1.8}
+  .kurulum code{background:#0d1729;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:11.5px;color:#93c5fd}
+  .sosyal{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .sosyal button{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+    background:#0d1729;border:1px solid var(--line);color:#e6edf7;border-radius:10px;
+    padding:11px 0;font-size:13.5px;font-weight:600;cursor:pointer}
+  .sosyal button:hover{border-color:#2f4a76;background:#101d31}
+  .sosyal button:disabled{opacity:.55;cursor:default}
+  .sosyal .ayrac{display:flex;align-items:center;gap:10px;color:#41506b;font-size:11px;margin:4px 0 10px}
+  .sosyal .ayrac:before,.sosyal .ayrac:after{content:"";flex:1;height:1px;background:#1e2c47}
+  .gizli{display:none}
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+</style>
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Üyelik</h1>
+  <div class="sub">E-posta ve parola ile giriş. Şu an beta — ücretsiz.</div>
+
+  <div id="kapaliMod" class="gizli">
+    <div class="panel">
+      <div class="uyari">Üyelik altyapısı henüz bağlanmadı.</div>
+      <div class="kurulum">
+        Gerçek hesap açmak için ücretsiz bir <b>Supabase</b> projesi gerekiyor (2 dakika):
+        <ol style="padding-left:18px;margin:8px 0">
+          <li>supabase.com → yeni proje</li>
+          <li>Settings → API: <code>Project URL</code> ve <code>anon public</code> anahtarını kopyala</li>
+          <li><code>uyelik.js</code> içindeki <code>SUPABASE_URL</code> ve <code>SUPABASE_KEY</code> alanlarına yapıştır</li>
+        </ol>
+        Anahtarlar girilene kadar form kapalı; bu sırada
+        <a href="hakkinda.html#waitlist">bekleme listesine</a> yazılabilirsin.
+      </div>
+    </div>
+  </div>
+
+  <div id="formMod" class="gizli">
+    <div class="panel">
+      <div class="sekme">
+        <button id="sekGiris" class="on">Giriş yap</button>
+        <button id="sekKayit">Kayıt ol</button>
+        <button id="sekKod">E-posta kodu</button>
+      </div>
+
+      <div class="sosyal" id="sosyal">
+        <button type="button" id="btnGoogle">
+          <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.5 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.3 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-2.7-.4-4H24v8.1h12.5c-.3 2.1-1.7 5.2-4.9 7.3l7.6 5.9c4.5-4.2 6.9-10.3 6.9-17.3z"/><path fill="#FBBC05" d="M10.4 28.7A14.5 14.5 0 0 1 9.6 24c0-1.6.3-3.2.8-4.7l-7.8-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.6-5.9c-2.1 1.4-4.8 2.4-7.6 2.4-6.4 0-11.7-3.8-13.6-9.1l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+          Google ile devam et
+        </button>
+        <div class="ayrac">veya e-posta ile</div>
+      </div>
+
+      <div id="kodForm" class="gizli">
+        <label for="kodEposta">E-posta</label>
+        <input id="kodEposta" type="email" placeholder="ornek@eposta.com" autocomplete="email">
+        <button class="birincil" id="kodGonderBtn" type="button">Kod gönder</button>
+        <div id="kodAlan" class="gizli" style="margin-top:12px">
+          <label for="kod">E-postana gelen 6 haneli kod</label>
+          <input id="kod" type="text" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="one-time-code">
+          <button class="birincil" id="kodDogrulaBtn" type="button">Kodu doğrula ve gir</button>
+        </div>
+        <div class="mesaj" id="kodMesaj"></div>
+        <div class="kucuk">Şifre yok: e-postana gelen tek kullanımlık kodla giriş yaparsın. Aynı kod hem kayıt hem giriş için çalışır.</div>
+      </div>
+
+      <form id="form" autocomplete="on" novalidate>
+        <label for="eposta">E-posta</label>
+        <input id="eposta" name="email" type="email" autocomplete="email" placeholder="ornek@eposta.com" required>
+
+        <label for="parola">Parola</label>
+        <input id="parola" name="password" type="password" autocomplete="current-password" placeholder="en az 8 karakter" required minlength="8">
+
+        <button class="birincil" id="gonder" type="submit">Giriş yap</button>
+        <div class="mesaj" id="mesaj"></div>
+      </form>
+
+      <div class="kucuk" id="altNot">
+        Parolanı unuttuysan <a href="#" id="sifirla">sıfırlama e-postası</a> gönder.
+      </div>
+    </div>
+    <div class="kucuk">
+      Bu bir yatırım danışmanlığı hizmeti değildir. Beta süresince üyelik ücretsizdir;
+      ücretli katman açıldığında önceden haber verilir.
+    </div>
+  </div>
+</div>
+
+<script src="uyelik.js"></script>
+<script>
+(function(){
+  var kapali = document.getElementById('kapaliMod');
+  var formMod = document.getElementById('formMod');
+  if (window.HT_ANAHTAR_HATASI){
+    kapali.classList.remove('gizli');
+    kapali.querySelector('.uyari').textContent = 'Güvenlik: ' + window.HT_ANAHTAR_HATASI;
+    kapali.querySelector('.kurulum').innerHTML =
+      'Siteye <b>gizli anahtar</b> konmuş. Bu anahtar herkese açık olur ve tüm veritabanına erişim verir. ' +
+      'Supabase panelinden anahtarı <b>iptal et</b>, yerine <b>publishable</b> anahtarı koy.';
+    return;
+  }
+  if (window.HT_EKSIK_URL){
+    kapali.classList.remove('gizli');
+    kapali.querySelector('.uyari').textContent = 'Son adım: Supabase proje adresi (URL) eksik.';
+    kapali.querySelector('.kurulum').innerHTML =
+      'Anahtar hazır. Supabase panelinde <b>Settings → API → Project URL</b> değerini kopyala ' +
+      '(<code>https://xxxx.supabase.co</code>) ve <code>uyelik.js</code> içindeki ' +
+      '<code>SUPABASE_URL</code> alanına yaz. Sonrasında form otomatik açılır.';
+    return;
+  }
+  if (!window.HT || !window.HT.aktif){
+    kapali.classList.remove('gizli');
+    return;
+  }
+  formMod.classList.remove('gizli');
+
+  function sosyalBagla() {
+    var g = document.getElementById('btnGoogle');
+    var a = document.getElementById('btnApple');
+    function bagla(btn, aktif, fn, ad) {
+      if (!btn) return;
+      if (!aktif) {
+        btn.title = ad + ' girişi için Supabase sağlayıcısı henüz açılmadı';
+        btn.addEventListener('click', function () {
+          yaz(ad + ' girişi yapılandırılmadı. Yönetici: Supabase → Authentication → Providers.', '#fbbf24');
+        });
+        return;
+      }
+      btn.addEventListener('click', fn);
+    }
+    bagla(g, !!(window.HT_UYELIK_AYAR || {}).GOOGLE_AKTIF, function () { window.HT.girisGoogle(); }, 'Google');
+    bagla(a, !!(window.HT_UYELIK_AYAR || {}).APPLE_AKTIF, function () { window.HT.girisApple(); }, 'Apple');
+  }
+
+  var mod = 'giris';           // giris | kayit | kod
+  var sekGiris = document.getElementById('sekGiris');
+  var sekKayit = document.getElementById('sekKayit');
+  var form = document.getElementById('form');
+  var mesaj = document.getElementById('mesaj');
+  var gonder = document.getElementById('gonder');
+  var parola = document.getElementById('parola');
+
+  function yaz(t, renk){ mesaj.textContent = t || ''; mesaj.style.color = renk || '#94a3b8'; }
+  function modAyarla(yeni){
+    mod = yeni;
+    var kf = document.getElementById('kodForm');
+    if (kf) kf.classList.add('gizli');
+    document.getElementById('form').classList.remove('gizli');
+    var sk = document.getElementById('sekKod');
+    if (sk) sk.classList.remove('on');
+    sekGiris.classList.toggle('on', mod === 'giris');
+    sekKayit.classList.toggle('on', mod === 'kayit');
+    gonder.textContent = mod === 'giris' ? 'Giriş yap' : 'Hesap oluştur';
+    parola.setAttribute('autocomplete', mod === 'giris' ? 'current-password' : 'new-password');
+    document.getElementById('altNot').style.display = mod === 'giris' ? 'block' : 'none';
+    yaz('');
+  }
+  sekGiris.onclick = function(){ modAyarla('giris'); };
+  sekKayit.onclick = function(){ modAyarla('kayit'); };
+  var sekKod = document.getElementById('sekKod');
+  if (sekKod) sekKod.onclick = function(){
+    modAyarla('kod');
+    document.getElementById('kodForm').classList.remove('gizli');
+    document.getElementById('form').classList.add('gizli');
+    sekKod.classList.add('on');
+  };
+  function kodMesaj(t, renk){ var m = document.getElementById('kodMesaj'); m.textContent = t||''; m.style.color = renk||'#94a3b8'; }
+  var gonderBtn = document.getElementById('kodGonderBtn');
+  if (gonderBtn) gonderBtn.onclick = function(){
+    var e = document.getElementById('kodEposta').value.trim();
+    if (!e || e.indexOf('@') < 1) { kodMesaj('Geçerli bir e-posta yaz.', '#fca5a5'); return; }
+    gonderBtn.disabled = true; kodMesaj('Gönderiliyor…');
+    window.HT.kodGonder(e).then(function(){
+      kodMesaj('Kod gönderildi. Gelen kutunu (ve spam klasörünü) kontrol et.', '#34d399');
+      document.getElementById('kodAlan').classList.remove('gizli');
+      document.getElementById('kod').focus();
+      gonderBtn.disabled = false;
+    }).catch(function(h){
+      kodMesaj((h && h.message) || 'Gönderilemedi', '#fca5a5');
+      gonderBtn.disabled = false;
+    });
+  };
+  var dogrulaBtn = document.getElementById('kodDogrulaBtn');
+  if (dogrulaBtn) dogrulaBtn.onclick = function(){
+    var e = document.getElementById('kodEposta').value.trim();
+    var k = document.getElementById('kod').value.trim();
+    if (!/^[0-9]{6}$/.test(k)) { kodMesaj('6 haneli kodu yaz.', '#fca5a5'); return; }
+    dogrulaBtn.disabled = true; kodMesaj('Doğrulanıyor…');
+    window.HT.kodDogrula(e, k).then(function(){
+      kodMesaj('Giriş başarılı, yönlendiriliyor…', '#34d399');
+      setTimeout(function(){ location.href = 'index.html?hosgeldin=1'; }, 500);
+    }).catch(function(h){
+      kodMesaj((h && h.message) || 'Kod doğrulanamadı', '#fca5a5');
+      dogrulaBtn.disabled = false;
+    });
+  };
+
+  sosyalBagla();
+
+  // zaten girişliyse hesaba yönlendir
+  window.HT.oturum().then(function(s){ if (s) location.href = 'index.html?hosgeldin=1'; });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var eposta = document.getElementById('eposta').value.trim();
+    var sifre = parola.value;
+    if (sifre.length < 8){ yaz('Parola en az 8 karakter olmalı.', '#fca5a5'); return; }
+
+    gonder.disabled = true;
+    yaz('İşleniyor…');
+
+    var is = mod === 'giris' ? window.HT.giris(eposta, sifre) : window.HT.kayit(eposta, sifre);
+    is.then(function(sonuc){
+      if (sonuc && sonuc.dogrulamaGerekli){
+        yaz('Hesap oluşturuldu. E-postana gelen doğrulama bağlantısına tıkla, sonra giriş yap.', '#fbbf24');
+        gonder.disabled = false;
+        return;
+      }
+      yaz('Giriş başarılı, yönlendiriliyor…', '#34d399');
+      setTimeout(function(){ location.href = 'index.html?hosgeldin=1'; }, 500);
+    }).catch(function(hata){
+      var m = hata && hata.message ? hata.message : 'Beklenmeyen hata';
+      if (/kapali/.test(m)) m = 'Üyelik altyapısı bağlı değil.';
+      if (/already registered|already exists/i.test(m)) m = 'Bu e-posta zaten kayıtlı. Giriş yapmayı dene.';
+      if (/Email not confirmed/i.test(m)) m = 'E-postanı doğrulaman gerekiyor. Gelen kutunu kontrol et.';
+      if (/rate limit|too many/i.test(m)) m = 'Çok fazla deneme. Birkaç dakika sonra tekrar dene.';
+      yaz(m, '#fca5a5');
+      gonder.disabled = false;
+    });
+  });
+
+  document.getElementById('sifirla').addEventListener('click', function(e){
+    e.preventDefault();
+    var eposta = document.getElementById('eposta').value.trim();
+    if (!eposta){ yaz('Önce e-posta adresini yaz.', '#fca5a5'); return; }
+    window.HT.sifreSifirla(eposta).then(function(){
+      yaz('Sıfırlama bağlantısı gönderildi. Gelen kutunu kontrol et.', '#34d399');
+    }).catch(function(){
+      yaz('Sıfırlama gönderilemedi. Birkaç dakika sonra dene.', '#fca5a5');
+    });
+  });
+})();
+</script>
+  <script src="ui.js?v=13" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

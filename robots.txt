@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /hesap.html
+Disallow: /giris.html
+
+Sitemap: https://uzunvade.net/sitemap.xml
+

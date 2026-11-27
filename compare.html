@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karşılaştırma</title>
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;
+        --acc:#38bdf8;--grn:#10b981;--red:#ef4444;--ylw:#eab308}
+  body{margin:0;padding:26px 22px 60px;background:radial-gradient(1100px 500px at 15% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1500px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  h1{margin:0;font-size:26px;font-weight:700;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin-top:5px}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  .secim{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);
+        border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;font-family:ui-monospace,monospace}
+  .chip i{display:inline-block;width:9px;height:9px;border-radius:50%}
+  .chip button{background:none;border:none;color:var(--dim);cursor:pointer;font-size:14px;padding:0}
+  .chip button:hover{color:var(--red)}
+  input.ara{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:10px;
+            padding:9px 12px;font-size:13px;outline:none;min-width:200px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+  canvas{display:block;width:100%}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+  th,td{padding:9px 10px;border-bottom:1px solid #14203a;text-align:right}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0d1729;z-index:2;
+        color:var(--muted);font-weight:600;white-space:nowrap}
+  thead th{background:#0d1729;color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+           position:sticky;top:0;z-index:3}
+  tbody tr:hover td{background:#101c31}
+  tbody tr:hover td:first-child{background:#101c31}
+  .iyi{color:#10b981;font-weight:700}
+  .kotu{color:#ef4444;font-weight:700}
+  .btns{display:flex;gap:6px;flex-wrap:wrap}
+  .btn{background:#0d1729;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:5px 10px;
+       font-size:12px;cursor:pointer}
+  .btn.on{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:700}
+  .rozet{display:inline-block;padding:3px 8px;border-radius:7px;font-size:11px;font-weight:700}
+  .b-AL{background:rgba(16,185,129,.16);color:#34d399}
+  .b-IZLE{background:rgba(234,179,8,.15);color:#fbbf24}
+  .b-BEKLE{background:rgba(100,116,139,.18);color:#94a3b8}
+  .b-GEC{background:rgba(71,85,105,.18);color:#7c8ba1}
+  .yok{padding:50px;text-align:center;color:var(--dim)}
+  @media (max-width:820px){
+    body{padding:16px 10px 40px}
+    th,td{padding:7px 6px;font-size:12px}
+    th:first-child,td:first-child{font-size:11.5px}
+  }
+</style>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/compare.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt uv-alt-aktif"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html" aria-current="page"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Karşılaştırma</h1>
+  <div class="sub" id="alt">2-4 hisse seç · metrikler yan yana</div>
+
+  <div class="secim" id="secim"></div>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)" id="lejant"></div>
+      <div class="btns">
+        <button class="btn" data-tf="126">6A</button>
+        <button class="btn on" data-tf="252">1Y</button>
+        <button class="btn" data-tf="504">2Y</button>
+      </div>
+    </div>
+    <canvas id="grafik"></canvas>
+  </div>
+
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px">
+      <div style="font-size:12px;font-weight:700;color:#5b6b86;letter-spacing:.8px;text-transform:uppercase">Kalite radanı</div>
+      <div style="font-size:11.5px;color:#5b6b86">trend · RSI · 52 hafta konumu · düşük volatilite · trend gücü</div>
+    </div>
+    <canvas id="radar" style="max-height:420px"></canvas>
+  </div>
+
+  <div class="panel" style="padding:0;overflow:auto">
+    <table id="tablo"></table>
+  </div>
+</div>
+
+<script>
+const RENK = ['#38bdf8', '#f472b6', '#fbbf24', '#34d399', '#a78bfa'];
+const params = new URLSearchParams(location.search);
+let HISSELER = (params.get('t') || '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean).slice(0, 4);
+let VERI = [];
+let TF = 252;
+let LISTE = [];
+
+const $ = id => document.getElementById(id);
+const ok = v => (v===null||v===undefined||isNaN(v)) ? '—' : v;
+const num = (v,n=2) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:n,maximumFractionDigits:n});
+
+fetch('veri/_liste.json').then(r=>r.json()).then(l => { LISTE = l; }).catch(()=>{});
+
+function yukle(){
+  VERI = [];
+  if (!HISSELER.length){ ciz(); return; }
+  Promise.all(HISSELER.map(t => fetch(`veri/${t}.json`).then(r => r.ok ? r.json() : null).catch(()=>null)))
+    .then(list => { VERI = list.filter(Boolean); ciz(); });
+}
+
+function satir(etiket, degerler, iyiYon, bicim){
+  // iyiYon: 1 = buyuk iyi, -1 = kucuk iyi, 0 = notr
+  const say = degerler.map(v => (v===null||v===undefined||isNaN(v)) ? null : Number(v));
+  const gecerli = say.filter(v => v !== null);
+  const enIyi = gecerli.length > 1 ? (iyiYon > 0 ? Math.max(...gecerli) : iyiYon < 0 ? Math.min(...gecerli) : null) : null;
+  const enKotu = gecerli.length > 1 ? (iyiYon > 0 ? Math.min(...gecerli) : iyiYon < 0 ? Math.max(...gecerli) : null) : null;
+  const hucre = (v) => {
+    const g = bicim ? bicim(v) : num(v);
+    let cls = '';
+    if (iyiYon !== 0 && gecerli.length > 1 && enIyi !== enKotu) {
+      if (v === enIyi) cls = 'iyi';
+      else if (v === enKotu) cls = 'kotu';
+    }
+    return `<td class="${cls}">${g}</td>`;
+  };
+  return `<tr><td>${etiket}</td>${degerler.map(hucre).join('')}</tr>`;
+}
+
+function ciz(){
+  // secim cipleri
+  $('secim').innerHTML = HISSELER.map((t,i) =>
+    `<span class="chip"><i style="background:${RENK[i%RENK.length]}"></i>${t}
+      <a href="hisse.html?t=${t}" target="_blank" title="detay" style="color:#5b6b86">↗</a>
+      <button data-kaldir="${t}" title="kaldır">×</button></span>`).join('') +
+    `<input class="ara" id="ekle" list="hisseListesi" placeholder="Hisse ekle (örn. AAPL)">
+     <datalist id="hisseListesi">${LISTE.map(x=>`<option value="${x.t}">${x.ad||''}</option>`).join('')}</datalist>`;
+
+  const ekle = $('ekle');
+  if (ekle) ekle.onchange = e => {
+    const t = e.target.value.trim().toUpperCase();
+    if (t && !HISSELER.includes(t) && HISSELER.length < 4){
+      HISSELER.push(t);
+      history.replaceState(null,'',`compare.html?t=${HISSELER.join(',')}`);
+      yukle();
+    }
+  };
+  document.querySelectorAll('[data-kaldir]').forEach(b => b.onclick = () => {
+    HISSELER = HISSELER.filter(x => x !== b.dataset.kaldir);
+    history.replaceState(null,'',`compare.html?t=${HISSELER.join(',')}`);
+    yukle();
+  });
+
+  if (!VERI.length){
+    $('tablo').innerHTML = '<tr><td class="yok">Yukarıdan hisse ekle</td></tr>';
+    $('lejant').innerHTML = '';
+    return;
+  }
+
+  $('lejant').innerHTML = VERI.map((d,i) =>
+    `<span><i style="display:inline-block;width:14px;height:3px;background:${RENK[i%RENK.length]};vertical-align:middle;margin-right:6px"></i>${d.ticker}</span>`).join('');
+  $('alt').textContent = `${VERI.length} hisse · ${VERI[0].bars.length} işlem günü · ${VERI[0].guncelleme ? VERI[0].guncelleme.replace('T',' ').slice(0,16) : ''}`;
+
+  lejantCiz();
+  tabloCiz();
+  radarCiz();
+}
+
+/* 5 eksenli kalite radari: 0-100 normalize edilmis ham metrikler */
+function radarCiz(){
+  const cv = $('radar');
+  if (!cv || !VERI.length) return;
+  const dpr = window.devicePixelRatio || 1;
+  const G = Math.min(cv.parentElement.clientWidth || 800, 640);
+  const Y = Math.min(420, Math.max(320, G * 0.72));
+  cv.width = G * dpr; cv.height = Y * dpr;
+  cv.style.width = G + 'px'; cv.style.height = Y + 'px';
+  const x = cv.getContext('2d');
+  x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  x.clearRect(0, 0, G, Y);
+
+  const eksenler = ['Trend', 'RSI', '52H konum', 'Düşük vol.', 'Trend gücü'];
+  const n = eksenler.length;
+  const cx = G / 2, cy = Y / 2 + 6, R = Math.min(G, Y) * 0.34;
+
+  function nokta(i, oran){
+    const a = -Math.PI / 2 + i * 2 * Math.PI / n;
+    return [cx + Math.cos(a) * R * oran, cy + Math.sin(a) * R * oran];
+  }
+  function skor(d){
+    const f = +d.fiyat || 0, m50 = +d.ma50 || 0, m200 = +d.ma200 || 0;
+    const rsi = +d.rsi || 50, h = +d['52h'] || 0, l = +d['52l'] || 0, atr = +d.atr || 0;
+    const trend = (f > m50 ? 50 : 0) + (m50 > m200 ? 50 : 0);
+    const konum = (h > l && f) ? Math.max(0, Math.min(100, (f - l) / (h - l) * 100)) : 50;
+    const atrYuzde = f ? (atr / f) * 100 : 5;
+    const dusukVol = Math.max(0, Math.min(100, 100 - atrYuzde * 12));
+    const trendGuc = m200 ? Math.max(0, Math.min(100, 50 + (f / m200 - 1) * 250)) : 50;
+    return [trend, Math.max(0, Math.min(100, rsi)), konum, dusukVol, trendGuc];
+  }
+
+  // izgara
+  x.strokeStyle = '#16233b'; x.lineWidth = 1;
+  [0.25, 0.5, 0.75, 1].forEach(o => {
+    x.beginPath();
+    for (let i = 0; i <= n; i++){ const [px, py] = nokta(i % n, o); i ? x.lineTo(px, py) : x.moveTo(px, py); }
+    x.stroke();
+  });
+  x.beginPath();
+  for (let i = 0; i <= n; i++){ const [px, py] = nokta(i % n, 1); i ? x.lineTo(px, py) : x.moveTo(px, py); }
+  x.strokeStyle = '#1d2c47'; x.stroke();
+
+  // eksen etiketleri
+  x.fillStyle = '#8497b3'; x.font = '11px -apple-system,Segoe UI,Roboto,sans-serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  eksenler.forEach((ad, i) => {
+    const a = -Math.PI / 2 + i * 2 * Math.PI / n;
+    x.fillText(ad, cx + Math.cos(a) * (R + 22), cy + Math.sin(a) * (R + 22));
+  });
+
+  // her hisse icin alan
+  VERI.forEach((d, idx) => {
+    const s = skor(d);
+    const renk = RENK[idx % RENK.length];
+    x.beginPath();
+    s.forEach((v, i) => { const [px, py] = nokta(i, v / 100); i ? x.lineTo(px, py) : x.moveTo(px, py); });
+    x.closePath();
+    x.fillStyle = renk + '22'; x.fill();
+    x.strokeStyle = renk; x.lineWidth = 2; x.stroke();
+    s.forEach((v, i) => {
+      const [px, py] = nokta(i, v / 100);
+      x.beginPath(); x.arc(px, py, 3, 0, Math.PI * 2); x.fillStyle = renk; x.fill();
+    });
+  });
+}
+
+function lejantCiz(){
+  const cv = $('grafik');
+  const dar = window.innerWidth < 820;
+  const HI = dar ? 260 : 380;
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.parentNode.clientWidth - 32;
+  cv.width = W * dpr; cv.height = HI * dpr;
+  cv.style.height = HI + 'px';
+  const g = cv.getContext('2d');
+  g.setTransform(dpr,0,0,dpr,0,0);
+  g.clearRect(0,0,W,HI);
+
+  const sol = 6, sag = 46;
+  const kes = a => TF > 0 ? a.slice(-TF) : a;
+  const seriler = VERI.map(d => {
+    const bars = kes(d.bars).map(b => b.c);
+    const ilk = bars[0];
+    return bars.map(v => v / ilk * 100);
+  });
+  const hepsi = seriler.flat();
+  let lo = Math.min(...hepsi), hi = Math.max(...hepsi);
+  const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+  const n = seriler[0].length;
+  const x = i => sol + i * (W - sol - sag) / (n - 1);
+  const y = v => HI - 18 - (v - lo) / (hi - lo) * (HI - 36);
+
+  // yatay izgara
+  g.strokeStyle = '#16233b'; g.font = '10px ui-monospace,monospace'; g.fillStyle = '#5b6b86';
+  for (let i=0;i<=4;i++){
+    const v = lo + (hi-lo)*i/4, yy = y(v);
+    g.beginPath(); g.moveTo(sol, yy); g.lineTo(W-sag, yy); g.stroke();
+    g.fillText(v.toFixed(0), W-sag+6, yy+3);
+  }
+
+  seriler.forEach((s, idx) => {
+    g.strokeStyle = RENK[idx % RENK.length];
+    g.lineWidth = 1.8; g.beginPath();
+    s.forEach((v,i) => { i ? g.lineTo(x(i), y(v)) : g.moveTo(x(i), y(v)); });
+    g.stroke();
+    // son deger etiketi
+    g.fillStyle = RENK[idx % RENK.length];
+    g.fillText(VERI[idx].ticker, Math.max(sol, W - sag - 44), y(s[n-1]) - 5);
+  });
+
+  // tarih etiketleri
+  g.fillStyle = '#41506b';
+  const bars0 = kes(VERI[0].bars);
+  for (let i=0;i<4;i++){
+    const idx = Math.floor((n-1)*i/3);
+    g.fillText((bars0[idx].d||'').slice(0,7), Math.min(x(idx), W-sag-40), HI-4);
+  }
+}
+
+function tabloCiz(){
+  const d = VERI;
+  const basliklar = d.map(x => `<th>${x.ticker}</th>`).join('');
+  const satirlar = [];
+
+  const etiket = x => {
+    const e = (x.metrik||{}).etiket || '—';
+    return `<span class="rozet b-${e}">${e}</span>`;
+  };
+  const g = (x, fn) => fn(x);
+
+  satirlar.push(`<tr><td>Fiyat</td>${d.map(x=>`<td>${num(x.fiyat)}</td>`).join('')}</tr>`);
+  satirlar.push(satir('Günlük değişim', d.map(x=>x.degisim), 1, v => (v>0?'+':'')+num(v)+'%'));
+  satirlar.push(`<tr><td>Teknik sinyal</td>${d.map(x=>`<td>${etiket(x)}</td>`).join('')}</tr>`);
+  satirlar.push(satir('Skor', d.map(x=>(x.metrik||{}).skor), 1, v=>num(v,0)));
+  satirlar.push(satir('Dönüş sinyali', d.map(x=>(x.donus||{}).yuzde), 1, v=>'%'+num(v,0)));
+  satirlar.push(satir('RSI', d.map(x=>x.rsi[x.rsi.length-1]), 0, v=>num(v,0)));
+  satirlar.push(satir('Dipten', d.map(x=>(x.metrik||{}).dipten), 0, v=>num(v,1)+'%'));
+  satirlar.push(satir('Zirveden', d.map(x=>(x.metrik||{}).zirveden), 0, v=>num(v,1)+'%'));
+  satirlar.push(satir('ROIC (5y)', d.map(x=>(x.metrik||{}).roic!=null?(x.metrik.roic*100):null), 1, v=>num(v,1)+'%'));
+  satirlar.push(satir('ROIC istikrarı', d.map(x=>(x.metrik||{}).roic_stabilite), -1, v=>num(v,2)));
+  satirlar.push(satir('Net Borç/FAVÖK', d.map(x=>(x.metrik||{}).net_borc_favok), -1, v=>num(v,2)));
+  satirlar.push(satir('Nakit/Kâr', d.map(x=>(x.metrik||{}).cfo_ni), 1, v=>num(v,2)));
+  satirlar.push(satir('Seyreltme', d.map(x=>(x.metrik||{}).seyreltme!=null?(x.metrik.seyreltme*100):null), -1, v=>num(v,2)+'%'));
+  satirlar.push(satir('FCF pozitif yıl', d.map(x=>(x.metrik||{}).fcf_yil), 1, v=>num(v,0)+'/5'));
+  satirlar.push(satir('F/K yüzdeliği', d.map(x=>(x.metrik||{}).pe_yuzdelik), -1, v=>num(v,0)));
+  satirlar.push(satir('Piotroski', d.map(x=>(x.metrik||{}).piotroski), 1, v=>num(v,0)));
+  satirlar.push(`<tr><td>Beneish</td>${d.map(x=>`<td>${(x.metrik||{}).beneish||'—'}</td>`).join('')}</tr>`);
+  satirlar.push(satir('EPV iskontosu', d.map(x=>(x.metrik||{}).epv!=null?(x.metrik.epv*100):null), 1, v=>num(v,0)+'%'));
+  satirlar.push(satir('İma. büyüme', d.map(x=>(x.metrik||{}).ima_buyume!=null?(x.metrik.ima_buyume*100):null), -1, v=>num(v,1)+'%'));
+  satirlar.push(satir('Piyasa değeri', d.map(x=>(x.metrik||{}).piyasa_degeri!=null?(x.metrik.piyasa_degeri/1e9):null), 1, v=>num(v,0)+' mlr $'));
+  satirlar.push(satir('Beta', d.map(x=>(x.ek||{}).beta), 0, v=>num(v,2)));
+  satirlar.push(satir('Yıllık oynaklık', d.map(x=>(x.risk||{}).vol), -1, v=>num(v,1)+'%'));
+  satirlar.push(satir('Maks. düşüş (1y)', d.map(x=>(x.risk||{}).dd1y), 1, v=>num(v,1)+'%'));
+  satirlar.push(satir('Göreceli güç (3 ay)', d.map(x=>(x.ek||{})['3a']), 1, v=>(v>0?'+':'')+num(v,1)+'%'));
+  satirlar.push(satir('Trend süresi', d.map(x=>(x.ek||{}).trend_gun), 0, v=>Math.abs(num(v,0))+' gün'));
+
+  $('tablo').innerHTML = `<thead><tr><th>Metrik</th>${basliklar}</tr></thead><tbody>${satirlar.join('')}</tbody>`;
+}
+
+document.querySelectorAll('[data-tf]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-tf]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  TF = parseInt(b.dataset.tf,10);
+  lejantCiz();
+});
+window.addEventListener('resize', () => { if (VERI.length) { lejantCiz(); } });
+
+yukle();
+</script>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

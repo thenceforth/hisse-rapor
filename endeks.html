@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endeksler — piyasa rejimi</title>
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8}
+  body{margin:0;padding:26px 22px 60px;background:radial-gradient(1100px 500px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1400px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  .bas{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  h1{margin:0;font-size:27px;font-weight:700;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:12.5px;margin:6px 0 18px}
+  .kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+  .k{background:linear-gradient(180deg,var(--card),#0d1526);border:1px solid var(--line);border-radius:14px;padding:13px 15px}
+  .k .lb{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;font-weight:600}
+  .k .vl{font-size:23px;font-weight:700;margin-top:5px;display:flex;align-items:baseline;gap:7px}
+  .k .alt{font-size:11px;color:var(--dim);margin-top:3px}
+  .panel{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+  .panel h2{margin:0 0 10px;font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+  .not{color:#41506b;font-weight:600;letter-spacing:0;text-transform:none;font-size:10.5px}
+  canvas{width:100%;height:340px;display:block}
+  .tvwrap{display:none;height:340px;border-radius:10px;overflow:hidden}
+  .tvwrap iframe{width:100%!important;height:340px!important}
+  .arac{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .chip{background:#0d1729;border:1px solid var(--line);color:#a9b8cd;border-radius:8px;padding:6px 10px;font-size:11.5px;cursor:pointer}
+  .chip.on{background:#123152;border-color:#2f5d8a;color:#e6edf7}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px}
+  th,td{padding:9px 8px;border-bottom:1px solid #14203a;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0d1729;z-index:2}
+  thead th{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.6px;background:#0d1729;position:sticky;top:0;z-index:3}
+  thead th:first-child{z-index:4}
+  tbody tr:hover td{background:#101c31;cursor:pointer}
+  tbody tr.sec td{background:#0b1424;color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:default}
+  .hs{font-family:ui-monospace,monospace;font-weight:700;color:#f1f5f9}
+  .num{font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace}
+  .etk{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap}
+  .bar{height:6px;background:#16233b;border-radius:99px;overflow:hidden;width:90px;display:inline-block;vertical-align:middle}
+  .bar>i{display:block;height:100%;border-radius:99px}
+  .dunya{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  .dk{background:#0d1729;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .dk .ad{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .dk .vl{font-size:16px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+  .dk .yz{font-size:11px;margin-top:2px}
+  .dk .yo{color:#64748b;font-size:10px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sat{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12.5px}
+  .sat .ad{width:150px;color:#b9c8dd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sat .vk{width:66px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .sat .yo{color:#8497b3;font-size:11.5px}
+  .uyari{color:#fbbf24;font-size:11.5px}
+  @media (max-width:900px){
+    body{padding:16px 12px 50px}
+    .panel h2{flex-wrap:wrap;gap:5px;align-items:flex-start}
+    #gMeta{display:none}
+    #tvLink{margin-left:0!important;font-size:10.5px;padding:5px 8px}
+    .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .dunya{grid-template-columns:repeat(3,minmax(0,1fr))}
+    canvas{height:260px}
+    .panel{overflow:auto}
+    table{min-width:900px}
+    th:first-child,td:first-child{position:sticky;left:0;background:#0d1729}
+  }
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+
+  .ucretli:not(.acik) > *:not(.kilit-kart){filter:blur(7px);pointer-events:none;user-select:none}
+  .ucretli.acik > *:not(.kilit-kart){filter:none;pointer-events:auto}
+
+  .uyelik-bulanik{filter:blur(6px);pointer-events:none;user-select:none}
+  body.oturum-var .uyelik-bulanik{filter:none;pointer-events:auto;user-select:auto}
+</style>
+<script src="uyelik.js" defer></script>
+<script src="koruma.js" defer></script>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/endeks.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html" aria-current="page">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <div class="bas">
+    <div>
+      <h1>Endeksler</h1>
+      <div class="sub"><span id="varlikSayisi">26</span> varlık · rejim skoru, genişlik, makro, emtia, faiz, döviz · güncelleme <span id="guncelleme">—</span></div>
+    </div>
+  </div>
+
+  <div class="kpi" id="kpi"></div>
+
+  <div class="panel">
+    <h2>Dünya panosu <span class="not">tek bakışta 12 varlık</span></h2>
+    <div class="dunya" id="dunya"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Grafik <span class="not" id="gAd">—</span> <span class="not" id="gMeta"></span>
+      <a class="chip" id="tvLink" href="#" target="_blank" rel="noopener" style="margin-left:auto">TradingView'de aç ↗</a></h2>
+    <canvas id="grafik"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>Endeks tablosu <span class="not">satıra tıkla → grafik değişir</span></h2>
+    <div style="overflow:auto">
+      <table id="tbl">
+        <thead><tr>
+          <th>Endeks</th><th>Trend</th><th class="sag">Son</th><th class="sag">1g</th>
+          <th class="sag">1a</th><th class="sag">3a</th><th class="sag">6a</th><th class="sag">1y</th>
+          <th>MA200</th><th class="sag">RSI</th><th class="sag">Vol</th>
+          <th class="sag">ATH'den</th><th class="sag">Rejim</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel ucretli" data-baslik="Genişlik analizi (izleme listesi)">
+    <h2>Genişlik <span class="not">izleme listesindeki 103 hisse</span></h2>
+    <div id="genislik"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Makro <span class="not">risk iştahı göstergeleri</span></h2>
+    <div id="makro"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Göreli güç <span class="not">3 aylık getiri sıralaması</span></h2>
+    <div id="goreli"></div>
+  </div>
+
+  <div class="sub" style="margin-top:18px">
+    Rejim skoru = trend (40) + momentum (20) + aşırılık (15) + oynaklık (15) + genişlik (10).
+    Veri: Yahoo Finance günlük kapanış. Yatırım tavsiyesi değildir.
+  </div>
+</div>
+<script>
+const fmt = (v,d=2) => v==null ? '—' : v.toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const okr = (v,d=1) => v==null ? '—' : v.toLocaleString('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const renk = v => v==null ? '#64748b' : v>0 ? '#10b981' : v<0 ? '#ef4444' : '#94a3b8';
+const yuzde = (v,d=1) => v==null ? '—' : (v>0?'+':'')+okr(v,d)+'%';
+const etiketRenk = e => e==='Boğa'?'#10b981':e==='Zayıf boğa'?'#84cc16':e==='Yatay'?'#eab308':e==='Ayı'?'#ef4444':'#64748b';
+
+let VERI = null, SECILI = null, TV_ACIK = false;
+
+function spark(seri, w=96, h=26){
+  if (!seri || seri.length < 2) return '';
+  const f = seri.map(x => x[4]);
+  const min = Math.min(...f), max = Math.max(...f), r = (max-min)||1;
+  const pts = f.map((v,i) => `${(i/(f.length-1)*w).toFixed(1)},${(h - (v-min)/r*h).toFixed(1)}`).join(' ');
+  const renkC = f[f.length-1] >= f[0] ? '#10b981' : '#ef4444';
+  return `<svg width="${w}" height="${h}" style="display:block"><polyline points="${pts}" fill="none" stroke="${renkC}" stroke-width="1.6"/></svg>`;
+}
+
+function kpiCiz(){
+  const e = VERI.endeksler;
+  const spx = e.find(x => x.kod === '^GSPC');
+  const enIyi = [...VERI.goreli].sort((a,b) => (b.g3a||-99)-(a.g3a||-99))[0];
+  const vix = e.find(x => x.kod === '^VIX');
+  const g = VERI.genislik;
+  document.getElementById('kpi').innerHTML = `
+    <div class="k"><div class="lb">Piyasa rejimi</div>
+      <div class="vl"><span style="color:${etiketRenk(spx?.etiket)}">${spx?.skor ?? '—'}</span>
+        <span style="font-size:13px;color:${etiketRenk(spx?.etiket)}">${spx?.etiket || ''}</span></div>
+      <div class="alt">S&P 500 · trend+momentum+oynaklık+genişlik</div></div>
+    <div class="k"><div class="lb">Genişlik (MA200 üstü)</div>
+      <div class="vl">%${g?.ma200_oran ?? '—'}</div>
+      <div class="alt">${g?.ma200_ustu ?? 0}/${g?.toplam ?? 0} hisse · MA50 üstü %${g?.ma50_oran ?? '—'}</div></div>
+    <div class="k"><div class="lb">Göreli lider (3 ay)</div>
+      <div class="vl"><span style="font-size:17px">${enIyi?.ad || '—'}</span>
+        <span style="font-size:13px;color:${renk(enIyi?.g3a)}">${yuzde(enIyi?.g3a)}</span></div>
+      <div class="alt">12 endeks içinde</div></div>
+    <div class="k"><div class="lb">VIX</div>
+      <div class="vl"><span style="color:${vix && vix.fiyat>=20 ? '#fbbf24' : '#10b981'}">${fmt(vix?.fiyat,1)}</span>
+        <span style="font-size:12px;color:${renk(vix?.g1a)}">${yuzde(vix?.g1a)}</span></div>
+      <div class="alt">${vix ? (vix.fiyat>=30?'korku yüksek':vix.fiyat>=20?'tedirginlik':'risk iştahı açık') : ''}</div></div>`;
+}
+
+function tabloCiz(){
+  const gruplar = VERI.gruplar || ['ABD','Avrupa','Türkiye','Risk'];
+  let html = '';
+  for (const g of gruplar){
+    html += `<tr class="sec"><td colspan="13">${g}</td></tr>`;
+    for (const e of VERI.endeksler.filter(x => x.grup === g)){
+      const sec = SECILI === e.kod ? ' style="background:#123152"' : '';
+      const et = e.etiket ? `<span class="etk" style="color:${etiketRenk(e.etiket)};border:1px solid ${etiketRenk(e.etiket)}55">${e.etiket}</span>` : '—';
+      html += `<tr data-kod="${e.kod}"${sec}>
+        <td><span class="hs">${e.ad}</span></td>
+        <td>${spark(e.seri)}</td>
+        <td class="num">${fmt(e.fiyat)}</td>
+        <td class="num" style="color:${renk(e.g1)}">${yuzde(e.g1,2)}</td>
+        <td class="num" style="color:${renk(e.g1a)}">${yuzde(e.g1a)}</td>
+        <td class="num" style="color:${renk(e.g3a)}">${yuzde(e.g3a)}</td>
+        <td class="num" style="color:${renk(e.g6a)}">${yuzde(e.g6a)}</td>
+        <td class="num" style="color:${renk(e.g1y)}">${yuzde(e.g1y)}</td>
+        <td>${e.ma200_ustunde ? '<span style="color:#10b981">✓</span>' : '<span style="color:#ef4444">✗</span>'}</td>
+        <td class="num">${okr(e.rsi,0)}</td>
+        <td class="num">${e.vol20==null?'—':'%'+okr(e.vol20,1)}</td>
+        <td class="num" style="color:${renk(e.ath_mesafe)}">${yuzde(e.ath_mesafe)}</td>
+        <td>${e.skor!=null?`<span class="num" style="font-weight:700">${e.skor}</span> ${et}`:et}</td>
+      </tr>`;
+    }
+  }
+  document.querySelector('#tbl tbody').innerHTML = html;
+  document.querySelectorAll('#tbl tbody tr[data-kod]').forEach(tr => {
+    tr.onclick = () => { SECILI = tr.dataset.kod; TV_ACIK = false; tabloCiz(); grafikCiz(); };
+  });
+}
+
+function grafikCiz(){
+  const e = VERI.endeksler.find(x => x.kod === SECILI) || VERI.endeksler[0];
+  SECILI = e.kod;
+  document.getElementById('gAd').textContent = e.ad;
+  document.getElementById('gMeta').textContent =
+    `${fmt(e.fiyat)} · 1a ${yuzde(e.g1a)} · RSI ${okr(e.rsi,0)} · MA200 ${e.ma200_ustunde?'üstünde':'altında'}`;
+  const cv = document.getElementById('grafik');
+  tvLinkGuncelle(e);
+  const seri = e.seri;
+  const c = cv, ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const w = c.clientWidth, h = c.clientHeight;
+  c.width = w*dpr; c.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+  const pad = {l:8,r:56,t:10,b:18};
+  const fiyatlar = seri.map(x => x[4]);
+  const ma = (n) => fiyatlar.map((_,i) => i<n-1 ? null : fiyatlar.slice(i-n+1,i+1).reduce((a,b)=>a+b,0)/n);
+  const ma50 = ma(50), ma200 = ma(200);
+  const tum = [...fiyatlar, ...ma50.filter(Boolean), ...ma200.filter(Boolean)];
+  const min = Math.min(...tum), max = Math.max(...tum), r = (max-min)||1;
+  const X = i => pad.l + (i/(seri.length-1))*(w-pad.l-pad.r);
+  const Y = v => pad.t + (1-(v-min)/r)*(h-pad.t-pad.b);
+  // yatay izgara
+  ctx.strokeStyle = '#14203a'; ctx.fillStyle = '#5b6b86'; ctx.font = '10px ui-monospace,monospace';
+  for (let k=0;k<=4;k++){
+    const v = min + r*k/4, y = Y(v);
+    ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(w-pad.r,y); ctx.stroke();
+    ctx.fillText(v.toFixed(0), w-pad.r+6, y+3);
+  }
+  if (e.tip === 'cizgi'){
+    ctx.beginPath(); ctx.strokeStyle = '#a78bfa'; ctx.lineWidth = 1.8;
+    seri.forEach((bar,i) => { const v = bar[4];
+      if (i === 0) ctx.moveTo(X(i), Y(v)); else ctx.lineTo(X(i), Y(v)); });
+    ctx.stroke();
+    return;
+  }
+  // mumlar
+  seri.forEach((bar,i) => {
+    const [,o,hh,ll,cl] = bar;
+    const yukari = cl >= o;
+    ctx.strokeStyle = ctx.fillStyle = yukari ? '#10b981' : '#ef4444';
+    const x = X(i), bw = Math.max(1.2, (w-pad.l-pad.r)/seri.length*0.62);
+    ctx.beginPath(); ctx.moveTo(x, Y(hh)); ctx.lineTo(x, Y(ll)); ctx.stroke();
+    const y1 = Y(Math.max(o,cl)), y2 = Y(Math.min(o,cl));
+    ctx.fillRect(x-bw/2, y1, bw, Math.max(1, y2-y1));
+  });
+  // MA cizgileri
+  const cizgi = (arr, renkC) => {
+    ctx.beginPath(); ctx.strokeStyle = renkC; ctx.lineWidth = 1.3;
+    let bas = false;
+    arr.forEach((v,i) => { if (v==null) return;
+      if (!bas){ ctx.moveTo(X(i), Y(v)); bas = true; } else ctx.lineTo(X(i), Y(v)); });
+    ctx.stroke();
+  };
+  cizgi(ma50, '#fbbf24'); cizgi(ma200, '#38bdf8');
+  ctx.fillStyle = '#5b6b86'; ctx.font = '10px -apple-system,sans-serif';
+  ctx.fillText('MA50', pad.l+4, pad.t+10); ctx.fillStyle='#fbbf24'; ctx.fillRect(pad.l+38, pad.t+6, 10, 2);
+  ctx.fillStyle = '#5b6b86'; ctx.fillText('MA200', pad.l+56, pad.t+10); ctx.fillStyle='#38bdf8'; ctx.fillRect(pad.l+95, pad.t+6, 10, 2);
+}
+
+function tvLinkGuncelle(e){
+  const a = document.getElementById('tvLink');
+  a.href = 'https://www.tradingview.com/chart/?symbol=' + encodeURIComponent(e.tv);
+  a.title = e.ad + ' — TradingView sitesinde açılır';
+}
+
+function dunyaCiz(){
+  const k = VERI.kartlar || [];
+  document.getElementById('dunya').innerHTML = k.map(x => `
+    <div class="dk">
+      <div class="ad">${x.ad}</div>
+      <div class="vl">${fmt(x.fiyat, x.fiyat < 10 ? 3 : 2)}</div>
+      <div class="yz"><span style="color:${renk(x.g1a)}">1a ${yuzde(x.g1a)}</span>
+        <span style="color:${renk(x.g3a)};margin-left:6px">3a ${yuzde(x.g3a)}</span></div>
+      <div class="yo" title="${x.yorum}">${x.yorum || ''}</div>
+    </div>`).join('');
+}
+
+function genislikCiz(){
+  const g = VERI.genislik || {};
+  const sat = (ad, v, aciklama, renkC) => `
+    <div class="sat"><span class="ad">${ad}</span>
+      <div class="bar" style="flex:1"><i style="width:${Math.max(2,Math.min(100,v||0))}%;background:${renkC}"></i></div>
+      <span class="vk" style="color:${renkC}">%${okr(v,1)}</span>
+      <span class="yo">${aciklama}</span></div>`;
+  document.getElementById('genislik').innerHTML =
+    sat('MA200 üstünde', g.ma200_oran, `${g.ma200_ustu||0}/${g.toplam||0} hisse`, '#10b981') +
+    sat('MA50 üstünde', g.ma50_oran, `${g.ma50_ustu||0} hisse`, '#38bdf8') +
+    sat('52h zirvesine yakın', g.zirve_oran, `${g.zirve_yakin||0} hisse (zirveden −%10 içinde)`, '#a78bfa') +
+    `<div class="sat"><span class="ad">Medyan RSI</span><span class="vk">${okr(g.medyan_rsi,0)}</span>
+      <span class="yo">${(g.medyan_rsi||0)>=70?'aşırı alım bölgesi':(g.medyan_rsi||0)<=30?'aşırı satım bölgesi':'normal aralık'}</span></div>` +
+    `<div class="uyari">Genişlik fiyat endeksinden farklı konuşabilir: endeks yükselirken genişlik düşüyorsa ralli dar demektir.</div>`;
+}
+
+function makroCiz(){
+  const satir = (m) => `
+    <div class="sat"><span class="ad">${m.ad}</span>
+      <span class="num" style="width:80px;text-align:right">${fmt(m.fiyat, m.ad.includes('10') ? 2 : 1)}</span>
+      <span class="num" style="width:70px;text-align:right;color:${renk(m.g1a)}">${yuzde(m.g1a)}</span>
+      <span class="yo">${m.yorum}</span></div>`;
+  document.getElementById('makro').innerHTML = VERI.makro.map(satir).join('');
+}
+
+function goreliCiz(){
+  const g = VERI.goreli || [];
+  const maks = Math.max(...g.map(x => Math.abs(x.g3a||0)), 1);
+  const satir = (x) => `
+    <div class="sat"><span class="ad">${x.ad}</span>
+      <div class="bar" style="flex:1"><i style="width:${Math.abs(x.g3a||0)/maks*100}%;background:${renk(x.g3a)}"></i></div>
+      <span class="vk" style="color:${renk(x.g3a)}">${yuzde(x.g3a)}</span>
+      <span class="yo">1 yıl ${yuzde(x.g1y)}</span></div>`;
+  let ek = '';
+  if (VERI.bist_usd){
+    const b = VERI.bist_usd;
+    ek = `<div class="uyari" style="margin-top:8px">BIST 100: TL bazında ${yuzde(b.tl)} · USD bazında ${yuzde(b.usd)} —
+      USD/TRY ${yuzde(b.kur)} olduğu için ${b.kur>0?'TL getirisi dolar bazında eridi':'TL getirisi dolar bazında arttı'}.</div>`;
+  }
+  document.getElementById('goreli').innerHTML = g.map(satir).join('') + ek;
+}
+
+function baslat(){
+  fetch('veri/_endeks.json', {cache:'no-store'}).then(r => r.json()).then(j => {
+    VERI = j;
+    document.getElementById('guncelleme').textContent = (j.guncelleme||'').replace('T',' ').slice(0,16);
+    document.getElementById('varlikSayisi').textContent = (j.endeksler||[]).length;
+    SECILI = '^GSPC';
+    kpiCiz(); dunyaCiz(); tabloCiz(); grafikCiz(); genislikCiz(); makroCiz(); goreliCiz();
+    window.addEventListener('resize', () => grafikCiz());
+  }).catch(e => {
+    document.getElementById('kpi').innerHTML = '<div class="k">veri yüklenemedi</div>';
+  });
+}
+document.addEventListener('DOMContentLoaded', baslat);
+</script>
+<script src="olcum.js"></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

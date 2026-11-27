@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ETF Panosu · Uzun Vade</title>
+<meta name="description" content="ABD, Avrupa (UCITS) ve BIST ETF'leri: getiri, volatilite, maksimum düşüş, temettü verimi ve gider oranı.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://uzunvade.net/etf.html">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8;--grn:#34d399;--red:#f87171;--amb:#f59e0b}
+body{margin:0;padding:26px 18px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+     color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto}
+a{color:var(--acc);text-decoration:none}
+.geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.6px}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 18px;max-width:680px;line-height:1.6}
+.kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px;margin-bottom:18px}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.kpi .lb{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.kpi .vl{font-size:21px;font-weight:800;margin-top:5px;letter-spacing:-.5px}
+.kpi .al{font-size:11px;color:#64748b;margin-top:3px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:14px;overflow:hidden}
+h2{font-size:11px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+h2 span{color:#41506b;font-weight:600;text-transform:none;letter-spacing:0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;text-align:right;padding:7px 6px;border-bottom:1px solid #1b2740;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:8px 6px;border-bottom:1px solid #131f36;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:#101b2e}
+.sym{font-weight:700;color:#dbeafe}
+.ad{font-size:10.5px;color:#64748b;display:block;margin-top:2px;white-space:normal}
+.pos{color:var(--grn)}.neg{color:var(--red)}.notr{color:#64748b}
+.rozet{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid #24405f;color:#7dd3fc}
+.tbl-wrap{overflow-x:auto}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.sekmeler button{background:#0b1424;border:1px solid #1b2942;color:#94a3b8;border-radius:999px;padding:6px 12px;font-size:11.5px;font-weight:700;cursor:pointer}
+.sekmeler button.on{background:#16233b;border-color:#2f4a76;color:#dbeafe}
+.not{font-size:11.5px;color:#5b6b86;line-height:1.7;margin-top:10px}
+.uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:10px;padding:10px 12px;color:#fde047;font-size:11.5px;line-height:1.65;margin-top:14px}
+</style>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<script src="yenile.js" defer></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head><body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html" aria-current="page">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+<div class="wrap" id="icerik">
+<h1>ETF Panosu</h1>
+<div class="sub">Uzun vadeli portföyün yapı taşları: ABD, Avrupa (UCITS) ve BIST ETF'leri.
+  Getiriler temettü dahil (total return) hesaplanır; para birimi çeşitliliğine dikkat.</div>
+<div class="kpiler">
+  <div class="kpi"><div class="lb">ETF sayısı</div><div class="vl">21</div><div class="al">5 grup</div></div>
+  <div class="kpi"><div class="lb">5 yıllık ortalama</div><div class="vl">51.2%</div><div class="al">temettü dahil</div></div>
+  <div class="kpi"><div class="lb">Veri tarihi</div><div class="vl" style="font-size:14px">2026-11-26</div><div class="al">günlük güncellenir</div></div>
+  <div class="kpi"><div class="lb">Kaynak</div><div class="vl" style="font-size:14px">Yahoo Finance</div><div class="al">gecikmeli olabilir</div></div>
+</div>
+<div class="panel">
+  <h2>ETF listesi <span>· getiri, risk, maliyet</span></h2>
+  <div class="sekmeler"><button class="on" data-g="hepsi">Tümü</button><button data-g="ABD">ABD</button><button data-g="Avrupa">Avrupa</button><button data-g="BIST">BIST</button><button data-g="Emtia">Emtia</button><button data-g="Tahvil">Tahvil</button></div>
+  <div class="tbl-wrap"><table id="etfTbl">
+    <thead><tr><th>ETF</th><th>Fiyat</th><th>1 yıl</th><th>3 yıl</th><th>5 yıl</th>
+      <th>Volatilite</th><th>Maks. düşüş</th><th>Temettü</th><th>Gider</th></tr></thead>
+    <tbody><tr data-grup="ABD"><td><span class="sym">VOO</span><span class="ad">Vanguard S&P 500</span></td><td><span class="">658.87</span> USD</td><td><span class="pos">+6.0%</span></td><td><span class="pos">+63.2%</span></td><td><span class="pos">+63.3%</span></td><td><span class="">17.30%</span></td><td><span class="">-24.50%</span></td><td><span class="">1.07%</span></td><td><span class="">0.03%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">VTI</span><span class="ad">Vanguard Total Market</span></td><td><span class="">353.20</span> USD</td><td><span class="pos">+6.2%</span></td><td><span class="pos">+62.2%</span></td><td><span class="pos">+58.1%</span></td><td><span class="">17.90%</span></td><td><span class="">-25.40%</span></td><td><span class="">1.06%</span></td><td><span class="">0.03%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">SPY</span><span class="ad">SPDR S&P 500</span></td><td><span class="">716.70</span> USD</td><td><span class="pos">+6.0%</span></td><td><span class="pos">+62.8%</span></td><td><span class="pos">+62.8%</span></td><td><span class="">17.60%</span></td><td><span class="">-24.50%</span></td><td><span class="">1.00%</span></td><td><span class="">0.10%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">QQQ</span><span class="ad">Invesco Nasdaq 100</span></td><td><span class="">633.93</span> USD</td><td><span class="pos">+2.9%</span></td><td><span class="pos">+65.8%</span></td><td><span class="pos">+64.1%</span></td><td><span class="">23.80%</span></td><td><span class="">-35.10%</span></td><td><span class="">0.45%</span></td><td><span class="">0.18%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">VYM</span><span class="ad">Vanguard High Dividend</span></td><td><span class="">158.36</span> USD</td><td><span class="pos">+11.6%</span></td><td><span class="pos">+61.0%</span></td><td><span class="pos">+66.1%</span></td><td><span class="">14.00%</span></td><td><span class="">-15.80%</span></td><td><span class="">2.24%</span></td><td><span class="">0.04%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">SCHD</span><span class="ad">Schwab US Dividend</span></td><td><span class="">35.29</span> USD</td><td><span class="pos">+32.4%</span></td><td><span class="pos">+63.3%</span></td><td><span class="pos">+60.4%</span></td><td><span class="">14.50%</span></td><td><span class="">-16.80%</span></td><td><span class="">2.95%</span></td><td><span class="">0.06%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">VXUS</span><span class="ad">Vanguard Ex-US Total</span></td><td><span class="">78.02</span> USD</td><td><span class="pos">+6.8%</span></td><td><span class="pos">+52.3%</span></td><td><span class="pos">+42.1%</span></td><td><span class="">16.70%</span></td><td><span class="">-28.40%</span></td><td><span class="">2.42%</span></td><td><span class="">0.05%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">IWM</span><span class="ad">iShares Russell 2000</span></td><td><span class="">268.87</span> USD</td><td><span class="pos">+9.2%</span></td><td><span class="pos">+54.7%</span></td><td><span class="pos">+30.1%</span></td><td><span class="">22.50%</span></td><td><span class="">-27.50%</span></td><td><span class="">0.98%</span></td><td><span class="">0.19%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Emtia"><td><span class="sym">GLD</span><span class="ad">SPDR Gold Shares</span></td><td><span class="">327.45</span> USD</td><td><span class="neg">-15.6%</span></td><td><span class="pos">+73.5%</span></td><td><span class="pos">+96.6%</span></td><td><span class="">19.40%</span></td><td><span class="">-34.90%</span></td><td><span class="notr">—</span></td><td><span class="">0.40%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Emtia"><td><span class="sym">SLV</span><span class="ad">iShares Silver</span></td><td><span class="">37.10</span> USD</td><td><span class="neg">-27.6%</span></td><td><span class="pos">+60.4%</span></td><td><span class="pos">+81.0%</span></td><td><span class="">38.20%</span></td><td><span class="">-65.10%</span></td><td><span class="notr">—</span></td><td><span class="">0.50%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="ABD"><td><span class="sym">VNQ</span><span class="ad">Vanguard REIT</span></td><td><span class="">95.66</span> USD</td><td><span class="pos">+8.7%</span></td><td><span class="pos">+31.7%</span></td><td><span class="pos">+4.9%</span></td><td><span class="">19.00%</span></td><td><span class="">-34.50%</span></td><td><span class="">3.63%</span></td><td><span class="">0.13%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Tahvil"><td><span class="sym">TLT</span><span class="ad">iShares 20+ Treasury</span></td><td><span class="">82.24</span> USD</td><td><span class="neg">-4.5%</span></td><td><span class="pos">+2.1%</span></td><td><span class="neg">-33.8%</span></td><td><span class="">15.50%</span></td><td><span class="">-43.70%</span></td><td><span class="">4.76%</span></td><td><span class="">0.15%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">VWCE.DE</span><span class="ad">Vanguard FTSE All-World (UCITS)</span></td><td><span class="">161.88</span> EUR</td><td><span class="pos">+12.2%</span></td><td><span class="pos">+54.5%</span></td><td><span class="pos">+54.4%</span></td><td><span class="">14.10%</span></td><td><span class="">-21.10%</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">IWDA.AS</span><span class="ad">iShares MSCI World (UCITS)</span></td><td><span class="">124.58</span> EUR</td><td><span class="pos">+12.3%</span></td><td><span class="pos">+53.0%</span></td><td><span class="pos">+60.1%</span></td><td><span class="">14.30%</span></td><td><span class="">-21.60%</span></td><td><span class="notr">—</span></td><td><span class="">0.20%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">EUNL.DE</span><span class="ad">iShares MSCI World (UCITS)</span></td><td><span class="">124.57</span> EUR</td><td><span class="pos">+12.2%</span></td><td><span class="pos">+55.0%</span></td><td><span class="pos">+57.1%</span></td><td><span class="">14.40%</span></td><td><span class="">-21.70%</span></td><td><span class="notr">—</span></td><td><span class="">0.20%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">XDWD.DE</span><span class="ad">Xtrackers MSCI World (UCITS)</span></td><td><span class="">136.44</span> EUR</td><td><span class="pos">+12.4%</span></td><td><span class="pos">+55.2%</span></td><td><span class="pos">+57.3%</span></td><td><span class="">14.30%</span></td><td><span class="">-21.60%</span></td><td><span class="notr">—</span></td><td><span class="">0.12%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">VUAA.DE</span><span class="ad">Vanguard S&P 500 (UCITS)</span></td><td><span class="">126.47</span> EUR</td><td><span class="pos">+12.1%</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="">15.90%</span></td><td><span class="">-23.30%</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">VWRL.AS</span><span class="ad">Vanguard All-World Dist</span></td><td><span class="">156.40</span> EUR</td><td><span class="pos">+12.3%</span></td><td><span class="pos">+52.8%</span></td><td><span class="pos">+57.2%</span></td><td><span class="">14.00%</span></td><td><span class="">-21.00%</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">IS3N.DE</span><span class="ad">iShares MSCI EM (UCITS)</span></td><td><span class="">42.10</span> EUR</td><td><span class="pos">+11.1%</span></td><td><span class="pos">+49.7%</span></td><td><span class="pos">+34.3%</span></td><td><span class="">17.60%</span></td><td><span class="">-21.30%</span></td><td><span class="notr">—</span></td><td><span class="">0.18%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="Avrupa"><td><span class="sym">ZPRV.DE</span><span class="ad">SPDR US Small Cap Value</span></td><td><span class="">82.08</span> EUR</td><td><span class="pos">+23.0%</span></td><td><span class="pos">+55.0%</span></td><td><span class="pos">+57.6%</span></td><td><span class="">20.10%</span></td><td><span class="">-31.10%</span></td><td><span class="notr">—</span></td><td><span class="">0.30%</span></td><td style="padding-left:10px"></td></tr><tr data-grup="BIST"><td><span class="sym">GLDTR.IS</span><span class="ad">BIST Altin BYF</span></td><td><span class="">489.60</span> TRY</td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td><span class="notr">—</span></td><td style="padding-left:10px"></td></tr></tbody>
+  </table></div>
+  <div class="not">Volatilite ve maksimum düşüş 5 yıllık günlük veriden hesaplanır. Gider oranı (TER) ve büyüklük (AUM)
+    her ETF için kaynakta bulunmayabilir; boş olanlar "—" gösterilir.</div>
+</div>
+<div class="uyari">Bu sayfa bilgilendirme amaçlıdır, yatırım tavsiyesi değildir. ETF alım-satımında kur, vergi ve komisyon farkları oluşur.</div>
+</div>
+<script>
+(function(){
+  var btn = document.querySelectorAll(".sekmeler button");
+  var satirlar = document.querySelectorAll("#etfTbl tbody tr");
+  btn.forEach(function(b){
+    b.onclick = function(){
+      btn.forEach(function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      var g = b.getAttribute("data-g");
+      satirlar.forEach(function(s){
+        s.style.display = (g === "hepsi" || s.getAttribute("data-grup") === g) ? "" : "none";
+      });
+    };
+  });
+})();
+</script>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body></html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<script>window.HT_DB={URL:"https://hcopdbjklpjjmbisbfnl.supabase.co",KEY:"sb_publishable_yobS4-qxvXanxk_9V8ZGAQ_fCiRSRsQ"};</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hisse Detay</title>
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;
+        --acc:#38bdf8;--grn:#10b981;--ylw:#eab308;--red:#ef4444}
+  body{margin:0;padding:26px 22px 50px;background:radial-gradient(1100px 500px at 15% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1360px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .ust{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .sol{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .ad{color:var(--muted);font-size:14px}
+  .fiyat{font-size:26px;font-weight:700;margin-left:auto;font-variant-numeric:tabular-nums}
+  .degisim{font-size:14px;font-weight:600;margin-left:8px}
+  .rozet{display:inline-block;padding:4px 10px;border-radius:8px;font-size:11.5px;font-weight:700;letter-spacing:.3px}
+  .b-AL{background:rgba(16,185,129,.16);color:#34d399}
+  .b-IZLE{background:rgba(234,179,8,.15);color:#fbbf24}
+  .b-BEKLE{background:rgba(100,116,139,.18);color:#94a3b8}
+  .b-GEC{background:rgba(71,85,105,.18);color:#7c8ba1}
+  .b-YENI{background:rgba(56,189,248,.14);color:#7dd3fc}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+  .lejant{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:6px}
+  .lejant i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+  canvas{display:block;width:100%}
+  .izgara{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .kut{background:#0d1526;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .kut .k{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:600}
+  .kut .v{font-size:16px;font-weight:650;margin-top:5px;font-variant-numeric:tabular-nums}
+  h2{font-size:11.5px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.1px;margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  td{padding:9px 8px;border-bottom:1px solid #14203a}
+  td:first-child{color:var(--muted)}
+  td:last-child{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .ipucu{position:fixed;pointer-events:none;background:#0b1424;border:1px solid var(--line);border-radius:8px;
+         padding:8px 10px;font-size:12px;color:var(--txt);display:none;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5);line-height:1.5}
+  .yok{padding:60px 20px;text-align:center;color:var(--dim)}
+  .iskelet{background:linear-gradient(90deg,#131f36 25%,#182742 37%,#131f36 63%);
+           background-size:400% 100%;animation:parla 1.4s ease infinite;border-radius:10px}
+  @keyframes parla{0%{background-position:100% 50%}100%{background-position:0 50%}}
+  .iskelet-sar{margin-bottom:16px}
+  .donus-ust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+  .donus-yuzde{font-size:40px;font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+  .donus-metin{font-size:14px;color:#cbd5e1;flex:1;min-width:220px;line-height:1.5}
+  .cubuk{height:10px;background:#16233b;border-radius:99px;overflow:hidden;margin-bottom:14px}
+  .cubuk div{height:100%;border-radius:99px;transition:width .3s}
+  .ust{position:sticky;top:0;z-index:12;background:rgba(8,13,24,.94);backdrop-filter:blur(10px);
+       padding:10px 0 10px;margin:0 0 10px;border-bottom:1px solid rgba(30,44,71,.7)}
+  /* masaustu: sag ustteki sabit menu basligin/ fiyatin uzerine binmesin */
+  @media (min-width: 861px){
+    .ust{padding-right:250px}
+  }
+  .tfBtn{background:#0d1729;border:1px solid var(--line);color:var(--muted);border-radius:8px;
+         padding:4px 10px;font-size:11.5px;cursor:pointer;margin-left:6px}
+  .tfBtn.on{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:700}
+  .mb{height:6px;background:#16233b;border-radius:99px;overflow:hidden;min-width:60px}
+  .mb div{height:100%;border-radius:99px}
+  .ceyrek td{padding:7px 8px;border-bottom:1px solid #14203a;font-size:12.5px}
+  .ceyrek th{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;padding:8px;text-align:right;border-bottom:1px solid var(--line)}
+  .ceyrek th:first-child{text-align:left}
+  .olcek{position:relative;height:12px;background:linear-gradient(90deg,#10b981 0%,#84cc16 35%,#eab308 65%,#ef4444 100%);
+         border-radius:99px;margin:10px 0 6px}
+  .olcek .imlec{position:absolute;top:-5px;width:4px;height:22px;background:#f8fafc;border-radius:2px;box-shadow:0 0 8px rgba(255,255,255,.7)}
+  .sinyal-satir{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0;border-bottom:1px solid #14203a}
+  .sinyal-satir:last-child{border:none}
+  #tvWrap{display:none;height:540px;border-radius:10px;overflow:hidden}
+  #tvWrap iframe{width:100%!important;height:540px!important}
+  .pine{width:100%;border-collapse:collapse;font-size:12.5px}
+  .pine td{padding:7px 10px;border-bottom:1px solid #14203a;vertical-align:top}
+  .pine .pk{color:var(--dim);font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;width:124px;font-weight:700;white-space:nowrap}
+  .pine .pv{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#dbe6f5;font-weight:600;font-variant-numeric:tabular-nums}
+  .pine tr.grp td{background:#0d1729}
+  .pine tr.grp .pk{color:#9fb3cd}
+  .pine .yorum{text-align:left;font-weight:500;color:#cbd5e1;line-height:1.65;font-family:inherit}
+  .bilgi{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;
+          border:1px solid #2f4a76;color:#5b7ba8;font-size:9px;font-style:normal;font-weight:700;
+          margin-right:5px;cursor:help;vertical-align:middle}
+  .bilgi:hover{border-color:#38bdf8;color:#38bdf8}
+  .ipbilgi{position:fixed;display:none;max-width:320px;background:#0b1424;border:1px solid #2f4a76;
+           border-radius:8px;padding:9px 11px;font-size:12px;line-height:1.55;color:#cbd5e1;z-index:50;
+           box-shadow:0 10px 30px rgba(0,0,0,.55)}
+  .pine .bar{padding:0;height:3px}
+  .pine .bar div{height:3px}
+  .geri{font-size:13px;color:var(--muted)}
+  @media print{
+    body{background:#fff;color:#111;padding:0}
+    .geri,.tfBtn,.bilgi,.ipucu,.ipbilgi,#palette{display:none !important}
+    .panel{border:1px solid #ddd;background:#fff;break-inside:avoid}
+    h1,.pine .pv,.pine .pk,.kut .v,.kut .k{color:#111 !important}
+    canvas{max-width:100%}
+  }
+  @media (max-width:820px){
+    /* ceyrek mobil */
+    #derin .tbl-wrap{max-width:100%;overflow-x:auto}
+    .ceyrek{table-layout:fixed;width:100%}
+    .ceyrek th, .ceyrek td{font-size:11px;padding:6px 4px}
+    .ceyrek th:nth-child(2), .ceyrek td:nth-child(2){display:none}
+    .mb{width:34px !important;min-width:34px}
+    .pine td{display:block;width:auto}
+    .pine tr{display:block;padding:7px 0;border-bottom:1px solid #14203a}
+    .pine .pk{width:auto;padding:0 0 3px;border:none}
+    .pine .pv{text-align:left;white-space:normal;word-break:break-word;padding:0}
+    .pine .pv>div{flex-wrap:wrap}
+    .pine tr.bar{display:table-row;padding:0}
+  }  @media print{
+    body{background:#fff;color:#111;padding:0}
+    .geri,.tfBtn,.bilgi,.ipucu,.ipbilgi,#palette{display:none !important}
+    .panel{border:1px solid #ddd;background:#fff;break-inside:avoid}
+    h1,.pine .pv,.pine .pk,.kut .v,.kut .k{color:#111 !important}
+    canvas{max-width:100%}
+  }
+  @media (max-width:820px){
+    body{padding:18px 12px 40px}
+    h1{font-size:22px}
+    .izgara{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .fiyat{font-size:21px;margin-left:0}
+  }
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+
+  .ucretli{position:relative}
+  .ucretli.kilitli{min-height:150px}
+  .kilit-kart{position:absolute;inset:0;display:none;align-items:center;
+    justify-content:center;z-index:20;padding:14px}
+  .ucretli.kilitli .kilit-kart{display:flex}
+  .ucretli:not(.acik) > *:not(.kilit-kart){filter:blur(7px);pointer-events:none;user-select:none}
+  .ucretli.acik > *:not(.kilit-kart){filter:none;pointer-events:auto}
+
+  .uyelik-bulanik{filter:blur(6px);pointer-events:none;user-select:none}
+  body.oturum-var .uyelik-bulanik{filter:none;pointer-events:auto;user-select:auto}
+
+  .para-not{margin:0 0 12px;padding:7px 10px;border-radius:9px;background:rgba(234,179,8,.08);
+    border:1px solid rgba(234,179,8,.28);color:#fde047;font-size:11.5px;line-height:1.45}
+  .para-not b{color:#fef08a}
+  @media (max-width:620px){
+    .para-not{font-size:10.5px;padding:6px 9px;margin-bottom:10px;line-height:1.4}
+    .para-not-son{display:none}
+  }
+</style>
+<script src="uyelik.js" defer></script>
+<script src="koruma.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","inLanguage":"tr","isPartOf":{"@type":"WebSite","name":"Hisse-Tarayici","url":"https://uzunvade.net/"}}</script>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="geri" id="ozetSayfaLink"><a href="index.html">← izleme listesine dön</a> · <a href="portfoy.html">💼 Portföy</a> · <a href="performans.html">📊 Performans</a> · <a href="sozluk.html">📖 Sözlük</a> · <a id="karsilastir" href="#" target="_blank">⇄ Karşılaştır</a> · <a id="sektorCmp" href="#" target="_blank">👥 Sektör karşılaştır</a> · <a href="#" id="yazdir">🖨 Yazdır / PDF</a> · <span style="color:#41506b">Ctrl+K ile ara</span></div>
+  <div class="ust" id="ust"><div class="sol"><h1 id="t">…</h1></div></div>
+  <div id="icerik">
+    <div class="panel"><div class="iskelet iskelet-sar" style="height:320px"></div>
+      <div style="display:flex;gap:12px"><div class="iskelet" style="height:14px;flex:1"></div>
+      <div class="iskelet" style="height:14px;width:80px"></div></div></div>
+    <div class="panel">
+      <div class="iskelet iskelet-sar" style="height:18px;width:40%"></div>
+      <div class="iskelet iskelet-sar" style="height:12px"></div>
+      <div class="iskelet iskelet-sar" style="height:12px;width:85%"></div>
+      <div class="iskelet iskelet-sar" style="height:12px;width:70%"></div>
+      <div class="iskelet" style="height:120px"></div>
+    </div>
+  </div>
+</div>
+<div class="ipucu" id="ipucu"></div>
+<div class="ipbilgi" id="ipbilgi"></div>
+
+<script>
+const params = new URLSearchParams(location.search);
+const T = (params.get('t') || '').toUpperCase();
+const $ = id => document.getElementById(id);
+const PARA_SEMBOL = {USD:'$', EUR:'€', GBp:'p', GBP:'£', CHF:'Fr', SEK:'kr', NOK:'kr',
+                     DKK:'kr', PLN:'zł', TRY:'₺', CAD:'C$', AUD:'A$', JPY:'¥', HKD:'HK$', ILS:'₪'};
+const psembol = p => PARA_SEMBOL[p] || (p ? p + ' ' : '');
+const fmt = (v, b=2) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:b,maximumFractionDigits:b});
+  const BILGI = {
+    'MA50': 'Son 50 işlem gününün ortalama kapanışı. Kısa-orta vade eğilimi gösterir.',
+    'MA100': 'Son 100 işlem gününün ortalaması. Orta vade eğilimi.',
+    'MA200': 'Son 200 işlem gününün ortalaması. Uzun vadeli trendin ana referansı; altındaysa trend bozulmuş sayılır.',
+    'Trend (günlük)': 'Fiyat 200 günlük ortalamanın üzerinde ve 50 > 200 ise yukarı; tersi aşağı; arası yatay.',
+    'Haftalık': 'Haftalık kapanışların 30 haftalık ortalamaya göre yönü. Günlük sinyalin üst zaman dilimiyle uyumu.',
+    'Aylık': 'Aylık kapanışların 10 aylık ortalamaya göre yönü. En yavaş ama en güvenilir trend filtresi.',
+    'RSI': 'Göreceli Güç Endeksi (14 gün, Wilder). 70 üstü aşırı alım, 30 altı aşırı satım. Trend içinde uzun süre uçta kalabilir.',
+    'Dipten': 'Fiyatın son 52 haftanın en düşüğünden yüzde kaç yukarıda olduğu.',
+    'Zirveden': 'Fiyatın son 52 haftanın en yükseğinden yüzde kaç aşağıda olduğu (negatif değer).',
+    '52 hafta yüksek': 'Son 252 işlem gününün en yüksek fiyatı.',
+    '52 hafta düşük': 'Son 252 işlem gününün en düşük fiyatı.',
+    'ROIC (5 yıl ortalama)': 'Yatırılan sermayenin getirisi: NOPAT / (özkaynak + borç). %15 üzeri kaliteli sayılır.',
+    'ROIC istikrarı (std/ort)': 'ROIC oynaklığı: standart sapma / ortalama. 0.35 altı istikrarlı, üzeri dalgalı kârlılık.',
+    'FCF − SBC marjı': 'Serbest nakit akışından hisse bazlı ödemeler (SBC) düşüldükten sonra ciroya oranı. Teknoloji şirketlerinde SBC gerçek bir maliyettir; bu satır olmadan nakit akışı olduğundan iyi görünür.',
+    'Büyüme açığı': 'Fiyatın ima ettiği büyüme eksi gerçekleşen 5 yıllık ciro büyümesi (puan). Pozitif = piyasa geçmişten daha fazlasını fiyatlıyor (pahalı); negatif = geçmişin altında fiyatlıyor.',
+    'ROIC değişimi': 'Son yılın ROIC’i ile 3 yıl öncekinin farkı (puan). Pozitif = kârlılık güçleniyor; kapi eşiği hep aynı kalsa da yön önemli.',
+    'Nakit/Kâr değişimi': 'CFO/NI oranının 3 yıl öncesine göre değişimi. Pozitif = kârın nakde dönüşümü iyileşiyor.',
+    'Net Borç / FAVÖK': 'Net borcun FAVÖK’e oranı. 1.5 altı sağlıklı, negatif değer net nakit demek.',
+    'Nakit / Kâr (CFO/NI)': 'Faaliyet nakit akışı / net kâr. 1.0 üzeri kârın nakde dönüştüğünü gösterir; düşükse muhasebe riski.',
+    'FCF pozitif yıl': 'Son 5 yılda serbest nakit akışının pozitif olduğu yıl sayısı.',
+    'Seyreltme (yıllık)': 'Hisse sayısındaki yıllık değişim. Pozitif = sulandırma, negatif = geri alım.',
+    'Piyasa değeri': 'Şirketin borsadaki toplam değeri.',
+    'F/K (güncel)': 'Fiyat / son 12 aylık hisse başı kâr. Düşük = kâra göre ucuz; sektöre göre kıyaslanmalı.',
+    'PD/DD': 'Piyasa değeri / defter değeri. 1 altı defter değerinin altında işlem görüyor demek; negatifse özkaynak ekside.',
+    'ROE': 'Özkaynak kârlılığı: net kâr / özkaynak. %20 üzeri güçlü; borçla şişirilmiş olabilir, ROIC ile birlikte okunmalı.',
+    'Temettü verimi': 'Yıllık temettü / fiyat. Kâr payı getirisi; %0 ise temettü dağıtılmıyor.',
+    'F/K yüzdeliği (ucuzluk)': 'Şirketin kendi 5 yıllık F/K aralığındaki yeri. Düşük = tarihine göre ucuz, 100 = en pahalı.',
+    'Piotroski (0-9)': 'Muhasebe kalitesi puanı: kârlılık, borç, likidite, hisse ihracı ve verimlilik. 7+ güçlü, 3- zayıf.',
+    'Beneish': 'Muhasebe manipülasyon uyarısı. temiz / gri / riskli.',
+    'EPV iskontosu': 'Büyümesiz kâr gücü değerine göre iskonto. Pozitif = EPV fiyatın üzerinde (ucuz), negatif = pahalı.',
+    'Fiyatın ima ettiği büyüme': 'Mevcut fiyatın içinde varsayılan yıllık büyüme. Yüksekse piyasa çok şey fiyatlamış.',
+    'Göreceli güç (S&P 500\'e karşı)': 'Hissenin getirisinden S&P 500 getirisi çıkarılmış hali. Pozitif = endeksten güçlü.',
+    'Beta': 'Hissenin S&P 500’e duyarlılığı. 1 = endeksle aynı, 0.5 = yarı oynak, 1.5 = bir buçuk kat.',
+    'Günlük hacim (20g ort.)': 'Son 20 günün ortalama işlem hacmi (para birimi cinsinden). Likidite göstergesi.',
+    'Trend süresi': 'Fiyatın kaç gündür 200 günlük ortalamanın aynı tarafında olduğu.',
+    'Destek (20g)': 'Son 20 günün en düşüğü (destek) ve en yükseği (direnç).',
+    'Destek (60g)': 'Son 60 günün en düşüğü (destek) ve en yükseği (direnç).',
+    'Ardışık gün': 'Üst üste kaç gün aynı yönde kapandığı. +3 = üç gün üst üste yükseliş.',
+    '20 günlük oynaklık': 'Son 20 günün getiri standart sapması, yıllıklandırılmış. Yüksek = dalgalı.',
+    'Konum': 'Fiyatın 52 haftalık aralıktaki yeri. Dönüş sinyali en güçlü %10-30 bandında.',
+    'Yapı': 'Yükselen dip oluştu mu, 20 günlük ortalama üstünde mi, 40 günlük tepe kırıldı mı.',
+    'Momentum': 'RSI toparlanması, boğa uyumsuzluğu (fiyat dip yaparken RSI yüksek dip) ve MACD dönüşü.',
+    'Hacim': 'Yukarı günlerin hacmi aşağı günlerinkinden güçlü mü, hacim kurudu mu, kırılım hacmi geldi mi.',
+    'Rejim': 'Uzun vadeli trendin üzerinde mi ve 200 günlük ortalama yukarı eğimli mi.',
+  };
+const bl = (k) => (BILGI[k] ? `<span class="bilgi" data-bilgi="${BILGI[k].replace(/"/g,'&quot;')}">i</span>` : '') + k;
+
+if (!T) { $('icerik').innerHTML = 'Hisse belirtilmedi. <a href="index.html">listeye dön</a>'; }
+else fetch(`veri/${T}.json`).then(r => { if(!r.ok) throw 0; return r.json(); }).then(ucretliBirlestir).then(ciz).catch(()=>{
+  $('icerik').innerHTML = `<b>${T}</b> için detay verisi yok.<br><br>Bu hisse izleme listesinde değilse (genç büyüme / yeni halka arz) henüz grafik verisi üretilmemiş olabilir.<br><br><a href="index.html">← listeye dön</a>`;
+});
+
+/* Analiz katmani DB'de (public.analiz). Giris varsa cek ve birlestir. */
+function ucretliKilitUygula(d){
+  var acik = !!d.__ucretli;
+  document.querySelectorAll('.ucretli').forEach(function(el){
+    el.classList.toggle('acik', acik);
+    el.classList.toggle('kilitli', !acik);
+    if (!acik && !el.querySelector('.kilit-kart')){
+      var ad = el.getAttribute('data-baslik') || 'Analiz';
+      var k = document.createElement('div');
+      k.className = 'kilit-kart';
+      k.innerHTML = '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;' +
+        'background:rgba(8,13,24,.55);z-index:5;backdrop-filter:blur(2px)">' +
+        '<div style="background:#0d1729;border:1px solid #2f4a76;border-radius:14px;padding:16px 18px;' +
+        'max-width:420px;text-align:center;box-shadow:0 18px 40px -20px #000">' +
+        '<div style="font-size:10.5px;letter-spacing:1px;color:#93c5fd;font-weight:700;margin-bottom:6px">🔒 ÜYELERE ÖZEL</div>' +
+        '<div style="font-size:14.5px;font-weight:700;color:#e6edf7;margin-bottom:6px">' + ad + '</div>' +
+        '<div style="font-size:12px;color:#94a3b8;line-height:1.6;margin-bottom:12px">' +
+        'Ham veri herkese açık; bu bölümdeki analiz üyelere özeldir. Beta süresince ücretsiz.</div>' +
+        '<a href="giris.html" style="display:inline-block;background:#1d4ed8;border:1px solid #2563eb;color:#fff;' +
+        'border-radius:9px;padding:9px 16px;font-size:12.5px;font-weight:700;text-decoration:none">Giriş yap / ücretsiz kayıt ol</a>' +
+        '</div></div>';
+      el.appendChild(k);
+    }
+    if (acik){ var mevcut = el.querySelector('.kilit-kart'); if (mevcut) mevcut.remove(); }
+  });
+  document.body.classList.toggle('oturum-var', acik);
+}
+
+function ucretliBirlestir(d){
+  function cfg(){
+    return window.HT_AYAR || (window.HT_DB ? {SUPABASE_URL: window.HT_DB.URL, SUPABASE_KEY: window.HT_DB.KEY} : {});
+  }
+  function bitir(){
+    var A = cfg();
+    if (!A.SUPABASE_URL) { d.__kilitli = true; return d; }
+    var s = null;
+    try { s = JSON.parse(localStorage.getItem('ht_oturum') || 'null'); } catch(e) {}
+    if (!s || !s.access_token) { d.__kilitli = true; return d; }
+    var url = A.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/analiz?select=veri&ticker=eq.' + encodeURIComponent(d.ticker);
+    return fetch(url, {headers: {'apikey': A.SUPABASE_KEY, 'Authorization': 'Bearer ' + s.access_token}})
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(j){
+        var v = (j && j[0] && j[0].veri) || null;
+        if (v) { Object.keys(v).forEach(function(k){ d[k] = v[k]; }); d.__ucretli = true; }
+        else { d.__kilitli = true; }
+        return d;
+      }).catch(function(){ d.__kilitli = true; return d; });
+  }
+  // oturum suresi gecmisse HT.oturum() yeniler
+  if (window.HT && window.HT.oturum) {
+    return window.HT.oturum().then(function(ot){
+      if (!ot || !ot.access_token) { d.__kilitli = true; return d; }
+      return bitir();
+    }).catch(function(){ d.__kilitli = true; return d; });
+  }
+  return Promise.resolve(bitir());
+}
+
+/* detay sayfasi icin dinamik SEO */
+function ozetLink(d){
+  try {
+    var s = (d.ticker || "").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    var k = document.getElementById("ozetSayfaLink");
+    if (k && s) k.innerHTML += ' · <a href="s/' + s + '.html" title="Bu hissenin statik özet sayfası">📄 özet sayfa</a>';
+  } catch (e) {}
+}
+
+function seoGuncelle(d){
+  var ad = (d.ad || d.ticker || "Hisse");
+  var baslik = ad + " (" + d.ticker + ") Hisse Analizi — Uzun Vade";
+  document.title = baslik;
+  var ac = ad + " hissesi: fiyat, trend, RSI, 52 haftalık aralık, temel metrikler ve uzun vadeli kalite analizi.";
+  function meta(ad, icerik){ var m = document.querySelector('meta[name="'+ad+'"]'); if (!m){ m=document.createElement("meta"); m.name=ad; document.head.appendChild(m);} m.content=icerik; }
+  meta("description", ac);
+  var c = document.querySelector('link[rel="canonical"]');
+  if (!c){ c = document.createElement("link"); c.rel = "canonical"; document.head.appendChild(c); }
+  c.href = "https://uzunvade.net/s/" + (d.ticker||"").toLowerCase().replace(/[^a-z0-9]+/g,"-") + ".html";
+  var ogt = document.querySelector('meta[property="og:title"]');
+  if (!ogt){ ogt = document.createElement("meta"); ogt.setAttribute("property","og:title"); document.head.appendChild(ogt); }
+  ogt.content = baslik;
+  var ogd = document.querySelector('meta[property="og:description"]');
+  if (!ogd){ ogd = document.createElement("meta"); ogd.setAttribute("property","og:description"); document.head.appendChild(ogd); }
+  ogd.content = ac;
+}
+
+function ciz(d){
+  try { seoGuncelle(d); ozetLink(d); } catch(e) {}
+  // ucretli alanlar yoksa bos varsayilan (kilitli görünüm)
+  if (!d.zengin) d.zengin = {};
+  if (!d.donus) d.donus = {};
+  if (!d.risk) d.risk = {};
+  if (!d.sinyal_gecmisi) d.sinyal_gecmisi = [];
+  if (!d.metrik) d.metrik = {};
+  $('icerik').className = '';
+  const m = d.metrik || {};
+  const et = m.etiket || (d.__kilitli ? '🔒 üyelere özel' : '—');
+  const renk = d.degisim >= 0 ? 'var(--grn)' : 'var(--red)';
+  $('ust').innerHTML = `
+    <div class="sol">
+      <h1>${d.ticker}</h1>
+      <span class="uyelik-bulanik">${et!=='—' ? `<span class="rozet b-${et}">${({AL:'Güçlü',IZLE:'Takip',BEKLE:'Nötr',GEC:'Zayıf'})[et] || et}</span>` : '<span class="rozet" style="background:rgba(100,116,139,.16);color:#94a3b8">sinyal yok</span>'}</span>
+      ${m.skor!=null ? `<span class="uyelik-bulanik rozet" style="background:rgba(56,189,248,.12);color:#7dd3fc">skor ${Math.round(m.skor)}</span>` : ''}
+      <div class="ad">${d.ad} · ${d.sektor} · ${d.ulke}</div>
+      <div class="ad" id="canliNot" style="font-size:11.5px;color:#41506b;margin-top:3px"></div>
+      <div class="ad" style="font-size:11.5px;color:#41506b;margin-top:3px">Son güncelleme: ${(()=>{const g=(d.guncelleme||"").replace("T"," ").slice(0,16);const [t,s]=g.split(" ");if(!t)return "—";const [y,m,dd]=t.split("-");return `${dd}.${m}.${y} ${s||""}`;})()}</div>
+    </div>
+    <div class="fiyat">${d.para === 'GBp' ? fmt(d.fiyat) + 'p' : psembol(d.para) + fmt(d.fiyat)} <span style="font-size:13px;color:#8497b3;font-weight:600">${d.para||""}</span> <span class="degisim" style="color:${renk}">${d.degisim>=0?'+':''}${fmt(d.degisim)}%</span></div>`;
+
+  const tr = d.trend || {};
+  $('icerik').innerHTML = `
+  <div class="panel">
+    <div class="lejant">
+      <span><i style="background:#38bdf8"></i>${bl('MA50')}</span>
+      <span><i style="background:#eab308"></i>${bl('MA100')}</span>
+      <span><i style="background:#a78bfa"></i>${bl('MA200')}</span>
+      <span style="margin-left:auto;color:var(--dim)">mum grafiği · <span id="tfEtiket">1 yıl</span> · RSI(14) altta</span>
+      <span style="margin-left:8px">
+        <button class="tfBtn" data-tf="63">3A</button>
+        <button class="tfBtn" data-tf="126">6A</button>
+        <button class="tfBtn on" data-tf="252">1Y</button>
+        <button class="tfBtn" data-tf="0">2Y</button>
+        <button class="tfBtn" id="sektorBtn" title="Sektör endeksiyle karşılaştır">Sektör</button>
+        <button class="tfBtn" id="tvBtn" title="TradingView grafiği">TradingView</button>
+      </span>
+    </div>
+    <canvas id="grafik"></canvas>
+    <div id="tvWrap"></div>
+    <div class="aciklama" id="tvNot" style="display:none">Grafik TradingView tarafından sağlanır; gecikme borsaya göre değişir (çizim araçları ve tüm göstergeler dahil).</div>
+  </div>
+
+  <div class="panel ucretli" id="girisPanel" data-baslik="Giriş uygunluğu (skor + bileşenler)"></div>
+
+  <div class="panel ucretli" data-baslik="Dipten dönüş sinyali">
+    <h2>Dipten dönüş sinyali</h2>
+    <div id="donus"></div>
+  </div>
+
+  <div class="panel" id="haberler"></div>
+
+  <div class="panel">
+    <h2>Notlarım <span class="not">tarayıcında saklanır</span></h2>
+    <textarea id="notlar" placeholder="Bu hisse için notunu yaz… (örn. 2026 Q3 sonrası izle)"
+      style="width:100%;min-height:90px;background:#0d1729;border:1px solid var(--line);border-radius:10px;
+             color:#e6edf7;padding:10px 12px;font-size:13px;line-height:1.6;resize:vertical;outline:none"></textarea>
+    <div class="aciklama" id="notDurum"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Pine paneli</h2>
+    <table class="pine" id="pine"></table>
+  </div>
+
+  <div class="panel">
+    <h2>Ek göstergeler</h2>
+    <div class="izgara" id="ek"></div>
+  </div>
+
+  <div id="derin"></div>
+
+  <div class="panel ucretli" data-baslik="Teknik durum (yorum)">
+    <h2>Teknik durum</h2>
+    <div class="izgara">
+      <div class="kut"><div class="k">${bl('Trend (günlük)')}</div><div class="v">${tr.gunluk||'—'}</div></div>
+      <div class="kut"><div class="k">${bl('Haftalık')}</div><div class="v">${tr.haftalik||'—'}</div></div>
+      <div class="kut"><div class="k">${bl('Aylık')}</div><div class="v">${tr.aylik||'—'}</div></div>
+      <div class="kut"><div class="k">${bl('RSI')}</div><div class="v">${fmt(d.rsi[d.rsi.length-1],1)}</div></div>
+      <div class="kut"><div class="k">${bl('Dipten')}</div><div class="v">${m.dipten!=null?fmt(m.dipten,1)+'%':'—'}</div></div>
+      <div class="kut"><div class="k">${bl('Zirveden')}</div><div class="v">${m.zirveden!=null?fmt(m.zirveden,1)+'%':'—'}</div></div>
+      <div class="kut"><div class="k">${bl('52 hafta yüksek')}</div><div class="v">${fmt(d['52h'])}</div></div>
+      <div class="kut"><div class="k">${bl('52 hafta düşük')}</div><div class="v">${fmt(d['52l'])}</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Kalite ve değerleme</h2>
+    <table>
+      <tr><td>${bl('ROIC (5 yıl ortalama)')}</td><td>${m.roic!=null?fmt(m.roic*100,1)+'%':'—'}</td></tr>
+      <tr><td>${bl('ROIC istikrarı (std/ort)')}</td><td>${m.roic_stabilite!=null?fmt(m.roic_stabilite,2):'—'}</td></tr>
+      <tr><td>${bl('FCF − SBC marjı')}</td><td>${(d.zengin&&d.zengin.fcf_sbc_marj!=null)?`<span style="color:${d.zengin.fcf_sbc_marj>0?'#10b981':'#ef4444'}">${fmt(d.zengin.fcf_sbc_marj,1)}%</span>`:'—'}</td></tr>
+      <tr><td>${bl('Büyüme açığı')}</td><td>${(d.zengin&&d.zengin.buyume_acik!=null)?`<span style="color:${d.zengin.buyume_acik>5?'#ef4444':d.zengin.buyume_acik<-5?'#10b981':'#94a3b8'}">${d.zengin.buyume_acik>0?'+':''}${fmt(d.zengin.buyume_acik,0)} puan</span>`:'—'}</td></tr>
+      <tr><td>${bl('ROIC değişimi')}</td><td>${(d.zengin&&d.zengin.roic_delta!=null)?`<span style="color:${d.zengin.roic_delta>0?'#10b981':'#ef4444'}">${d.zengin.roic_delta>0?'+':''}${fmt(d.zengin.roic_delta,1)} puan</span>`:'—'}</td></tr>
+      <tr><td>${bl('Nakit/Kâr değişimi')}</td><td>${(d.zengin&&d.zengin.cfo_ni_delta!=null)?`<span style="color:${d.zengin.cfo_ni_delta>0?'#10b981':'#ef4444'}">${d.zengin.cfo_ni_delta>0?'+':''}${fmt(d.zengin.cfo_ni_delta,2)}</span>`:'—'}</td></tr>
+      <tr><td>${bl('Net Borç / FAVÖK')}</td><td>${fmt(m.net_borc_favok)}</td></tr>
+      <tr><td>${bl('Nakit / Kâr (CFO/NI)')}</td><td>${fmt(m.cfo_ni)}</td></tr>
+      <tr><td>${bl('FCF pozitif yıl')}</td><td>${m.fcf_yil!=null?Math.round(m.fcf_yil)+'/5':'—'}</td></tr>
+      <tr><td>${bl('Seyreltme (yıllık)')}</td><td>${m.seyreltme!=null?fmt(m.seyreltme*100,2)+'%':'—'}</td></tr>
+      <tr><td>${bl('Piyasa değeri')}</td><td>${m.piyasa_degeri!=null?(m.piyasa_degeri>=1e12?fmt(m.piyasa_degeri/1e12,2)+' trilyon $':fmt(m.piyasa_degeri/1e9,0)+' mlr $'):'—'}</td></tr>
+      <tr><td>${bl('F/K (güncel)')}</td><td>${(d.bilgi&&d.bilgi.fk_guncel!=null)?fmt(d.bilgi.fk_guncel,1):'—'}</td></tr>
+      <tr><td>${bl('PD/DD')}</td><td>${(d.bilgi&&d.bilgi.pddd!=null)?(d.bilgi.pddd<0?'negatif':fmt(d.bilgi.pddd,2)):'—'}</td></tr>
+      <tr><td>${bl('ROE')}</td><td>${(d.bilgi&&d.bilgi.roe!=null)?fmt(d.bilgi.roe,1)+'%':'—'}</td></tr>
+      <tr><td>${bl('Temettü verimi')}</td><td>${(d.bilgi&&d.bilgi.temettu!=null)?fmt(d.bilgi.temettu,2)+'%':'—'}</td></tr>
+      <tr><td>${bl('F/K yüzdeliği (ucuzluk)')}</td><td>${m.pe_yuzdelik!=null?fmt(m.pe_yuzdelik,0):'—'}</td></tr>
+      <tr><td>${bl('Piotroski (0-9)')}</td><td>${m.piotroski!=null?Math.round(m.piotroski):'—'}</td></tr>
+      <tr><td>${bl('Beneish')}</td><td>${m.beneish||'—'}</td></tr>
+      <tr><td>${bl('EPV iskontosu')}</td><td>${m.epv!=null?fmt(m.epv*100,0)+'%':'—'}</td></tr>
+      <tr><td>${bl('Fiyatın ima ettiği büyüme')}</td><td>${m.ima_buyume!=null?fmt(m.ima_buyume*100,1)+'%':'—'}</td></tr>
+    </table>
+  </div>`;
+
+  grafik(d);
+  donusCiz(d);
+  pineTablo(d);
+  derinCiz(d);
+  girisCiz(d);
+  window.__para = d.para || '';
+  canliYukle(d.ticker);
+  ucretliKilitUygula(d);
+  haberCiz(d);
+  clearInterval(window.__canliZaman);
+  window.__canliZaman = setInterval(() => canliYukle(d.ticker), 60000);
+  const kc = document.getElementById('karsilastir');
+  if (kc) kc.href = 'compare.html?t=' + encodeURIComponent(d.ticker);
+  const yd = document.getElementById('yazdir');
+  if (yd) yd.onclick = e => { e.preventDefault(); window.print(); };
+  // sektor karsilastirma: ayni sektorden 3 hisse
+  fetch('veri/_liste.json').then(r => r.json()).then(l => {
+    const ayni = l.filter(x => x.s === d.sektor).map(x => x.t);
+    const sec = [d.ticker, ...ayni.filter(t => t !== d.ticker)].slice(0, 4);
+    const sc = document.getElementById('sektorCmp');
+    if (sc) sc.href = 'compare.html?t=' + sec.map(encodeURIComponent).join(',');
+    if (sc) sc.textContent = '👥 Sektör karşılaştır (' + (sec.length - 1) + ')';
+  }).catch(()=>{});
+  // yeni halka arz: kisa fiyat gecmisi notu
+  const eskiG = document.getElementById('gecmisNot');
+  if (eskiG) eskiG.remove();
+  if (d.sinirli){
+    const g = document.createElement('div');
+    g.id = 'gecmisNot';
+    g.className = 'para-not';
+    g.style.background = 'rgba(56,189,248,.08)';
+    g.style.borderColor = 'rgba(56,189,248,.3)';
+    g.style.color = '#7dd3fc';
+    g.textContent = '🆕 Yeni halka arz: yalnızca ' + (d.gecmis_gun || '—') +
+      ' günlük fiyat geçmişi var. Hareketli ortalamalar, RSI geçmişi ve sinyal ölçümü sınırlı.';
+    const ustG = document.querySelector('.ust');
+    if (ustG) ustG.insertAdjacentElement('afterend', g); else document.body.prepend(g);
+  }
+
+  const pn = document.getElementById('paraNot');
+  if (pn) pn.remove();
+  if (d.para === 'GBp' || d.para === 'GBX'){
+    const n = document.createElement('div');
+    n.id = 'paraNot';
+    n.className = 'para-not';
+    const ornek = (Math.round(Number(d.fiyat) * 100) / 100).toLocaleString('tr-TR') + 'p ≈ ' +
+                  (Number(d.fiyat) / 100).toFixed(2).replace('.', ',') + ' £';
+    n.innerHTML = '⚠ Fiyat <b>pence</b> cinsinden: ' + ornek +
+      '<span class="para-not-son"> · metrikler oran olduğu için etkilenmez</span>';
+    n.title = 'Liste fiyatı pence (GBP’nin 1/100’ü). Bazı aracı kurumlar pence gösterir; oranlar etkilenmez.';
+    const ust = document.querySelector('.ust');
+    if (ust) ust.insertAdjacentElement('afterend', n); else document.body.prepend(n);
+  }
+  // BIST kalite degerlendirmesi (herkese acik; bist.html ile ayni veri)
+  const eskiBK = document.getElementById('bistKalite');
+  if (eskiBK) eskiBK.remove();
+  if (d.bist){
+    const b = d.bist;
+    const kutu = [];
+    const ekle2 = (ad, deger, birim, renk) => {
+      if (deger === null || deger === undefined) return;
+      kutu.push('<div style="background:#0b1424;border:1px solid #1b2942;border-radius:10px;padding:9px 11px">' +
+        '<div style="font-size:10px;color:#5b6b86;text-transform:uppercase;letter-spacing:.6px;font-weight:700">' + ad + '</div>' +
+        '<div style="font-size:16px;font-weight:800;margin-top:3px;color:' + (renk || '#e6edf7') + '">' +
+        String(deger).replace('.', ',') + (birim || '') + '</div></div>');
+    };
+    const yuz = (v, e) => v === null ? null : (v > 0 ? '+' : '') + v.toFixed(1).replace('.', ',') + '%';
+    ekle2('BIST skoru', b.skor === null ? null : b.skor.toFixed(0), ' / 100');
+    ekle2('ROIC', yuz(b.roic), '', b.roic >= 8 ? '#34d399' : '#f87171');
+    ekle2('ROE', yuz(b.roe), '', b.roe >= 12 ? '#34d399' : '#f87171');
+    ekle2('F/K', b.fk === null ? null : b.fk.toFixed(1), 'x');
+    ekle2('PD/DD', b.pddd === null ? null : b.pddd.toFixed(2), 'x');
+    ekle2('Temettü', b.temettu === null ? null : '%' + b.temettu.toFixed(2));
+    ekle2('Net marj', yuz(b.net_marj), '', b.net_marj >= 0 ? '#34d399' : '#f87171');
+    ekle2('ND/FAVÖK', b.nd_favok === null ? null : b.nd_favok.toFixed(1), 'x');
+    ekle2('Piotroski', b.piotroski === null ? null : b.piotroski.toFixed(0), ' / 9');
+    ekle2('12 ay getiri', yuz(b.r12), '', b.r12 >= 0 ? '#34d399' : '#f87171');
+    const rozet = b.gecti
+      ? '<span style="color:#34d399;font-weight:800">✓ kalite kapısını geçti</span>'
+      : '<span style="color:#f87171;font-weight:800">✗ kapıyı geçmedi</span>' +
+        (b.sebep ? ' <span style="color:#8497b3;font-size:11.5px">· ' + b.sebep + '</span>' : '');
+    if (kutu.length){
+      const pnl = document.createElement('div');
+      pnl.id = 'bistKalite';
+      pnl.className = 'panel';
+      pnl.style.marginTop = '14px';
+      pnl.innerHTML = '<h2>BIST kalite değerlendirmesi <span style="color:#41506b;font-weight:600;letter-spacing:0;text-transform:none">' +
+        'Türkiye\'ye uyarlanmış kapı · herkese açık</span></h2>' +
+        '<div style="margin:0 0 10px;font-size:12.5px">' + rozet +
+        ' <a href="bist.html" style="margin-left:8px">tüm BIST listesi →</a></div>' +
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px">' + kutu.join('') + '</div>' +
+        '<div style="font-size:11px;color:#5b6b86;margin-top:9px;line-height:1.6">BIST eşikleri Türkiye koşullarına göre uyarlanmıştır ' +
+        '(model: ' + (b.tur || '—') + '). Yatırım tavsiyesi değildir.</div>';
+      const ic2 = document.getElementById('icerik') || document.body;
+      ic2.insertBefore(pnl, ic2.firstChild);
+    }
+  }
+
+  // halka arz / genc sirket: bilanco ozeti (herkese acik)
+  const eskiAO = document.getElementById('analizOzet');
+  if (eskiAO) eskiAO.remove();
+  if (d.analiz_ozet){
+    const o = d.analiz_ozet;
+    const kutu = [];
+    const ekle = (ad, deger, birim, iyi) => {
+      if (deger === null || deger === undefined) return;
+      let renk = '#e6edf7';
+      if (iyi === 'poz') renk = deger >= 0 ? '#34d399' : '#f87171';
+      if (iyi === 'neg') renk = deger <= 0 ? '#34d399' : '#f87171';
+      kutu.push('<div style="background:#0b1424;border:1px solid #1b2942;border-radius:10px;padding:9px 11px">' +
+        '<div style="font-size:10px;color:#5b6b86;text-transform:uppercase;letter-spacing:.6px;font-weight:700">' + ad + '</div>' +
+        '<div style="font-size:16px;font-weight:800;margin-top:3px;color:' + renk + '">' +
+        (deger > 0 && birim === '%' ? '+' : '') + String(deger).replace('.', ',') + (birim || '') + '</div></div>');
+    };
+    ekle('ROIC', o.roic, '%', 'poz');
+    ekle('Piotroski', o.piotroski, ' / 9');
+    ekle('Net Borç/FAVÖK', o.nd_favok, '', 'neg');
+    ekle('FCF verim', o.fcf_verim, '%', 'poz');
+    if (o.ev_ebit !== null && o.ev_ebit !== undefined && o.ev_ebit > 0) ekle('EV/EBIT', o.ev_ebit, 'x');
+    else if (o.ev_ebit !== null && o.ev_ebit !== undefined) ekle('EV/EBIT', 'negatif kâr', '');
+    ekle('Ciro büyüme', o.cagr, '%', 'poz');
+    ekle('Brüt marj', o.brut_marj, '%');
+    ekle('FCF marjı', o.fcf_marj, '%', 'poz');
+    ekle('Rule of 40', o.rule40, '');
+    ekle('Nakit ömrü', o.nakit_omru_ay, ' ay');
+    if (kutu.length){
+      const panel = document.createElement('div');
+      panel.id = 'analizOzet';
+      panel.className = 'panel';
+      panel.style.marginTop = '14px';
+      panel.innerHTML = '<h2>Bilanço özeti <span style="color:#41506b;font-weight:600;letter-spacing:0;text-transform:none">' +
+        'halka arz / büyüme şirketi · herkese açık</span></h2>' +
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px">' + kutu.join('') + '</div>' +
+        '<div style="font-size:11px;color:#5b6b86;margin-top:9px;line-height:1.6">Bu şirket 5 yıllık kalite kapısına giremez; ' +
+        'yukarıdaki metrikler mevcut bilançodan hesaplanmıştır. Kısa fiyat geçmişi nedeniyle teknik göstergeler sınırlıdır.</div>';
+      const ic = document.getElementById('icerik') || document.body;
+      ic.insertBefore(panel, ic.firstChild);
+    }
+  }
+
+  notYukle(d.ticker);
+  baglanBilgi();
+}
+
+let CANLI = null;
+function canliYukle(t){
+  fetch('canli.json', {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !j.fiyatlar || !j.fiyatlar[t]) return;
+    CANLI = j;
+    const q = j.fiyatlar[t];
+    const f = document.querySelector('.fiyat');
+    if (f && q.f != null){
+      const dz = q.d != null ? q.d : 0;
+      const renk = dz >= 0 ? 'var(--grn)' : 'var(--red)';
+      f.innerHTML = (t.toUpperCase().endsWith('.IS') ? '₺' : '') +
+        (q.f).toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) +
+        ' <span style="font-size:13px;color:#8497b3;font-weight:600">' + (window.__para || '') + '</span>' +
+        ' <span class="degisim" style="color:' + renk + '">' +
+        (dz >= 0 ? '+' : '') + dz.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '%</span>';
+    }
+    const alt = document.getElementById('canliNot');
+    if (alt){
+      const saat = (j.guncelleme || '').replace('T', ' ').slice(0, 16);
+      alt.innerHTML = '<span style="color:#34d399">●</span> canlı fiyat · ' + saat + ' UTC';
+    }
+  }).catch(()=>{});
+}
+
+function haberCiz(d){
+  const el = document.getElementById('haberler');
+  if (!el) return;
+  el.innerHTML = '<h2>Haberler <span class="not">yükleniyor…</span></h2>';
+  fetch('veri/haberler.json', {cache: 'no-store'}).then(r => r.json()).then(j => {
+    const v = (j.veri || {})[d.ticker];
+    if (!v || !v.liste || !v.liste.length){
+      el.innerHTML = '<h2>Haberler</h2><div class="aciklama">Bu hisse için son haber bulunamadı.</div>';
+      return;
+    }
+    const ton = v.ton || null;
+    const tonRenk = ton === 'OLUMLU' ? '#10b981' : ton === 'OLUMSUZ' ? '#ef4444' : '#94a3b8';
+    const ozet = v.ozet ? `
+      <div style="background:#0d1729;border:1px solid ${tonRenk}55;border-radius:12px;padding:12px 14px;margin-bottom:12px">
+        <div style="font-size:11px;letter-spacing:.6px;color:${tonRenk};font-weight:700;margin-bottom:6px">
+          🤖 YAPAY ZEKÂ ÖZETİ${ton ? ' · ' + ton : ''}</div>
+        <div style="color:#cbd5e1;font-size:13px;line-height:1.65">${v.ozet}</div>
+        <div class="mini" style="margin-top:8px;color:#5b6b86">Otomatik yorum; yatırım tavsiyesi değildir.</div>
+      </div>` : '';
+    const liste = v.liste.slice(0, 6).map(x => `
+      <div class="sinyal-satir" style="border-bottom:1px solid #14203a;padding:7px 0">
+        <span style="flex:1;color:#cbd5e1;font-size:12.5px">${x.l ? `<a href="${x.l}" target="_blank" rel="noopener" style="color:inherit">${x.b}</a>` : x.b}</span>
+        <span class="mini" style="color:#5b6b86;white-space:nowrap;margin-left:10px">${x.k || ''} · ${(x.d || '').slice(5, 16)}</span>
+      </div>`).join('');
+    el.innerHTML = `<h2>Haberler <span class="not">${(j.guncelleme || '').replace('T',' ').slice(0,16)} · Google News</span></h2>${ozet}${liste}`;
+  }).catch(() => { el.innerHTML = '<h2>Haberler</h2><div class="aciklama">Haber verisi yüklenemedi.</div>'; });
+}
+
+function notYukle(t){
+  const ta = document.getElementById('notlar');
+  const dur = document.getElementById('notDurum');
+  if (!ta) return;
+  const anahtar = 'not_' + t;
+  ta.value = localStorage.getItem(anahtar) || '';
+  dur.textContent = ta.value ? 'kayıtlı not var' : '';
+  let zaman = null;
+  ta.oninput = () => {
+    clearTimeout(zaman);
+    dur.textContent = 'yazıyor…';
+    zaman = setTimeout(() => {
+      const v = ta.value.trim();
+      if (v) localStorage.setItem(anahtar, v); else localStorage.removeItem(anahtar);
+      dur.textContent = v ? 'kaydedildi · ' + new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}) : '';
+    }, 600);
+  };
+}
+
+function donusCiz(d){
+  const el = document.getElementById('donus');
+  if (!el) return;
+  const r = d.donus || {};
+  if (!r || r.yuzde === undefined){ el.innerHTML = '<div style="color:#5b6b86">dönüş verisi yok</div>'; return; }
+  const y = r.yuzde;
+  const renk = y >= 65 ? '#10b981' : y >= 45 ? '#eab308' : y >= 25 ? '#f59e0b' : '#ef4444';
+  const etiket = y >= 65 ? 'dönüş teyitli' : y >= 45 ? 'dönüş oluşuyor' : y >= 25 ? 'zayıf işaretler' : 'dönüş yok';
+  const bar = Math.max(2, Math.min(100, y));
+  const bilesen = (r.bilesen || []).map(b => {
+    const p = Math.max(0, Math.min(100, b.puan));
+    const c = p >= 65 ? '#10b981' : p >= 40 ? '#eab308' : '#64748b';
+    return `<tr>
+      <td class="pk" style="width:126px">${bl(b.ad)} <span style="color:#41506b">%${b.agirlik}</span></td>
+      <td class="pv" style="text-align:left;font-weight:400">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="flex:0 0 110px;height:6px;background:#16233b;border-radius:99px;overflow:hidden">
+            <div style="width:${p}%;height:100%;background:${c}"></div>
+          </div>
+          <span style="color:${c};font-weight:700;min-width:34px">${p}</span>
+          <span style="color:#8497b3;font-size:12px">${(b.notlar||[]).join(' · ')}</span>
+        </div>
+      </td></tr>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="donus-ust">
+      <div class="donus-yuzde" style="color:${renk}">%${y}</div>
+      <div class="donus-metin">
+        <span class="rozet" style="background:${renk}22;color:${renk}">${etiket}</span>
+        <div style="margin-top:6px">${r.yorum}</div>
+      ${r.dipten!=null?`<div style="font-size:12px;color:#5b6b86;margin-top:4px">Dipten uzaklık: %${r.dipten}</div>`:''}</div>
+    </div>
+    <div class="cubuk"><div style="width:${bar}%;background:linear-gradient(90deg,${renk},${renk}88)"></div></div>
+    <table class="pine">${bilesen}</table>`;
+}
+
+let TV_ACIK = false;
+
+function tvNotGoster(g){
+  const n = document.getElementById('tvNot');
+  if (n) n.style.display = g ? 'block' : 'none';
+}
+
+function tvKur(d){
+  const wrap = document.getElementById('tvWrap');
+  const cv = document.getElementById('grafik');
+  if (!wrap || !cv) return;
+  const sembol = d.tv || ('NASDAQ:' + d.ticker);
+  wrap.style.display = 'block';
+  cv.style.display = 'none';
+  tvNotGoster(true);
+  if (wrap.dataset.sembol === sembol) return;
+
+  wrap.innerHTML = '';
+  const kutu = document.createElement('div');
+  kutu.className = 'tradingview-widget-container';
+  kutu.style.height = '100%';
+  const ic = document.createElement('div');
+  ic.className = 'tradingview-widget-container__widget';
+  ic.id = 'tv_chart_' + String(d.ticker).replace(/[^A-Za-z0-9]/g, '');
+  ic.style.height = '100%';
+  kutu.appendChild(ic);
+  wrap.appendChild(kutu);
+
+  const sc = document.createElement('script');
+  sc.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  sc.async = true;
+  sc.innerHTML = JSON.stringify({
+    symbol: sembol,
+    interval: 'D',
+    timezone: 'Europe/Istanbul',
+    theme: 'dark',
+    style: '1',
+    locale: 'tr',
+    autosize: true,
+    hide_side_toolbar: false,
+    allow_symbol_change: true,
+    details: false,
+    studies: ['MASimple@tv-basicstudies', 'RSI@tv-basicstudies'],
+    support_host: 'https://www.tradingview.com'
+  });
+  kutu.appendChild(sc);
+  wrap.dataset.sembol = sembol;
+}
+
+function tvKapat(){
+  const wrap = document.getElementById('tvWrap');
+  const cv = document.getElementById('grafik');
+  if (wrap) wrap.style.display = 'none';
+  if (cv) cv.style.display = 'block';
+  tvNotGoster(false);
+}
+
+function girisCiz(d){
+  const el = document.getElementById('girisPanel');
+  if (!el) return;
+  const z = d.zengin || {};
+  if (z.giris_skor === undefined || z.giris_skor === null){
+    el.innerHTML = '<h2>Giriş uygunluğu</h2><div class="mini" style="color:#5b6b86">veri yok</div>';
+    return;
+  }
+  const sk = z.giris_skor;
+  const renk = sk >= 80 ? '#10b981' : sk >= 65 ? '#eab308' : sk >= 50 ? '#f59e0b' : '#ef4444';
+  const etiket = sk >= 80 ? 'çok uygun' : sk >= 65 ? 'uygun' : sk >= 50 ? 'orta' : 'uygun değil';
+  const parcalar = String(z.giris_not || '').split(' · ').filter(Boolean).map(p => {
+    const m = p.match(/^(.*?)\s+(\d+(?:\.\d+)?)$/);
+    if (!m) return '';
+    const ad = m[1], v = parseFloat(m[2]);
+    const c = v >= 70 ? '#10b981' : v >= 45 ? '#eab308' : '#ef4444';
+    return `<tr><td class="pk" style="width:170px">${ad}</td>
+      <td class="pv" style="text-align:left;font-weight:400">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="mb" style="width:120px"><div style="width:${Math.max(2,v)}%;background:${c}"></div></div>
+          <span style="color:${c};font-weight:700;min-width:32px">${v.toFixed(0)}</span></div></td></tr>`;
+  }).join('');
+
+  const sat = (a, b) => `<div class="kut"><div class="k">${a}</div><div class="v">${b}</div></div>`;
+
+  el.innerHTML = `
+    <h2>Giriş uygunluğu <span class="not">şimdi almak ne kadar mantıklı — ★'dan farklı</span></h2>
+    <div class="donus-ust">
+      <div class="donus-yuzde" style="color:${renk}">${sk.toFixed(0)}</div>
+      <div class="donus-metin"><span class="rozet" style="background:${renk}22;color:${renk}">${etiket}</span>
+        <div style="margin-top:6px;color:#8497b3;font-size:12.5px">
+          Değerleme, muhasebe kalitesi, RSI zamanlaması ve uzun trend yakınlığı birlikte puanlanır.
+          ★ kısa liste <b>kalite</b>yi, giriş skoru <b>zamanlama + fiyat</b>ı ölçer.</div></div>
+    </div>
+    <div class="cubuk"><div style="width:${Math.max(2,Math.min(100,sk))}%;background:linear-gradient(90deg,${renk},${renk}88)"></div></div>
+    <table class="pine">${parcalar}</table>
+    <div class="izgara" style="margin-top:12px">
+      ${sat('FCF verimi', z.fcf_verim!=null ? '%'+Number(z.fcf_verim).toFixed(1) : '—')}
+      ${sat('EV/EBIT', z.ev_ebit!=null ? Number(z.ev_ebit).toFixed(1) : '—')}
+      ${sat('WMA250 uzaklığı', z.wma250_mesafe!=null ? (z.wma250_mesafe>0?'+':'')+Number(z.wma250_mesafe).toFixed(1)+'%' : '—')}
+      ${sat('Temettü verimi', z.temettu!=null ? Number(z.temettu).toFixed(2)+'%' : '—')}
+      ${sat('SBC / ciro', z.sbc_ciro!=null ? Number(z.sbc_ciro).toFixed(1)+'%' : '—')}
+      ${sat('Sonraki bilanço', z.sonraki_bilanco
+          ? z.sonraki_bilanco
+          : (z.son_bilanco ? '<span style="color:#94a3b8">son ' + String(z.son_bilanco).slice(5).split('-').reverse().join('.') + '</span>' : '—'))}
+    </div>`;
+}
+
+function derinCiz(d){
+  const el = document.getElementById('derin');
+  if (!el) return;
+  const r = d.risk || {};
+  const sg = d.sinyal_gecmisi || {};
+  const ce = d.ceyrek || [];
+  const m = d.metrik || {};
+  const renk = v => v >= 0 ? '#10b981' : '#ef4444';
+  const okr = (v,n=1) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toFixed(n);
+
+  // --- risk ozeti ---
+  const riskKart = (k,v,alt,renk2) => `<div class="kut"><div class="k">${k}</div>
+      <div class="v" style="color:${renk2||'#e6edf7'}">${v}</div>
+      ${alt?`<div class="k" style="margin-top:4px;text-transform:none;letter-spacing:0">${alt}</div>`:''}</div>`;
+  const riskHtml = `
+    <div class="panel ucretli" data-baslik="Risk özeti"><h2>Risk özeti</h2><div class="izgara">
+      ${riskKart(bl('Beta'), okr(d.ek && d.ek.beta, 2), 'S&P 500’e göre')}
+      ${riskKart('Yıllık oynaklık', r.vol!=null?'%'+okr(r.vol):'—', 'getiri sapması')}
+      ${riskKart('Maks. düşüş (1 yıl)', r.dd1y!=null?'%'+okr(r.dd1y):'—', 'tepeden dibe', '#ef4444')}
+      ${riskKart('Maks. düşüş (2 yıl)', r.dd2y!=null?'%'+okr(r.dd2y):'—', 'tepeden dibe', '#ef4444')}
+      ${riskKart('Destek mesafesi', d.ek && d.ek.destek20!=null ? '%'+okr((d.fiyat/d.ek.destek20-1)*100) : '—', 'destek '+ (d.ek && d.ek.destek20!=null ? psembol(d.para)+okr(d.ek.destek20) : ''))}
+      ${riskKart('52 hafta aralığı', d['52l']!=null ? psembol(d.para)+okr(d['52l'],0)+' – '+psembol(d.para)+okr(d['52h'],0) : '—', 'düşük – yüksek')}
+    </div></div>`;
+
+  // --- ceyreklik temel veriler ---
+  let ceyrekHtml = '';
+  if (ce.length){
+    const satir = ce.slice().reverse().map(q => {
+      const bar = (v, min, max, ren) => {
+        if (v==null) return '—';
+        const w = Math.max(2, Math.min(100, (v-min)/(max-min)*100));
+        return `<div style="display:flex;align-items:center;gap:7px;justify-content:flex-end">
+          <div class="mb" style="width:56px"><div style="width:${w}%;background:${ren}"></div></div>
+          <span>${okr(v)}%</span></div>`;
+      };
+      return `<tr><td>${q.d}</td><td style="text-align:right">${okr(q.rev,0)} M$</td>
+        <td style="text-align:right">${bar(q.gm,40,80,'#38bdf8')}</td>
+        <td style="text-align:right">${bar(q.om,0,40,'#a78bfa')}</td>
+        <td style="text-align:right">${bar(q.fcf,-10,40,'#10b981')}</td></tr>`;
+    }).join('');
+    const revBuyume = ce.length>=5 && ce[0].rev && ce[4].rev ? (ce[ce.length-1].rev/ce[Math.max(0,ce.length-5)].rev-1)*100 : null;
+    ceyrekHtml = `
+      <div class="panel"><h2>Son çeyrekler <span class="not">ciro · brüt marj · faaliyet marjı · FCF marjı</span></h2>
+      <div class="tbl-wrap" style="border:none;background:transparent">
+        <table class="ceyrek"><thead><tr><th>Çeyrek</th><th>Ciro</th><th>Brüt marj</th><th>Faaliyet marjı</th><th>FCF marjı</th></tr></thead>
+        <tbody>${satir}</tbody></table></div>
+      ${revBuyume!=null?`<div class="aciklama">Son 4 çeyrekte ciro değişimi: <b style="color:${renk(revBuyume)}">${revBuyume>0?'+':''}${okr(revBuyume)}%</b></div>`:''}
+      </div>`;
+  }
+
+  // --- tarihsel degerleme ---
+  let degHtml = '';
+  if (m.pe_yuzdelik!=null){
+    const y = Math.max(0, Math.min(100, m.pe_yuzdelik));
+    const etiket = y<=20 ? 'tarihine göre çok ucuz' : y<=40 ? 'ucuz bölgede' : y<=60 ? 'normal aralıkta'
+                  : y<=80 ? 'pahalı bölgede' : 'tarihine göre çok pahalı';
+    degHtml = `
+    <div class="panel"><h2>Tarihsel değerleme</h2>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#8497b3">
+        <span>ucuz</span><span>F/K yüzdeliği: <b style="color:#e6edf7">%${okr(y,0)}</b> — ${etiket}</span><span>pahalı</span></div>
+      <div class="olcek"><div class="imlec" style="left:calc(${y}% - 2px)"></div></div>
+      <div class="izgara" style="margin-top:12px">
+        ${riskKart('F/K yüzdeliği', '%'+okr(y,0), '5 yıllık aralıkta')}
+        ${riskKart('EPV iskontosu', m.epv!=null?'%'+okr(m.epv*100,0):'—', 'büyümesiz değere göre')}
+        ${riskKart('İma edilen büyüme', m.ima_buyume!=null?'%'+okr(m.ima_buyume*100):'—', 'fiyatın varsaydığı')}
+      </div>
+    </div>`;
+  }
+
+  // --- sinyal gecmisi ---
+  let sinyalHtml = '';
+  if (sg.adet){
+    const liste = (sg.liste||[]).slice().reverse().map(x => `
+      <div class="sinyal-satir"><span>${x.tarih} · ${okr(x.fiyat,2)}</span>
+      <span>${x.g21!=null?`21g <b style="color:${renk(x.g21)}">${x.g21>0?'+':''}${okr(x.g21)}%</b>`:''}
+      ${x.g63!=null?` · 63g <b style="color:${renk(x.g63)}">${x.g63>0?'+':''}${okr(x.g63)}%</b>`:''}</span></div>`).join('');
+    sinyalHtml = `
+    <div class="panel ucretli" data-baslik="Sinyal geçmişi"><h2>Sinyal geçmişi <span class="not">son 2 yıl · güçlü kurulum tekrarlandığında</span></h2>
+      <div class="izgara" style="margin-bottom:12px">
+        ${riskKart('güçlü kurulum', sg.adet, 'son 2 yılda')}
+        ${riskKart('21 gün isabet', sg.isabet21!=null?'%'+sg.isabet21:'—', sg.ort21!=null?`ortalama ${sg.ort21>0?'+':''}${okr(sg.ort21)}%`:'')}
+        ${riskKart('63 gün isabet', sg.isabet63!=null?'%'+sg.isabet63:'—', sg.ort63!=null?`ortalama ${sg.ort63>0?'+':''}${okr(sg.ort63)}%`:'')}
+      </div>
+      ${liste}
+    </div>`;
+  }
+
+  el.innerHTML = riskHtml + ceyrekHtml + degHtml + sinyalHtml;
+  baglanBilgi();
+}
+
+function pineTablo(d){
+  const p = d.panel || {};
+  const el = document.getElementById('pine');
+  if (!el) return;
+  if (!p || !p.skor){ el.innerHTML = '<tr><td class="pk">PANEL</td><td class="pv">veri yok</td></tr>'; return; }
+  const ok = v => (v===null||v===undefined||(typeof v==='number' && isNaN(v))) ? '—' : v;
+  const okr = (v,n=2) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toFixed(n);
+  const sk = p.skorlar || {}, t = p.trend || {}, st = p.stop || {}, ip = p.iptal || {},
+        hc = p.hacim || {}, ds = p.ds || {}, mom = p.mom || {}, ts = p.test || {};
+  const ok1 = v => v>0 ? '<span style="color:#10b981">↑</span>' : v<0 ? '<span style="color:#ef4444">↓</span>' : '<span style="color:#8497b3">→</span>';
+  const renk = v => v>0 ? '#10b981' : v<0 ? '#ef4444' : '#8497b3';
+  const HELP = {
+    'YORUM': 'Otomatik yorum: trend uyumu, 52 haftalık konum, hacim teyidi ve momentum durumu tek tek değerlendirilir.',
+    'GRAFİK': 'Grafik periyodu ve gösterilen işlem günü sayısı. Tüm hesaplar günlük kapanışlara dayanır.',
+    'DÖNÜŞ': 'Dönüş sinyali gücü (0-4). Dört koşul: RSI aşırı bölgede, fiyat 52 haftalık uçta, hacim patlaması, 20 günlük ortalamanın ters tarafında. 3-4 puan güçlü, 1-2 puan zayıf.',
+    'SKOR': 'Dört alt skorun (trend, momentum, hacim, yön) ağırlıklı ortalaması, 0-100. Konsensüs, farklı zaman dilimlerinin aynı yönde olma yüzdesidir.',
+    'KONUM': 'Fiyatın 52 haftalık en düşük-en yüksek aralığındaki yeri. %0 dip, %100 zirve. Dönüş sinyalleri en çok %10-30 bandında güvenilirdir.',
+    'TREND': 'Uzun vade: fiyat 200 günlük ortalama üzerinde mi ve 50 > 200 mü. Kısa vade: fiyat 20 günlük ortalama üzerinde mi ve 20 > 50 mi.',
+    'ÜST TF': 'Haftalık grafiğin 30 haftalık ortalamaya göre yönü. Günlük sinyalin üst zaman dilimiyle uyumunu gösterir.',
+    'GÖRELİ': 'RSI (14 gün, Wilder) ve ATR (14 gün ortalama gerçek aralık). ATR%, günlük oynaklığın fiyata oranıdır.',
+    'STOP': 'Zarar-kes seviyesi: fiyatın 2×ATR altı. Risk/Ödül, hedefin (2×stop mesafesi) riske oranıdır. R/R 2.0 = 2 birim kazanç için 1 birim risk.',
+    'İPTAL': 'Giriş fikrinin geçersiz sayılacağı seviye. Fiyat bu seviyenin altına inerse tez bozulmuştur.',
+    'SKORLAR': 'T=trend (hareketli ortalamalar), M=momentum (RSI+MACD), H=hacim (işlem hacmi), Y=yön (trend uyumu). Her biri 0-100, ok yönü 50ye göre.',
+    'HACIM': 'Son günün hacmi, 20 günlük ortalamaya oranı. 1.5× üzeri teyit güçlü, 0.7× altı teyit yok.',
+    'OBV/MFI': 'OBV (On Balance Volume): yükselen günlerin hacmini ekleyip düşenlerinkini çıkarır — para akışının yönü. MFI (Money Flow Index): hacim ağırlıklı RSI, 80 üzeri aşırı alım, 20 altı aşırı satım.',
+    'D/S': 'Talep/Arz: son 20 günde yükselen günlerin ortalama hacmi (D) ile düşen günlerinki (S). D>S ise alıcı baskın. VWAP sapması: fiyatın 20 günlük hacim ağırlıklı ortalamaya uzaklığı.',
+    'BAĞLAM': 'Choppiness endeksi: 38 altı trend, 62 üstü yatay/karışık piyasa. Piyasa genişliği (kaç hisse yükseliyor) verisi bu sürümde yok.',
+    'REJİM': 'Uyum: günlük/haftalık/aylık trendden kaçı aynı yönde (0-3). ADX: trend gücü (25 üstü trend var, 50 üstü güçlü). Vol: yıllıklandırılmış oynaklık.',
+    'FİLTRE': 'Tuzak filtresi: fiyat 52 haftalık zirvede ve RSI 70 üzerindeyse skor 0.55 ile çarpılır (tepeden alımı engellemek için). Aynısı dip için de geçerli.',
+    'GEÇMİŞ': 'Son 7 işlem gününün durum kodu. I=güçlü kurulum, D=dip, T=tepe, K=zayıf, N=nötr.',
+    'UYARI': 'Skor ile trend yönü çelişiyorsa uyarı verir.',
+    'TEST': 'Son 2 yılda aynı kurallarla alıp satılsaydı: strateji getirisi, al-tut getirisi, işlem sayısı ve en kötü düşüş. Geçmiş performans gelecek garantisi değildir.',
+    'MOM': 'RSI (14), MACD histogramı (12-26) ve Stochastic (14). Üçü birlikte kısa vadeli momentumu gösterir.',
+  };
+  const sat = (k,v,cls='') => `<tr class="${cls}"><td class="pk">${HELP[k]?`<span class="bilgi" data-bilgi="${HELP[k].replace(/"/g,'&quot;')}">i</span>`:''}${k}</td><td class="pv ${cls==='yorum'?'yorum':''}">${v}</td></tr>`;
+  const bar = (r) => `<tr class="bar"><td colspan="2" class="bar"><div style="background:${r}"></div></td></tr>`;
+
+  // Donus
+  let donus = 'Dönüş sinyali yok';
+  const siddet = n => n>=4 ? 'güçlü' : n>=3 ? 'belirgin' : n>=2 ? 'orta' : 'zayıf';
+  if ((p.donus||'').startsWith('Tepe')){
+    const n = parseInt((p.donus.match(/(\d)/)||[0,0])[1]);
+    donus = `Tepe dönüş sinyali <b>${n}/4</b> — ${siddet(n)}`;
+  } else if ((p.donus||'').startsWith('Dip')){
+    const n = parseInt((p.donus.match(/(\d)/)||[0,0])[1]);
+    donus = `Dip dönüş sinyali <b>${n}/4</b> — ${siddet(n)}`;
+  }
+
+  // Konum
+  const p52 = p.p52;
+  const konum_yazi = p52>=85 ? 'zirveye çok yakın' : p52>=65 ? 'üst bölgede' : p52>=35 ? 'orta bölgede' : p52>=15 ? 'alt bölgede' : 'dibe çok yakın';
+
+  // Trend
+  const long_y = t.uzun==='Yuk' ? '<span style="color:#10b981">Yükseliş ↑</span>' : '<span style="color:#ef4444">Düşüş ↓</span>';
+  const kisa_y = t.kisa==='Yuk' ? '<span style="color:#10b981">Yükseliş ↑</span>' : '<span style="color:#ef4444">Düşüş ↓</span>';
+  const ust_y = (p.ust_tf==='Yukari') ? '<span style="color:#10b981">Yükseliş ↑</span>'
+              : (p.ust_tf==='Asagi') ? '<span style="color:#ef4444">Düşüş ↓</span>' : 'Yatay →';
+
+  // Skorlar
+  const skorSat = ['T','M','H','Y'].map((x,i) => {
+    const ad = ['Trend','Momentum','Hacim','Yön'][i];
+    const v = sk[x];
+    return `<span style="white-space:nowrap">${ad} <b>${ok(v)}</b> ${ok1((v??50)-50)}</span>`;
+  }).join(' · ');
+
+  // ADX yorumu
+  const adx_y = p.adx>=50 ? 'çok güçlü trend' : p.adx>=25 ? 'trend var' : 'trend zayıf';
+
+  // Gecmis
+  const gecmis = (p.gecmis||'').split(' ').map(c => {
+    const renk2 = {I:'#10b981', D:'#38bdf8', T:'#f59e0b', K:'#ef4444', N:'#475569'}[c] || '#475569';
+    return `<b style="color:${renk2}">${c}</b>`;
+  }).join(' ');
+
+  el.innerHTML =
+    sat('GRAFİK', `Günlük grafik · ${d.bars.length} işlem günü`) + bar('#38bdf8') +
+    sat('DÖNÜŞ', donus) +
+    sat('SKOR', `Skor <b>${ok(p.skor)}</b> / 100 · Konsensüs <b>%${ok(p.konsensus)}</b> — ` +
+        (p.konsensus>=80 ? 'zaman dilimleri hemfikir' : p.konsensus>=50 ? 'kısmi uyum' : 'görüşler ayrışık')) +
+    sat('KONUM', `52 haftalık aralıkta <b>%${ok(p52)}</b> (${konum_yazi}) · 5 yıllık konum verisi yok`) +
+    sat('TREND', `Uzun vade: ${long_y} · Kısa vade: ${kisa_y} · RSI ${ok(p.rsi)} ${ok1((p.rsi||50)-50)}`) +
+    sat('ÜST TF', `Haftalık trend: ${ust_y}`) +
+    sat('GÖRELİ', `RSI ${ok(p.rsi)} · Günlük oynaklık (ATR) <b>%${ok(p.atr)}</b>`) +
+    sat('YORUM', (p.yorum||[]).join('<br>'), 'yorum') + bar('#f97316') +
+    sat('STOP', `Zarar-kes <b>${okr(st.seviye)}</b> (${okr(st.pct)}%) · Risk/Ödül <b>${okr(st.rr,1)}</b> · ATR payı %${okr(st.atr_pct)}`) +
+    sat('İPTAL', `İptal seviyesi <b>${okr(ip.seviye)}</b> — fiyatın %${okr(Math.abs(ip.yuzde||0))} altı`) + bar('#3b82f6') +
+    sat('SKORLAR', skorSat) + bar('#10b981') +
+    sat('HACIM', `Ortalamanın <b>${okr(hc.oran)}</b> katı ${hc.yon||''} — ` +
+        ((hc.oran||1) > 1.5 ? 'hacim teyidi güçlü'
+         : (hc.oran||1) > 1.1 ? 'ortalamanın hafif üzerinde'
+         : (hc.oran||1) < 0.7 ? 'hacim çok zayıf, teyit yok'
+         : 'hacim ortalama, teyit zayıf')) +
+    sat('OBV/MFI', `OBV <b>${ok(p.obv)}</b> ${p.obv_yon==='yükseliyor'?'<span style="color:#10b981">↑ yükseliyor</span>':'<span style="color:#ef4444">↓ düşüyor</span>'} · ` +
+        `MFI <b>${ok(p.mfi)}</b> ${p.mfi_yon==='yükseliyor'?'<span style="color:#10b981">↑ yükseliyor</span>':p.mfi_yon==='düşüyor'?'<span style="color:#ef4444">↓ düşüyor</span>':'<span style="color:#8497b3">→ yatay</span>'} ` +
+        (p.mfi>=80 ? '(aşırı alım)' : p.mfi<=20 ? '(aşırı satım)' : '(normal aralık)')) +
+    sat('D/S', `Talep <b>${okr(ds.d)}M</b> · Arz <b>${okr(ds.s)}M</b> · Fiyat VWAP'ın %${okr(Math.abs(ds.vwap||0))} ` +
+        ((ds.vwap||0) >= 0 ? 'üzerinde' : 'altında')) +
+    sat('BAĞLAM', `Piyasa rejimi: <b>${p.chop==='Trend'?'Trend':'Yatay/Karışık'}</b> · Piyasa genişliği verisi yok`) +
+    sat('REJİM', `Uyum <b>${p.uyum||'—'}</b> · ADX ${ok(p.adx)} (${adx_y}) · Yıllık oynaklık %${ok(p.vol)}`) +
+    sat('FİLTRE', `Ham skor ${ok(p.ham)} → ` + (p.tuzak
+        ? '<span style="color:#f59e0b">tuzak filtresi devrede (çarpan 0.55)</span>'
+        : 'tuzak filtresi yok (çarpan 1.0)')) +
+    sat('GEÇMİŞ', `Son 7 gün: ${gecmis}<br><span style="font-weight:400;color:#5b6b86;font-size:11px">I = güçlü kurulum · D = dip · T = tepe · K = zayıf · sat · N = nötr</span>`) +
+    sat('UYARI', p.uyari || '—') +
+    sat('TEST', `2 yıllık test: strateji <b style="color:${renk(ts.getiri)}">${okr(ts.getiri,1)}%</b> · ` +
+        `al-tut <b>${okr(ts.ah,1)}%</b> · ${ok(ts.islem)} işlem · en kötü düşüş ${okr(ts.dd,1)}%`) +
+    sat('MOM', `RSI ${ok(mom.rsi)} ${ok1((mom.rsi||50)-50)} · MACD <b>${okr(mom.macd)}</b> ` +
+        ((mom.macd||0)>=0?'(pozitif)':'(negatif)') + ` · Stoch ${ok(mom.stoch)}`);
+
+  // --- ek gostergeler ---
+  const e = d.ek || {};
+  const ekEl = document.getElementById('ek');
+  if (ekEl){
+    const kart = (k,v,alt='') => `<div class="kut"><div class="k">${k}</div><div class="v">${v}</div>` +
+        (alt?`<div class="k" style="margin-top:4px;text-transform:none;letter-spacing:0">${alt}</div>`:'') + `</div>`;
+    const gg = (etiket, v) => v===undefined ? '' :
+      `<span style="color:${renk(v)}">${etiket} ${v>0?'+':''}${okr(v,1)}%</span>`;
+    ekEl.innerHTML =
+      kart(bl('Göreceli güç (S&P 500\'e karşı)'),
+           e['3a']!=null ? `<span style="color:${renk(e['3a'])}">${e['3a']>0?'+':''}${okr(e['3a'],1)}%</span> <span style="font-size:12px;color:#5b6b86">(3 ay)</span>` : '—',
+           [gg('1 ay', e['1a']), gg('6 ay', e['6a'])].filter(Boolean).join(' · ') || '—') +
+      kart(bl('Beta'), okr(e.beta), 'S&P 500\'e göre oynaklık') +
+      kart(bl('Günlük hacim (20g ort.)'), e.hacim_ort_musd!=null ? okr(e.hacim_ort_musd,0)+' M$' : '—', 'işlem hacmi') +
+      kart(bl('Trend süresi'), e.trend_gun!=null ? Math.abs(e.trend_gun)+' gün' : '—',
+           e.trend_gun>0 ? 'MA200 üzerinde' : 'MA200 altında') +
+      kart(bl('Destek (20g)'), okr(e.destek20), 'direnç '+okr(e.direnc20)) +
+      kart(bl('Destek (60g)'), okr(e.destek60), 'direnç '+okr(e.direnc60)) +
+      kart(bl('Ardışık gün'), e.seri_gun!=null ? (e.seri_gun>0?'+':'')+e.seri_gun : '—',
+           e.seri_gun>0 ? 'üst üste yükseliş' : 'üst üste düşüş') +
+      kart(bl('20 günlük oynaklık'), e.vol20!=null ? '%'+okr(e.vol20,1) : '—', 'yıllıklandırılmış') +
+      ((d.sektor_etf)
+        ? kart('Sektör ETF (3 ay)',
+               '<span style="color:' + renk(d.sektor_etf.a3) + '">' +
+               (d.sektor_etf.a3 > 0 ? '+' : '') + okr(d.sektor_etf.a3, 1) + '%</span>',
+               d.sektor_etf.sembol + ' · ' + d.sektor)
+        : '');
+  }
+}
+
+let TF = 252;
+let SEKTOR_SERI = null;
+window.SEKTOR_ETF = null;
+fetch('veri/_sektor_etf.json').then(r => r.json()).then(x => { window.SEKTOR_ETF = x; if (window.SON_VERI) derinCiz(window.SON_VERI); }).catch(()=>{});
+let SEKTOR_ACIK = false;
+fetch('veri/_sektor_seri.json').then(r => r.json()).then(x => { SEKTOR_SERI = x; }).catch(()=>{});
+document.addEventListener('click', e => {
+  const tvb = e.target.closest('#tvBtn');
+  if (tvb){
+    TV_ACIK = !TV_ACIK;
+    tvb.classList.toggle('on', TV_ACIK);
+    if (TV_ACIK && window.SON_VERI) tvKur(window.SON_VERI); else tvKapat();
+    return;
+  }
+  const b = e.target.closest('#sektorBtn');
+  if (!b) return;
+  SEKTOR_ACIK = !SEKTOR_ACIK;
+  b.classList.toggle('on', SEKTOR_ACIK);
+  if (window.SON_VERI) grafik(window.SON_VERI);
+});
+window.SON_VERI = null;
+// tfBtn dinleyici (tek sefer baglanir)
+document.addEventListener('click', e => {
+  const b = e.target.closest('.tfBtn');
+  if (!b || b.dataset.tf === undefined) return;
+  document.querySelectorAll('.tfBtn').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  TF = parseInt(b.dataset.tf, 10);
+  const et = document.getElementById('tfEtiket');
+  if (et) et.textContent = TF === 63 ? '3 ay' : TF === 126 ? '6 ay' : TF === 252 ? '1 yıl' : '2 yıl';
+  if (window.SON_VERI) grafik(window.SON_VERI);
+});
+function grafik(d){
+  window.SON_VERI = d;
+  const cv = $('grafik');
+  const bars = TF > 0 ? d.bars.slice(-TF) : d.bars;
+  const ofset = d.bars.length - bars.length;
+  const n = bars.length;
+  const dar = window.innerWidth < 820;
+  const HI = dar ? 300 : 430;
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.parentNode.clientWidth - 32;
+  cv.width = W * dpr; cv.height = HI * dpr;
+  cv.style.height = HI + 'px';
+  const g = cv.getContext('2d');
+  g.setTransform(dpr,0,0,dpr,0,0);
+  g.clearRect(0,0,W,HI);
+
+  const sol = 6, sag = 58;
+  const fiyatH = HI * 0.60, hacimH = HI * 0.14, rsiH = HI * 0.17;
+  const y0 = 8, y1 = y0 + fiyatH, y2 = y1 + 8 + hacimH, y3 = y2 + 8 + rsiH;
+  const cw = (W - sol - sag) / n;
+
+  let lo = Math.min(...bars.map(b=>b.l)), hi = Math.max(...bars.map(b=>b.h));
+  const pad = (hi-lo)*0.06; lo -= pad; hi += pad;
+  const py = v => y1 - (v-lo)/(hi-lo) * (y1-y0);
+
+  // yatay izgara
+  g.strokeStyle = '#16233b'; g.lineWidth = 1; g.font = '10px ui-monospace,monospace'; g.fillStyle = '#5b6b86';
+  for (let i=0;i<=4;i++){
+    const v = lo + (hi-lo)*i/4, y = py(v);
+    g.beginPath(); g.moveTo(sol, y); g.lineTo(W-sag, y); g.stroke();
+    g.fillText(v.toFixed(2), W-sag+6, y+3);
+  }
+
+  // mumlar
+  for (let i=0;i<n;i++){
+    const b = bars[i], x = sol + i*cw + cw/2;
+    const yu = b.c >= b.o;
+    g.strokeStyle = yu ? '#10b981' : '#ef4444';
+    g.fillStyle = yu ? '#10b981' : '#ef4444';
+    g.beginPath(); g.moveTo(x, py(b.h)); g.lineTo(x, py(b.l)); g.stroke();
+    const w = Math.max(1, cw*0.62);
+    const yo = py(b.o), yc = py(b.c);
+    g.fillRect(x - w/2, Math.min(yo,yc), w, Math.max(1, Math.abs(yc-yo)));
+  }
+
+  // MA cizgileri
+  const cizgi = (arr, renk) => {
+    g.strokeStyle = renk; g.lineWidth = 1.4; g.beginPath();
+    let bas = true;
+    for (let i=0;i<n;i++){
+      const v = arr[i];
+      if (v==null){ bas = true; continue; }
+      const x = sol + i*cw + cw/2, y = py(v);
+      if (bas){ g.moveTo(x,y); bas = false; } else g.lineTo(x,y);
+    }
+    g.stroke();
+  };
+  const kes = a => TF > 0 ? a.slice(-TF) : a;
+  cizgi(kes(d.ma50), '#38bdf8'); cizgi(kes(d.ma100), '#eab308'); cizgi(kes(d.ma200), '#a78bfa');
+
+  // Sektor cizgisi (kesikli, gri) — hissenin baslangicina gore normalize
+  if (SEKTOR_ACIK && SEKTOR_SERI && SEKTOR_SERI[d.sektor]) {
+    const sk = SEKTOR_SERI[d.sektor];
+    const harita = {};
+    sk.forEach(x => { harita[x.d] = x.v; });
+    const sektorVals = bars.map(b => {
+      let v = harita[b.d];
+      if (v === undefined) {
+        // en yakin onceki gun
+        for (let j = sk.length - 1; j >= 0; j--) { if (sk[j].d <= b.d) { v = sk[j].v; break; } }
+      }
+      return v;
+    });
+    const ilkSektor = sektorVals.find(v => v !== undefined);
+    if (ilkSektor) {
+      const carpan = bars[0].c / ilkSektor;
+      g.strokeStyle = '#94a3b8'; g.lineWidth = 1.4; g.setLineDash([5,4]);
+      g.beginPath();
+      let bas = true;
+      sektorVals.forEach((v, i) => {
+        if (v === undefined) { bas = true; return; }
+        const xx = sol + i*cw + cw/2, yy = py(v * carpan);
+        if (bas) { g.moveTo(xx, yy); bas = false; } else g.lineTo(xx, yy);
+      });
+      g.stroke(); g.setLineDash([]);
+      g.fillStyle = '#94a3b8'; g.font = '10px ui-monospace,monospace';
+      g.fillText('sektör', W - sag - 34, y0 + 12);
+    }
+  }
+
+  // hacim
+  const hv = Math.max(...bars.map(b=>b.v));
+  g.fillStyle = 'rgba(56,189,248,.35)';
+  for (let i=0;i<n;i++){
+    const b = bars[i], x = sol + i*cw + cw/2, h = (b.v/hv) * hacimH;
+    g.fillStyle = b.c >= b.o ? 'rgba(16,185,129,.35)' : 'rgba(239,68,68,.30)';
+    g.fillRect(x - Math.max(1,cw*0.3), y2 - h, Math.max(1,cw*0.6), h);
+  }
+
+  // RSI paneli
+  g.strokeStyle = '#16233b'; g.fillStyle = '#5b6b86';
+  [30,50,70].forEach(v => {
+    const y = y3 - (v/100) * rsiH;
+    g.beginPath(); g.moveTo(sol, y); g.lineTo(W-sag, y); g.stroke();
+    g.fillText(v, W-sag+6, y+3);
+  });
+  g.strokeStyle = '#7dd3fc'; g.lineWidth = 1.3; g.beginPath();
+  let bas = true;
+  for (let i=0;i<n;i++){
+    const v = kes(d.rsi)[i];
+    if (v==null){ bas = true; continue; }
+    const x = sol + i*cw + cw/2, y = y3 - (v/100)*rsiH;
+    if (bas){ g.moveTo(x,y); bas = false; } else g.lineTo(x,y);
+  }
+  g.stroke();
+
+  // eksen etiketleri (tarih)
+  g.fillStyle = '#41506b'; g.font = '10px ui-monospace,monospace';
+  for (let i=0;i<4;i++){
+    const idx = Math.floor((n-1)*i/3);
+    const x = sol + idx*cw + cw/2;
+    g.fillText(bars[idx].d.slice(0,7), Math.min(x, W-sag-42), y3+14);
+  }
+
+  // hover
+  const ip = $('ipucu');
+  cv.onmousemove = e => {
+    const r = cv.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const i = Math.max(0, Math.min(n-1, Math.floor((x - sol)/cw)));
+    const b = bars[i];
+    ip.style.display = 'block';
+    ip.style.left = Math.min(e.clientX + 14, window.innerWidth - 190) + 'px';
+    ip.style.top = (e.clientY + 14) + 'px';
+    ip.innerHTML = `<b>${b.d}</b><br>A ${fmt(b.o)} · Y ${fmt(b.h)}<br>D ${fmt(b.l)} · K ${fmt(b.c)}<br>
+      RSI ${d.rsi[i]!=null?fmt(d.rsi[i],1):'—'}`;
+    const ctx = cv.getContext('2d');
+    grafik(d); // yeniden ciz (onceki crosshair silinsin)
+    const g2 = cv.getContext('2d');
+    g2.strokeStyle = '#2f4a76'; g2.setLineDash([3,3]); g2.beginPath();
+    g2.moveTo(sol + i*cw + cw/2, y0); g2.lineTo(sol + i*cw + cw/2, y3); g2.stroke(); g2.setLineDash([]);
+  };
+  cv.onmouseleave = () => { ip.style.display = 'none'; grafik(d); };
+}
+
+function baglanBilgi(){
+  const ip = document.getElementById('ipbilgi');
+  if (!ip) return;
+  document.querySelectorAll('[data-bilgi]').forEach(el => {
+    if (el.dataset.bag === '1') return;
+    el.dataset.bag = '1';
+    const goster = (x,y) => {
+      ip.textContent = el.dataset.bilgi || '';
+      ip.style.display = 'block';
+      const gen = Math.min(320, window.innerWidth - 24);
+      ip.style.maxWidth = gen + 'px';
+      ip.style.left = Math.min(x + 14, window.innerWidth - gen - 12) + 'px';
+      ip.style.top = Math.min(y + 14, window.innerHeight - 120) + 'px';
+    };
+    el.addEventListener('mouseenter', e => goster(e.clientX, e.clientY));
+    el.addEventListener('mousemove', e => goster(e.clientX, e.clientY));
+    el.addEventListener('mouseleave', () => ip.style.display = 'none');
+    el.addEventListener('click', e => { e.stopPropagation(); goster(e.clientX, e.clientY); });
+  });
+}
+
+window.addEventListener('resize', () => {
+  fetch(`veri/${T}.json`).then(r=>r.json()).then(grafik).catch(()=>{});
+});
+</script>
+
+<script src="palet.js"></script>
+<script src="olcum.js"></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

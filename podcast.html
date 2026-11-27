@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Podcast · Uzun Vade</title>
+<meta name="description" content="Uzun Vade podcast: günlük piyasa bülteni, haftalık değerlendirme ve aylık derin bölüm. Arabada, yürürken veya spor yaparken dinleyebilirsiniz. Yatırım tavsiyesi değildir.">
+<link rel="alternate" type="application/rss+xml" title="Uzun Vade Podcast" href="podcast.xml">
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8}
+  body{margin:0;padding:28px 22px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:12px}
+  h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.7px}
+  .sub{color:var(--muted);font-size:13.5px;margin:8px 0 20px;line-height:1.6}
+  .abone{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:18px}
+  .abone h2{margin:0 0 8px;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+  .abone p{margin:0 0 4px}
+  .abone code{display:block;background:#0d1729;border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+        font-size:12px;color:#93c5fd;overflow:auto;white-space:nowrap}
+  .dinle-linkler{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+  .dinle-dugme{display:inline-block;background:#12213a;border:1px solid var(--line);border-radius:10px;
+        padding:9px 14px;font-size:13px;font-weight:600;color:var(--txt)}
+  .dinle-dugme:hover{border-color:var(--acc);color:var(--acc)}
+  .rss-satir{margin-top:10px;color:var(--muted);font-size:12px;word-break:break-all}
+  .bolum{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+  .bolum-ust{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim);margin-bottom:6px}
+  .etk{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;border:1px solid}
+  .bolum-ad{font-weight:700;font-size:15px;margin-bottom:8px}
+  audio{width:100%;height:36px;margin:2px 0 8px}
+  .aciklama{color:#94a3b8;font-size:12.5px;line-height:1.6}
+  .baglar{display:flex;gap:14px;margin-top:8px;font-size:12px}
+  .kucuk{color:#5b6b86;font-size:11.5px;line-height:1.7;margin-top:14px}
+  @media(max-width:600px){body{padding:16px 12px 50px} h1{font-size:24px}}
+</style>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/podcast.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html" aria-current="page">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Podcast</h1>
+  <div class="sub">Uzun Vade · Günlük piyasa bülteni, haftalık değerlendirme ve aylık derin bölüm.
+     Arabada, yürürken veya spor yaparken dinleyebilirsiniz. Son güncelleme: 2026-11-28 09:53</div>
+
+  <div class="abone" id="youtube">
+    <h2>YouTube'da izle</h2>
+    <p>Her bölüm video olarak da yayında (kapak + ses):</p>
+    <p><a href="https://www.youtube.com/channel/UC4Emg0TN-KMZblVGLK_2odQ" target="_blank" rel="noopener"
+       style="display:inline-block;background:#dc2626;color:#fff;border-radius:9px;padding:9px 16px;
+       font-weight:700;font-size:13px">▶ YouTube kanalı</a></p>
+  </div>
+
+  <div class="abone" id="dinle">
+    <h2>Dinle</h2>
+    <p class="dinle-linkler">
+      <a class="dinle-dugme" href="https://open.spotify.com/search/Uzun%20Vade" target="_blank" rel="noopener">Spotify'da dinle</a>
+      <a class="dinle-dugme" href="https://podcasts.apple.com/tr/search?term=Uzun%20Vade" target="_blank" rel="noopener">Apple Podcasts'ta dinle</a>
+      <a class="dinle-dugme" href="https://uzunvade.net/podcast.xml">RSS</a>
+    </p>
+    <div class="rss-satir">RSS adresi: <a href="https://uzunvade.net/podcast.xml">https://uzunvade.net/podcast.xml</a></div>
+  </div>
+
+  
+      <div class="bolum" id="20261128-gunluk">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#38bdf8;border-color:#38bdf855">
+            Günlük</span>
+          <span class="tarih">2026-11-28</span>
+          <span class="sure">2.7 dk</span>
+        </div>
+        <div class="bolum-ad">Günlük piyasa bülteni · 28 Kasım</div>
+        <audio controls preload="none" src="podcast/20261128-gunluk.mp3"></audio>
+        <div class="aciklama">Merhaba, 28 Kasım 2026, cumartesi tarihli günlük piyasa bültenine hoş geldiniz. Yaklaşık beş dakikada piyasanın nabzını, takip listemizdeki hareketleri ve günün öne çıkan hissesini konuşacağız.  Piyasalara bakalım. S&amp;P 5…</div>
+        <div class="baglar">
+          <a href="podcast/20261128-gunluk.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261128-gunluk.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261127-gunluk">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#38bdf8;border-color:#38bdf855">
+            Günlük</span>
+          <span class="tarih">2026-11-27</span>
+          <span class="sure">3.3 dk</span>
+        </div>
+        <div class="bolum-ad">Günlük piyasa bülteni · 27 Kasım</div>
+        <audio controls preload="none" src="podcast/20261127-gunluk.mp3"></audio>
+        <div class="aciklama">Merhaba, 27 Kasım 2026, cuma tarihli günlük piyasa bültenine hoş geldiniz. Yaklaşık beş dakikada piyasanın nabzını, takip listemizdeki hareketleri ve günün öne çıkan hissesini konuşacağız.  Piyasalara bakalım. S&amp;P 500 yü…</div>
+        <div class="baglar">
+          <a href="podcast/20261127-gunluk.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261127-gunluk.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261126-aylik">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#fbbf24;border-color:#fbbf2455">
+            Aylık</span>
+          <span class="tarih">2026-11-26</span>
+          <span class="sure">4.8 dk</span>
+        </div>
+        <div class="bolum-ad">Aylık derin bölüm · 26 Kasım</div>
+        <audio controls preload="none" src="podcast/20261126-aylik.mp3"></audio>
+        <div class="aciklama">Merhaba, 26 Kasım 2026, perşembe aylık derin bölümümüze hoş geldiniz. Bu bölümde ayın bilançosunu çıkarıyoruz: piyasa nereden nereye geldi, sinyaller ne kadar işe yaradı ve bu ay hangi dersi öğrendik.  Haftalık özetle ba…</div>
+        <div class="baglar">
+          <a href="podcast/20261126-aylik.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261126-aylik.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261126-haftalik">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#a78bfa;border-color:#a78bfa55">
+            Haftalık</span>
+          <span class="tarih">2026-11-26</span>
+          <span class="sure">3.7 dk</span>
+        </div>
+        <div class="bolum-ad">Haftalık değerlendirme · 26 Kasım</div>
+        <audio controls preload="none" src="podcast/20261126-haftalik.mp3"></audio>
+        <div class="aciklama">Merhaba, 26 Kasım 2026, perşembe haftalık değerlendirmesine hoş geldiniz. Bu bölümde haftanın piyasa özetini, takip listesindeki değişimleri, tez kırılma uyarılarını ve haftanın haberlerini konuşacağız.  Piyasalara bakal…</div>
+        <div class="baglar">
+          <a href="podcast/20261126-haftalik.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261126-haftalik.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261126-gunluk">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#38bdf8;border-color:#38bdf855">
+            Günlük</span>
+          <span class="tarih">2026-11-26</span>
+          <span class="sure">3.4 dk</span>
+        </div>
+        <div class="bolum-ad">Günlük piyasa bülteni · 26 Kasım</div>
+        <audio controls preload="none" src="podcast/20261126-gunluk.mp3"></audio>
+        <div class="aciklama">Merhaba, 26 Kasım 2026, perşembe tarihli günlük piyasa bültenine hoş geldiniz. Yaklaşık beş dakikada piyasanın nabzını, takip listemizdeki hareketleri ve günün öne çıkan hissesini konuşacağız.  Piyasalara bakalım. S&amp;P 50…</div>
+        <div class="baglar">
+          <a href="podcast/20261126-gunluk.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261126-gunluk.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261125-aylik">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#fbbf24;border-color:#fbbf2455">
+            Aylık</span>
+          <span class="tarih">2026-11-25</span>
+          <span class="sure">4.8 dk</span>
+        </div>
+        <div class="bolum-ad">Aylık derin bölüm · 25 Kasım</div>
+        <audio controls preload="none" src="podcast/20261125-aylik.mp3"></audio>
+        <div class="aciklama">Merhaba, 25 Kasım 2026, çarşamba aylık derin bölümümüze hoş geldiniz. Bu bölümde ayın bilançosunu çıkarıyoruz: piyasa nereden nereye geldi, sinyaller ne kadar işe yaradı ve bu ay hangi dersi öğrendik.  Haftalık özetle ba…</div>
+        <div class="baglar">
+          <a href="podcast/20261125-aylik.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261125-aylik.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261125-haftalik">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#a78bfa;border-color:#a78bfa55">
+            Haftalık</span>
+          <span class="tarih">2026-11-25</span>
+          <span class="sure">3.7 dk</span>
+        </div>
+        <div class="bolum-ad">Haftalık değerlendirme · 25 Kasım</div>
+        <audio controls preload="none" src="podcast/20261125-haftalik.mp3"></audio>
+        <div class="aciklama">Merhaba, 25 Kasım 2026, çarşamba haftalık değerlendirmesine hoş geldiniz. Bu bölümde haftanın piyasa özetini, takip listesindeki değişimleri, tez kırılma uyarılarını ve haftanın haberlerini konuşacağız.  Piyasalara bakal…</div>
+        <div class="baglar">
+          <a href="podcast/20261125-haftalik.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261125-haftalik.mp3" download>İndir</a>
+        </div>
+      </div>
+      <div class="bolum" id="20261125-gunluk">
+        <div class="bolum-ust">
+          <span class="etk" style="color:#38bdf8;border-color:#38bdf855">
+            Günlük</span>
+          <span class="tarih">2026-11-25</span>
+          <span class="sure">3.3 dk</span>
+        </div>
+        <div class="bolum-ad">Günlük piyasa bülteni · 25 Kasım</div>
+        <audio controls preload="none" src="podcast/20261125-gunluk.mp3"></audio>
+        <div class="aciklama">Merhaba, 25 Kasım 2026, çarşamba tarihli günlük piyasa bültenine hoş geldiniz. Yaklaşık beş dakikada piyasanın nabzını, takip listemizdeki hareketleri ve günün öne çıkan hissesini konuşacağız.  Piyasalara bakalım. S&amp;P 50…</div>
+        <div class="baglar">
+          <a href="podcast/20261125-gunluk.txt" target="_blank">Metni oku</a>
+          <a href="podcast/20261125-gunluk.mp3" download>İndir</a>
+        </div>
+      </div> 
+
+  <div class="kucuk">
+    Bölümler yapay zekâ sesiyle okunur ve verilerden otomatik üretilir.
+    Yatırım tavsiyesi değildir; kararlarınızı kendi araştırmanızla verin.
+  </div>
+</div>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

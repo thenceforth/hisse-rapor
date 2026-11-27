@@ -1,0 +1,306 @@
+/* ============================================================
+   Uzun Vade — ortak tasarım sistemi
+   Amaç: tüm sayfalarda tek tip üst menü, buton, form ve kart dili.
+   Sayfa içi stillerden sonra yüklenir; yalnızca güvenli seçicileri ezer.
+   ============================================================ */
+
+:root{
+  --uv-bg:#070c16;
+  --uv-bg2:#0b1322;
+  --uv-surface:#0f1a2c;
+  --uv-surface2:#13213a;
+  --uv-line:#1e2f4d;
+  --uv-line2:#29405f;
+  --uv-text:#e8eefb;
+  --uv-muted:#93a4c0;
+  --uv-dim:#63748f;
+  --uv-accent:#38bdf8;
+  --uv-accent2:#0ea5e9;
+  --uv-green:#34d399;
+  --uv-red:#f87171;
+  --uv-amber:#f59e0b;
+  --uv-bist:#e11d48;
+  --uv-bist2:#fb7185;
+  --uv-r:12px;
+  --uv-r-sm:9px;
+  --uv-shadow:0 10px 30px rgba(0,0,0,.28);
+  --uv-focus:0 0 0 3px rgba(56,189,248,.35);
+}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+
+/* ---------- atlama bağlantısı ---------- */
+.uv-atla{
+  position:absolute;left:-9999px;top:8px;z-index:200;
+  background:var(--uv-accent);color:#04121f;font-weight:800;
+  padding:10px 16px;border-radius:10px;
+}
+.uv-atla:focus{left:14px}
+
+/* ---------- üst menü ---------- */
+header.uv-nav{
+  display:block !important;
+  position:sticky !important;top:0 !important;z-index:80 !important;
+  margin:0 !important;padding:0 !important;
+  align-items:initial !important;justify-content:initial !important;flex-wrap:nowrap !important;
+  background:linear-gradient(180deg,rgba(8,13,24,.94),rgba(8,13,24,.86));
+  border-bottom:1px solid rgba(30,47,77,.65);
+  backdrop-filter:saturate(140%) blur(16px);
+  -webkit-backdrop-filter:saturate(140%) blur(16px);
+  transition:box-shadow .2s ease, background .2s ease;
+}
+.uv-nav.uv-kaydi{box-shadow:0 8px 26px rgba(0,0,0,.35);background:rgba(8,13,24,.96)}
+.uv-nav .uv-nav-ic{
+  max-width:1180px;margin:0 auto !important;padding:9px 18px;
+  display:flex !important;align-items:center !important;justify-content:flex-start !important;
+  gap:16px;flex-wrap:nowrap !important;
+}
+.uv-marka{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+.uv-logo{
+  width:40px;height:40px;display:grid;place-items:center;border-radius:10px;
+  background:transparent;box-shadow:none;
+}
+.uv-logo svg{display:block;width:38px;height:38px;filter:drop-shadow(0 3px 10px rgba(56,189,248,.22))}
+.uv-marka-metin small{font-size:9px;letter-spacing:.13em;color:var(--uv-dim);margin-top:3px}
+.uv-marka-metin{display:flex;flex-direction:column;line-height:1.1}
+.uv-marka-metin b{color:var(--uv-text);font-size:14.5px;letter-spacing:-.2px}
+.uv-marka-metin small{color:var(--uv-dim);font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+.uv-menu{display:flex;align-items:center;gap:3px;flex:1 1 auto;min-width:0;overflow:visible;scrollbar-width:none}
+.uv-menu::-webkit-scrollbar{display:none}
+.uv-menu a{
+  flex:0 0 auto;color:var(--uv-muted);text-decoration:none;
+  font-size:12.5px;font-weight:600;letter-spacing:.01em;
+  padding:8px 11px;border-radius:9px;border:1px solid transparent;
+  transition:background .15s,color .15s,border-color .15s,transform .12s;
+  white-space:nowrap;
+}
+.uv-menu a:hover{background:rgba(56,189,248,.09);color:#eaf4ff;border-color:rgba(56,189,248,.18);transform:translateY(-1px)}
+.uv-menu a[aria-current="page"]{
+  background:rgba(56,189,248,.14);color:#dff3ff;
+  border-color:rgba(56,189,248,.32);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.uv-menu a:focus-visible{outline:none;box-shadow:var(--uv-focus)}
+
+/* BIST: ana sayfadaki BIST Kalite kartıyla aynı dil (koyu yüzey + kırmızı çerçeve) */
+.uv-menu a.uv-bist{
+  margin-left:4px;
+  display:inline-flex;align-items:center;gap:8px;
+  color:#fff;font-weight:800;letter-spacing:.01em;
+  background:linear-gradient(145deg,rgba(225,29,72,.16),rgba(15,26,44,.94));
+  border:1px solid rgba(225,29,72,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 4px 16px rgba(225,29,72,.12);
+  padding:6px 12px 6px 7px;
+}
+.uv-menu a.uv-bist:hover{
+  background:linear-gradient(145deg,rgba(225,29,72,.24),rgba(20,33,54,.96));
+  border-color:rgba(251,113,133,.66);color:#fff;transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 8px 22px rgba(225,29,72,.18);
+}
+.uv-menu a.uv-bist[aria-current="page"]{
+  background:linear-gradient(145deg,rgba(225,29,72,.26),rgba(22,36,58,.96));
+  border-color:rgba(251,113,133,.8);
+  box-shadow:inset 0 0 0 1px rgba(251,113,133,.22), 0 0 0 3px rgba(225,29,72,.14), 0 8px 22px rgba(225,29,72,.16);
+}
+.uv-bist-ikon{
+  width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  font-size:13px;font-weight:900;color:#ffd7de;
+  background:rgba(225,29,72,.18);border:1px solid rgba(225,29,72,.38);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.uv-bist-etiket{
+  font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:#fecdd3;background:rgba(225,29,72,.22);border:1px solid rgba(225,29,72,.30);
+  border-radius:5px;padding:2px 5px;
+}
+@media (max-width:980px){
+  .uv-menu a.uv-bist{justify-content:center;margin:6px 0 0;padding:11px 14px}
+  .uv-bist-ikon{width:28px;height:28px;font-size:14px}
+}
+
+
+/* ---------- menü sağ blok + mobil çekmece ---------- */
+.uv-sag{display:flex;align-items:center;gap:8px;flex:0 0 auto;color:var(--uv-muted);font-size:12px;padding-right:2px}
+.uv-sag a,.uv-sag span a{color:#bfe7ff;text-decoration:none;font-weight:700}
+.uv-sag a:hover{text-decoration:underline}
+#uyelikDurum a{display:inline-flex;align-items:center;gap:6px;background:rgba(56,189,248,.10);
+  border:1px solid rgba(56,189,248,.25);padding:6px 11px;border-radius:999px}
+.uv-ac{display:none;flex:0 0 auto;width:42px;height:40px;border-radius:11px;
+  background:var(--uv-surface2);border:1px solid var(--uv-line2);color:var(--uv-text);
+  font-size:18px;line-height:1;cursor:pointer;place-items:center}
+.uv-ac:hover{border-color:#3a5f8a}
+.uv-ac:focus-visible{outline:none;box-shadow:var(--uv-focus)}
+
+@media (max-width:980px){
+  .uv-nav .uv-nav-ic{gap:10px;padding:8px 12px;justify-content:space-between !important}
+  .uv-marka{margin-right:auto}
+  .uv-menu{
+    position:absolute;left:0;right:0;top:100%;
+    display:none;flex-direction:column;align-items:stretch;gap:4px;
+    background:#0a1220;border-bottom:1px solid var(--uv-line);
+    padding:10px 12px 14px;max-height:calc(100vh - 62px);overflow:auto;
+    box-shadow:0 22px 40px rgba(0,0,0,.45);
+  }
+  .uv-menu a{padding:12px 14px;font-size:14px;border-radius:10px}
+  .uv-nav.uv-nav-acik .uv-menu{display:flex}
+  .uv-ac{display:grid !important;margin-left:0 !important}
+  .uv-sag{display:none}
+  body.uv-kilit{overflow:hidden}
+}
+
+/* ---------- butonlar ---------- */
+.fbtn,.btn,button.btn,.sec select,.ara,.uv-menu + .sec select{
+  font-family:inherit;
+}
+.fbtn,.btn,button.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:38px;padding:8px 14px;
+  border-radius:10px;border:1px solid var(--uv-line2);
+  background:linear-gradient(180deg,#15243d,#101b2f);
+  color:#dbe7f7;font-size:12.5px;font-weight:650;letter-spacing:.01em;
+  cursor:pointer;user-select:none;text-decoration:none;
+  transition:background .15s,border-color .15s,transform .12s,box-shadow .15s,color .15s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 2px 6px rgba(0,0,0,.18);
+}
+.fbtn:hover,.btn:hover,button.btn:hover{
+  background:linear-gradient(180deg,#1b2f4d,#132138);
+  border-color:#3a5f8a;color:#fff;transform:translateY(-1px);
+}
+.fbtn:active,.btn:active,button.btn:active{transform:translateY(0)}
+.fbtn:focus-visible,.btn:focus-visible,button.btn:focus-visible{outline:none;box-shadow:var(--uv-focus)}
+.fbtn.on,.btn.on,.fbtn[aria-pressed="true"],.btn[aria-pressed="true"]{
+  background:linear-gradient(180deg,#38bdf8,#0ea5e9);
+  color:#04121f;border-color:#7dd3fc;font-weight:800;
+  box-shadow:0 4px 16px rgba(14,165,233,.28), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.fbtn.on:hover,.btn.on:hover{background:linear-gradient(180deg,#7dd3fc,#0ea5e9);color:#03111c}
+.fbtn:disabled,.btn:disabled,button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* filtre çubuğu ve seçim kutuları */
+.filtre-serit{gap:8px !important;align-items:center}
+.sec select,.filtre-serit select{
+  appearance:none;-webkit-appearance:none;
+  min-height:38px;padding:8px 34px 8px 12px !important;
+  border-radius:10px !important;border:1px solid var(--uv-line2) !important;
+  background-color:var(--uv-surface2) !important;
+  color:#dbe7f7 !important;font-size:12.5px;font-weight:600;cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2393a4c0' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat !important;
+  background-position:right 12px center !important;
+  transition:border-color .15s,box-shadow .15s,background-color .15s;
+}
+.sec select:hover,.filtre-serit select:hover{border-color:#3a5f8a !important}
+.sec select:focus,.filtre-serit select:focus{outline:none;border-color:var(--uv-accent) !important;box-shadow:var(--uv-focus)}
+input.ara,input[type="search"],input[type="text"],input[type="email"],input[type="password"]{
+  border-radius:10px !important;
+}
+input.ara{
+  border:1px solid var(--uv-line2) !important;
+  background:var(--uv-surface2) !important;color:var(--uv-text) !important;
+  min-height:38px;padding:8px 12px;
+}
+input.ara:focus{outline:none;border-color:var(--uv-accent) !important;box-shadow:var(--uv-focus)}
+
+/* rozet ve kart dokunuşları */
+.rozet{border:1px solid var(--uv-line2);background:rgba(19,33,58,.7)}
+.kpi,.panel,.kutu,.kart{-webkit-backface-visibility:hidden}
+.panel{box-shadow:var(--uv-shadow)}
+.kpi{transition:transform .15s,border-color .15s}
+.kpi:hover{transform:translateY(-1px);border-color:var(--uv-line2)}
+
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{
+  outline:none;box-shadow:var(--uv-focus);border-radius:8px;
+}
+
+/* hisse detayındaki bağlantı/araç şeridi */
+.uv-nav + .wrap .geri{
+  display:flex;flex-wrap:wrap;align-items:center;gap:5px 13px;
+  margin:10px 0 16px;padding:9px 12px;
+  border:1px solid var(--uv-line);border-radius:10px;
+  background:rgba(19,33,58,.45);font-size:12px;
+}
+.uv-nav + .wrap .geri a{color:#bfe7ff;text-decoration:none;font-weight:600}
+.uv-nav + .wrap .geri a:hover{color:#fff;text-decoration:underline}
+
+
+/* ana sayfada BIST kartı: menüdeki vurguyla uyumlu */
+a.bolum[href="bist.html"]{
+  border-color:rgba(225,29,72,.42) !important;
+  background:linear-gradient(145deg,rgba(225,29,72,.13),rgba(15,26,44,.92)) !important;
+}
+a.bolum[href="bist.html"]:hover{border-color:rgba(251,113,133,.65) !important;box-shadow:0 10px 26px rgba(225,29,72,.16)}
+a.bolum[href="bist.html"] .ikon{background:rgba(225,29,72,.18) !important}
+
+
+
+
+/* --- birleşik sayfa genişliği: tüm sayfalar aynı hizada (izleme listesi ölçüsü) --- */
+@media(min-width:861px){
+  body{padding-left:0 !important;padding-right:0 !important}
+  .wrap{width:100% !important;max-width:1400px !important;margin:0 auto !important;padding-left:16px !important;padding-right:16px !important}
+  .uv-nav .uv-nav-ic{width:100% !important;max-width:1400px !important;margin:0 auto !important}
+}
+@media(max-width:860px){
+  .wrap{max-width:100% !important;padding-left:12px !important;padding-right:12px !important}
+  .uv-nav .uv-nav-ic{max-width:100% !important}
+}
+
+/* --- üyelik e-postası: taşma/çakışma yok --- */
+.uv-sag{max-width:280px;min-width:0;margin-left:4px}
+.uv-sag #uyelikDurum{min-width:0;max-width:250px}
+.uv-sag #uyelikDurum a{display:flex;max-width:250px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uv-menu{min-width:0}
+
+/* --- menüde alt çizgi yok (sayfa CSS'lerindeki a:hover kuralını ezer) --- */
+.uv-nav a, .uv-nav a:hover, .uv-nav a:focus{text-decoration:none !important}
+.uv-marka, .uv-marka:hover, .uv-marka:focus, .uv-marka *{text-decoration:none !important}
+
+/* ---------- "Araçlar" açılır menüsü ---------- */
+.uv-alt{position:relative;flex:0 0 auto}
+.uv-alt-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  color:var(--uv-muted);background:transparent;border:1px solid transparent;
+  font:600 12.5px/1 inherit;font-family:inherit;padding:8px 11px;border-radius:9px;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.uv-alt-btn:hover,.uv-alt.uv-alt-acik .uv-alt-btn{background:rgba(56,189,248,.09);color:#eaf4ff;border-color:rgba(56,189,248,.18)}
+.uv-alt-btn:focus-visible{outline:none;box-shadow:var(--uv-focus)}
+.uv-alt-ok{font-size:9px;opacity:.7;transition:transform .15s}
+.uv-alt.uv-alt-acik .uv-alt-ok{transform:rotate(180deg)}
+.uv-alt.uv-alt-aktif .uv-alt-btn{background:rgba(56,189,248,.14);color:#dff3ff;border-color:rgba(56,189,248,.32)}
+.uv-alt-menu{
+  position:absolute;top:calc(100% + 8px);left:0;z-index:95;
+  min-width:250px;display:none;flex-direction:column;gap:2px;
+  background:#0b1424;border:1px solid var(--uv-line2);border-radius:12px;
+  padding:6px;box-shadow:0 22px 50px rgba(0,0,0,.5);
+}
+.uv-alt:hover .uv-alt-menu,.uv-alt:focus-within .uv-alt-menu,.uv-alt.uv-alt-acik .uv-alt-menu{display:flex}
+.uv-alt-menu a{
+  display:flex;flex-direction:column;gap:2px;padding:9px 11px;border-radius:8px;
+  color:#dbe7f7 !important;border:1px solid transparent;text-decoration:none !important;white-space:normal;
+}
+.uv-alt-menu a:hover{background:rgba(56,189,248,.09);border-color:rgba(56,189,248,.16);color:#fff !important;transform:none}
+.uv-alt-menu a[aria-current="page"]{background:rgba(56,189,248,.13);border-color:rgba(56,189,248,.3)}
+.uv-alt-menu .uv-alt-ad{font-weight:700;font-size:12.5px}
+.uv-alt-menu small{color:var(--uv-dim);font-size:10.5px;font-weight:500;line-height:1.35}
+@media (max-width:980px){
+  .uv-alt{width:100%}
+  .uv-alt-btn{width:100%;justify-content:space-between;padding:12px 14px;font-size:14px;border-radius:10px}
+  .uv-alt-menu{position:static;min-width:0;display:none;margin:4px 0 2px;padding:4px;background:rgba(10,18,32,.7)}
+  .uv-alt.uv-alt-acik .uv-alt-menu{display:flex}
+  .uv-alt:hover .uv-alt-menu{display:none}
+  .uv-alt.uv-alt-acik:hover .uv-alt-menu{display:flex}
+}
+
+@media (max-width:1150px) and (min-width:981px){
+  .uv-menu{gap:1px}
+  .uv-menu a{padding:8px 7px;font-size:11.5px}
+  .uv-alt-btn{padding:8px 7px;font-size:11.5px}
+  .uv-menu a.uv-bist{padding:6px 9px 6px 6px}
+  .uv-sag #uyelikDurum a{max-width:150px}
+}

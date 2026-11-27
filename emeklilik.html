@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emeklilik ve Birikim Simülatörü · Uzun Vade</title>
+<meta name="description" content="Aylık birikim, bileşik getiri ve enflasyon ile emeklilik hedefini hesapla. Yatırım tavsiyesi değildir.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://uzunvade.net/emeklilik.html">
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8;--grn:#34d399;--amb:#f59e0b}
+  body{margin:0;padding:26px 18px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto}
+  a{color:var(--acc)}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin:6px 0 20px;max-width:640px;line-height:1.6}
+  .izgara{display:grid;grid-template-columns:1fr 1.15fr;gap:14px}
+  @media(max-width:820px){.izgara{grid-template-columns:1fr}}
+  .kart{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 17px}
+  h2{font-size:11px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+  label{display:block;font-size:11.5px;color:var(--muted);margin:10px 0 5px;font-weight:600}
+  input[type=number],select{width:100%;background:#0a1322;border:1px solid #22314d;border-radius:9px;
+       color:var(--txt);padding:10px 12px;font-size:14px;font-weight:600;outline:none}
+  input[type=number]:focus,select:focus{border-color:#2f4a76;box-shadow:0 0 0 3px rgba(56,189,248,.1)}
+  .satir{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .sonuc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .kutu{background:#0b1424;border:1px solid #1b2942;border-radius:11px;padding:12px 13px}
+  .kutu .lb{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.7px;font-weight:700}
+  .kutu .vl{font-size:20px;font-weight:800;margin-top:5px;letter-spacing:-.5px}
+  .kutu .al{font-size:11px;color:var(--muted);margin-top:3px}
+  .buyuk{grid-column:1/-1;background:linear-gradient(180deg,rgba(29,78,216,.16),rgba(11,20,36,.9));border-color:#2b4670}
+  .buyuk .vl{font-size:30px;color:#7dd3fc}
+  .grafik{width:100%;height:240px;display:block;margin-top:6px}
+  .not{font-size:11.5px;color:#5b6b86;line-height:1.7;margin-top:14px}
+  .etiket{display:inline-block;font-size:10.5px;color:#7dd3fc;border:1px solid #24405f;border-radius:999px;padding:3px 9px;margin:0 6px 0 0}
+  .varsayilan{font-size:11px;color:#5b6b86;margin-top:10px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+  .uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:10px;padding:10px 12px;
+         color:#fde047;font-size:11.5px;line-height:1.65;margin-top:14px}
+</style>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<script src="yenile.js" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt uv-alt-aktif"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html" aria-current="page"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Emeklilik ve Birikim Simülatörü</h1>
+  <div class="sub">Aylık birikimini ve beklenen getiriyi gir; bileşik getirinin uzun vadede ne yaptığını gör.
+    Enflasyonu da hesaba katarak bugünkü satın alma gücüyle sonucu gösterir.</div>
+
+  <div class="izgara">
+    <div class="kart">
+      <h2>Girdiler</h2>
+      <label for="baslangic">Başlangıç sermayesi (₺)</label>
+      <input id="baslangic" type="number" value="100000" min="0" step="1000">
+      <label for="aylik">Aylık ek birikim (₺)</label>
+      <input id="aylik" type="number" value="5000" min="0" step="500">
+      <div class="satir">
+        <div>
+          <label for="yil">Vade (yıl)</label>
+          <input id="yil" type="number" value="20" min="1" max="50" step="1">
+        </div>
+        <div>
+          <label for="getiri">Yıllık getiri (%)</label>
+          <input id="getiri" type="number" value="18" min="0" max="100" step="0.5">
+        </div>
+      </div>
+      <div class="satir">
+        <div>
+          <label for="enflasyon">Yıllık enflasyon (%)</label>
+          <input id="enflasyon" type="number" value="25" min="0" max="200" step="1">
+        </div>
+        <div>
+          <label for="artis">Aylık artış (enflasyon kadar)</label>
+          <select id="artis">
+            <option value="1" selected>Evet (otomatik)</option>
+            <option value="0">Hayır (sabit)</option>
+          </select>
+        </div>
+      </div>
+      <div class="varsayilan" id="sifirla">Varsayılan değerlere dön</div>
+    </div>
+
+    <div class="kart">
+      <h2>Sonuç</h2>
+      <div class="sonuc">
+        <div class="kutu buyuk">
+          <div class="lb">Vade sonu birikim</div>
+          <div class="vl" id="sonDeger">—</div>
+          <div class="al" id="altDeger">—</div>
+        </div>
+        <div class="kutu">
+          <div class="lb">Bugünkü satın alma gücü</div>
+          <div class="vl" id="reelDeger" style="color:#34d399">—</div>
+          <div class="al">enflasyon düşüldükten sonra</div>
+        </div>
+        <div class="kutu">
+          <div class="lb">Toplam katkı</div>
+          <div class="vl" id="katki">—</div>
+          <div class="al">cebinden çıkan para</div>
+        </div>
+        <div class="kutu">
+          <div class="lb">Getiri katkısı</div>
+          <div class="vl" id="getiriKatki">—</div>
+          <div class="al">bileşik getirinin payı</div>
+        </div>
+        <div class="kutu">
+          <div class="lb">Aylık gelir (4% kuralı)</div>
+          <div class="vl" id="aylikGelir" style="color:#fbbf24">—</div>
+          <div class="al">portföyün %4'ü / 12</div>
+        </div>
+      </div>
+      <canvas id="grafik" class="grafik"></canvas>
+      <div class="etiket">bileşik getiri</div><div class="etiket">toplam katkı</div>
+      <div class="not">Grafik: mavi = birikim, turuncu = cebinden çıkan katkı.</div>
+    </div>
+  </div>
+
+  <div class="uyari">Bu sayfa matematiksel bir hesaplayıcıdır, yatırım tavsiyesi değildir. Getiri varsayımı gelecek için garanti değildir;
+    vergi, fon gideri ve işlem maliyetleri hesaba katılmamıştır.</div>
+
+  <div class="not"><b>Varsayım notu:</b> "Aylık artış" açıkken aylık ek birikim her yıl enflasyon kadar artar (reel katkı sabit kalır).
+    4% kuralı, yaygın kullanılan bir emeklilik çekim kuralıdır; Türkiye koşullarında enflasyon nedeniyle daha temkinli olunmalıdır.</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var V = { baslangic:100000, aylik:5000, yil:20, getiri:18, enflasyon:25, artis:1 };
+
+  function tl(x){
+    if (!isFinite(x)) return "—";
+    if (Math.abs(x) >= 1e9) return (x/1e9).toFixed(2).replace(".", ",") + " milyar ₺";
+    if (Math.abs(x) >= 1e6) return (x/1e6).toFixed(2).replace(".", ",") + " milyon ₺";
+    return Math.round(x).toLocaleString("tr-TR") + " ₺";
+  }
+
+  function oku(){
+    V.baslangic = +$("baslangic").value || 0;
+    V.aylik = +$("aylik").value || 0;
+    V.yil = Math.min(50, Math.max(1, +$("yil").value || 20));
+    V.getiri = +$("getiri").value || 0;
+    V.enflasyon = +$("enflasyon").value || 0;
+    V.artis = +$("artis").value;
+  }
+
+  function hesapla(){
+    var ay = V.yil * 12;
+    var aylikGetiri = Math.pow(1 + V.getiri/100, 1/12) - 1;
+    var bakiye = V.baslangic, katki = V.baslangic;
+    var seri = [bakiye], katkiSeri = [katki];
+    for (var i = 1; i <= ay; i++){
+      var ek = V.aylik * (V.artis ? Math.pow(1 + V.enflasyon/100, Math.floor((i-1)/12)) : 1);
+      bakiye = bakiye * (1 + aylikGetiri) + ek;
+      katki += ek;
+      if (i % 3 === 0){ seri.push(bakiye); katkiSeri.push(katki); }
+    }
+    var son = bakiye;
+    var reel = son / Math.pow(1 + V.enflasyon/100, V.yil);
+    $("sonDeger").textContent = tl(son);
+    $("altDeger").textContent = V.yil + " yıl sonra · " + (V.aylik).toLocaleString("tr-TR") + " ₺/ay ile";
+    $("reelDeger").textContent = tl(reel);
+    $("katki").textContent = tl(katki);
+    $("getiriKatki").textContent = tl(Math.max(0, son - katki));
+    $("aylikGelir").textContent = tl(son * 0.04 / 12);
+    ciz(seri, katkiSeri);
+  }
+
+  function ciz(seri, katkiSeri){
+    var c = $("grafik"), dpr = window.devicePixelRatio || 1;
+    var g = c.clientWidth, y = 240;
+    c.width = g * dpr; c.height = y * dpr;
+    var x = c.getContext("2d");
+    x.setTransform(dpr,0,0,dpr,0,0);
+    x.clearRect(0,0,g,y);
+    var ust = Math.max.apply(null, seri) || 1;
+    var sol = 6, sag = g - 6, ustY = 12, altY = y - 22;
+    function px(i){ return sol + (sag-sol) * (i/(seri.length-1 || 1)); }
+    function py(v){ return altY - (altY-ustY) * (v/ust); }
+    // izgara
+    x.strokeStyle = "#152139"; x.lineWidth = 1;
+    for (var k=0;k<=4;k++){ var yy = ustY + (altY-ustY)*k/4; x.beginPath(); x.moveTo(sol,yy); x.lineTo(sag,yy); x.stroke(); }
+    // katki (turuncu)
+    function alan(dizi, renk, dolgu){
+      x.beginPath();
+      dizi.forEach(function(v,i){ var X=px(i), Y=py(v); i? x.lineTo(X,Y) : x.moveTo(X,Y); });
+      x.strokeStyle = renk; x.lineWidth = 2; x.stroke();
+      if (dolgu){
+        x.lineTo(px(dizi.length-1), altY); x.lineTo(px(0), altY); x.closePath();
+        var gr = x.createLinearGradient(0, ustY, 0, altY);
+        gr.addColorStop(0, dolgu); gr.addColorStop(1, "rgba(8,13,24,0)");
+        x.fillStyle = gr; x.fill();
+      }
+    }
+    alan(katkiSeri, "#f59e0b", null);
+    alan(seri, "#38bdf8", "rgba(56,189,248,.22)");
+    // eksen etiketleri
+    x.fillStyle = "#5b6b86"; x.font = "10px -apple-system,Segoe UI,Roboto,sans-serif";
+    x.fillText("0", sol, y-6);
+    x.fillText(V.yil + ". yıl", sag-42, y-6);
+  }
+
+  ["baslangic","aylik","yil","getiri","enflasyon","artis"].forEach(function(id){
+    var e = $(id);
+    e.addEventListener("input", function(){ oku(); hesapla(); });
+    e.addEventListener("change", function(){ oku(); hesapla(); });
+  });
+  $("sifirla").onclick = function(){
+    $("baslangic").value = 100000; $("aylik").value = 5000; $("yil").value = 20;
+    $("getiri").value = 18; $("enflasyon").value = 25; $("artis").value = "1";
+    oku(); hesapla();
+  };
+  window.addEventListener("resize", function(){ oku(); hesapla(); });
+  oku(); hesapla();
+})();
+</script>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

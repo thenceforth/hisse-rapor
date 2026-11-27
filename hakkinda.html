@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hakkında · Uzun Vade</title>
+<meta name="description" content="Uzun Vade nedir, veriyi nereden alıyor, ücretsiz beta süreci ve yol haritası. Yatırım tavsiyesi değildir.">
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8}
+  body{margin:0;padding:28px 22px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:12px}
+  h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.7px}
+  .sub{color:var(--muted);font-size:13.5px;margin:8px 0 24px;line-height:1.6}
+  h2{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.1px;margin:28px 0 10px}
+  .panel{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+  p{color:#b9c8dd;font-size:13.5px;line-height:1.75;margin:0 0 10px}
+  ul{color:#b9c8dd;font-size:13.5px;line-height:1.8;margin:6px 0 0;padding-left:20px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  th,td{padding:9px 8px;border-bottom:1px solid #14203a;text-align:left;vertical-align:top}
+  th{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.7px}
+  .etk{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:99px;border:1px solid #2f5d8a;color:#93c5fd;white-space:nowrap}
+  .etk.simdi{border-color:#1f6f4a;color:#6ee7b7}
+  .etk.sonra{border-color:#7c5a12;color:#fbbf24}
+  form{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  input[type=email]{flex:1;min-width:220px;background:#0d1729;border:1px solid var(--line);border-radius:10px;
+        color:var(--txt);padding:12px 14px;font-size:14px;outline:none}
+  input[type=email]:focus{border-color:#2f4a76}
+  button{background:#1d4ed8;border:1px solid #2563eb;color:#fff;border-radius:10px;padding:12px 18px;font-size:14px;
+         font-weight:600;cursor:pointer}
+  button:hover{background:#2563eb}
+  .kucuk{font-size:11.5px;color:#5b6b86;margin-top:8px;line-height:1.6}
+  .uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:12px;padding:12px 14px;
+         color:#fde047;font-size:12.5px;line-height:1.7}
+  .sss details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .sss summary{cursor:pointer;font-weight:600;font-size:13px;color:#dbe7f7}
+  .sss p{margin:8px 0 0;font-size:12.5px;color:#a9b8cd}
+  footer{margin-top:30px;color:#41506b;font-size:11.5px;line-height:1.7}
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+</style>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/hakkinda.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html" aria-current="page">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+
+  <h1>Uzun Vade</h1>
+  <div class="sub">
+    Uzun Vade: kalite odaklı hisse taraması. Önce bilanço (ROIC, borç, nakit akışı, Piotroski, Beneish),
+    geçenler teknik olarak incelenir. Sonra dipten dönüş ve giriş zamanlaması skorları üretilir.
+  </div>
+
+  <h2>Şu an ne var</h2>
+  <div class="panel">
+    <ul>
+      <li>Global taramada kalite kapısından geçen hisseler + <b>BIST taraması: 99 hisse taranır, kalite kapısını geçenler listelenir</b></li>
+      <li>Her hisse için: değerleme, kalite, büyüme açığı, FCF verimi, EV/EBIT, temettü, SBC düzeltmesi</li>
+      <li>Dipten dönüş sinyali (0-100), giriş uygunluğu, tez kırılma uyarıları</li>
+      <li>26 varlıklı endeks/makro panosu (emtia, faiz, döviz, AMB faizleri, VIX)</li>
+      <li>Haberler + Türkçe yapay zekâ özeti, bilanço takvimi, portföy takibi</li>
+    </ul>
+  </div>
+
+  <h2>Ücretsiz beta süreci</h2>
+  <div class="panel">
+    <p><b>Site şu an tamamen ücretsiz.</b> Amacım önce ürünü oturtmak: veri doğruluğu, sinyal kalitesi ve kullanım kolaylığı.
+       Ölçüm ve geri bildirim topladıktan sonra kademeli bir model planlıyorum.</p>
+    <table>
+      <thead><tr><th>Aşama</th><th>Ne zaman</th><th>Ne olacak</th></tr></thead>
+      <tbody>
+        <tr><td><span class="etk simdi">ŞİMDİ</span></td><td>Beta</td>
+            <td>Her şey ücretsiz. Hata bildirimi ve geri bildirim toplanıyor. Kullanım, anonim olay kayıtlarıyla ölçülür.</td></tr>
+        <tr><td><span class="etk sonra">SONRA</span></td><td>Freemium</td>
+            <td>Ücretsiz katman korunur (kalite metrikleri, temel detay verisi). Ücretli katman: giriş skoru, kısa liste yıldızları, tez kırılma yorumları; ileride alarmlar ve portföy araçları.</td></tr>
+        <tr><td><span class="etk sonra">SONRA</span></td><td>Pro</td>
+            <td>Otomatik alarmlar, ölçüm raporları, öncelikli destek. Fiyat bekleme listesine duyurulacak.</td></tr>
+      </tbody>
+    </table>
+    <div class="kucuk">Tarih vermiyorum: önce ürünün hak ettiği olgunluğa gelmesi gerekiyor. Fiyat değişince mevcut beta kullanıcılarına özel koşul sunulacak.</div>
+  </div>
+
+  <h2>Ne ücretsiz, ne üyelere özel</h2>
+  <div class="panel">
+    <p><b>Kalite metrikleri ve detay sayfasındaki temel veriler herkese açık; yorum katmanı üyelere özel.</b>
+       Veriyi toplamak ile onu yorumlamak ayrı işler; biz ikincisini üyelere ayırıyoruz.</p>
+    <table>
+      <thead><tr><th>Herkese açık</th><th>Üyelere özel</th></tr></thead>
+      <tbody>
+        <tr><td>Kalite metrikleri: ROIC, borç, FCF, Piotroski, Beneish, F/K, PD/DD, temettü</td><td>Giriş skoru ve bileşenleri</td></tr>
+        <tr><td>Detay sayfasındaki temel veriler: bilanço kalemleri, fiyat/grafik, hacim</td><td>Kısa liste yıldızları (★)</td></tr>
+        <tr><td>Global ve BIST kalite kapısı sonuçları</td><td>Tez kırılma yorumları</td></tr>
+        <tr><td>Haberler, bilanço takvimi, endeks panosu, sözlük, podcast, portföy aracı</td><td>Güçlü / Takip / Nötr / Zayıf etiketleri</td></tr>
+      </tbody>
+    </table>
+    <div class="kucuk">Beta süresince üyelik ücretsiz; üyelere özel alanlar giriş yapınca açılır. Ücretli katman açıldığında bu ayrım korunacak.</div>
+  </div>
+
+  <h2 id="waitlist">Erken erişim listesi</h2>
+  <div class="panel">
+    <p>Ücretli katman açıldığında ilk sen haberdar ol; kurucu üye fiyatından yararlan.</p>
+    <form id="waitlistForm" autocomplete="off">
+      <input type="email" name="email" placeholder="e-posta adresin" required>
+      <button type="submit">Listeye gir</button>
+    </form>
+    <div id="waitlistMesaj" class="kucuk"></div>
+    <div class="kucuk">E-postan yalnızca bu bildirim için kullanılır; üçüncü taraflarla paylaşılmaz, tek tıkla çıkabilirsin.</div>
+  </div>
+
+  <h2>Veri kaynakları ve sınırlamalar</h2>
+  <div class="panel">
+    <ul>
+      <li><b>Fiyat/bilanço:</b> Yahoo Finance (günlük kapanış; endeks ve emtia dahil)</li>
+      <li><b>Bilanço dönemi:</b> Yıllık veri genelde 4 yıl, bazen 5 yıl; "5 yıl ortalama" ifadesi "mevcut 4-5 yıl (veriye göre)" olarak okunmalıdır</li>
+      <li><b>Haberler:</b> Google News RSS; özetler yapay zekâ ile üretilir</li>
+      <li><b>Politika faizleri:</b> Avrupa Merkez Bankası veri API'si</li>
+      <li><b>Gecikme:</b> Fiyatlar tarama saatine göre gecikmelidir; 15 dakika gecikmeli olabilir</li>
+      <li><b>BIST:</b> Ayrı modeller (sanayi, banka, GYO, holding, sigorta/finans); TMS 29 enflasyon muhasebesi oranları etkileyebilir</li>
+      <li><b>Kapasite:</b> Veri ücretsiz kaynaklardan geldiği için ticari yeniden dağıtım yapılmaz</li>
+    </ul>
+  </div>
+
+  <h2>Sık sorulanlar</h2>
+  <div class="sss">
+    <details><summary>Bu site yatırım tavsiyesi veriyor mu?</summary>
+      <p>Hayır. Üretilen skorlar ve uyarılar kişiselleştirilmiş yatırım danışmanlığı değildir; genel bilgi ve analiz amaçlıdır.
+         Kararların sorumluluğu kullanıcıya aittir.</p></details>
+    <details><summary>Sinyaller neye göre üretiliyor?</summary>
+      <p>Önce kalite kapısı (ROIC, borç, nakit akışı, Piotroski, Beneish), sonra teknik (trend, RSI, hacim, dipten dönüş skoru).
+         Detay sayfasında her bileşenin puanı ayrı gösterilir.</p></details>
+    <details><summary>Neden bazı hisseler listede yok?</summary>
+      <p>Kalite eşiklerini geçmeyenler listeye girmez. Kalma sebebi satır detayında gösterilir.</p></details>
+    <details><summary>Ücretli olunca veriler satılacak mı?</summary>
+      <p>Hayır. Ücretli katman; analiz, skor ve uyarıları kapsar. Ham veri üçüncü taraflara satılmaz.</p></details>
+    <details><summary>Verilerim nasıl korunuyor?</summary>
+      <p>Site reklam/izleme çerezi kullanmaz. Portföy bilgileri yalnızca kendi tarayıcında saklanır. E-posta adresi ve Google ile giriş kimliği üyelik için, anonim kullanım olayları ürün iyileştirme için tutulur; ayrıntılar Gizlilik sayfasındadır.</p></details>
+  </div>
+
+  <h2>İletişim</h2>
+  <div class="panel">
+    <p>Hata, öneri veya iş birliği: <a id="iletisimLink" href="#">mehmetalper77@gmail.com</a></p>
+    <div class="uyari">
+      Bu site bir yatırım danışmanlığı hizmeti değildir. Yatırım kararları için yetkili bir kurumdan destek alın.
+    </div>
+  </div>
+
+  <footer>
+    Uzun Vade · ücretsiz beta · veri: Yahoo Finance, Google News, ECB · ölçüm: anonim
+  </footer>
+</div>
+<script src="olcum.js"></script>
+<script>
+  (function(){
+    var a = document.getElementById('iletisimLink');
+    if (a && window.HT_AYAR && window.HT_AYAR.ILETISIM) {
+      a.href = 'mailto:' + window.HT_AYAR.ILETISIM;
+      a.textContent = window.HT_AYAR.ILETISIM;
+    }
+  })();
+</script>
+<script src="uyelik.js"></script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

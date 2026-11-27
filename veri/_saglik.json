@@ -1,0 +1,1 @@
+{"guncelleme":"2026-11-28T09:30:03","site":200,"tazelik":{"_endeks.json":14.9,"_liste.json":14.9,"haberler.json":15.1,"_hafta.json":49.4},"yedek_saat":0.1,"kilitler":{"piyasa.lock":0.1,"arkaplan.lock":0.1},"sorunlar":["_endeks.json 15 saat eski (limit 14)","_hafta.json 49 saat eski (limit 30)"],"durum":"sorunlu"}

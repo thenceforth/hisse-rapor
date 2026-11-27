@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinyal Performansı</title>
+<style>
+  *{box-sizing:border-box}
+  :root{--bg:#080d18;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;
+        --acc:#38bdf8;--grn:#10b981;--red:#ef4444;--ylw:#eab308}
+  body{margin:0;padding:26px 22px 60px;background:radial-gradient(1100px 500px at 12% -10%,#13203a 0%,var(--bg) 55%);
+       color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1400px;margin:0 auto}
+  a{color:var(--acc);text-decoration:none}
+  .geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+  h1{margin:0;font-size:28px;font-weight:700;letter-spacing:-.6px}
+  .sub{color:var(--muted);font-size:13px;margin:5px 0 18px}
+  .kpi{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:18px}
+  .k{background:linear-gradient(180deg,var(--card),#0d1526);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .k .lb{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;font-weight:600}
+  .k .vl{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.4px;font-variant-numeric:tabular-nums}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+  h2{font-size:11.5px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.1px;margin:0 0 12px}
+  .arac{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .btn{background:#0d1729;border:1px solid var(--line);color:var(--muted);border-radius:9px;padding:7px 12px;
+       font-size:12.5px;cursor:pointer}
+  .btn.on{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:8px 9px;border-bottom:1px solid #14203a;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  thead th{color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px}
+  tbody tr:hover td{background:#101c31}
+  .hs{font-family:ui-monospace,monospace;font-weight:700}
+  .rozet{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:700}
+  .b-AL{background:rgba(16,185,129,.16);color:#34d399}
+  .b-KISA{background:rgba(234,179,8,.16);color:#fbbf24}
+  .bar{height:9px;background:#16233b;border-radius:99px;overflow:hidden}
+  .bar div{height:100%;border-radius:99px}
+  .dagilim{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:5px 0}
+  .dagilim .ad{width:64px;color:#b9c8dd}
+  .dagilim .sayi{width:44px;text-align:right;color:var(--muted)}
+  .mini{font-size:11.5px;color:var(--dim);line-height:1.7}
+  @media (max-width:820px){
+    body{padding:16px 10px 40px}
+    .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+    th,td{padding:7px 6px;font-size:12px}
+    .gizle-m{display:none}
+  }
+
+  .ust-sag{position:fixed;top:12px;right:16px;z-index:60;display:flex;gap:6px;align-items:center;
+           background:rgba(13,23,41,.94);border:1px solid var(--line);border-radius:999px;
+           padding:5px 8px 5px 12px;font-size:12.5px;backdrop-filter:blur(8px);
+           box-shadow:0 8px 24px -14px rgba(0,0,0,.9)}
+  .ust-sag a{color:#cbd5e1;padding:4px 9px;border-radius:999px;text-decoration:none;font-weight:600}
+  .ust-sag a:hover{background:#16233b;color:#fff}
+  .ust-sag span a{color:#93c5fd}
+  @media(max-width:760px){
+    .ust-sag{position:static;margin:0 0 12px auto;width:max-content;padding:4px 6px 4px 10px}
+  }
+
+  #listePerfTablo{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+  #listePerfTablo th{font-size:10px;color:#5b6b86;text-transform:uppercase;letter-spacing:.6px;
+    text-align:right;padding:8px 8px;border-bottom:1px solid #1b2740}
+  #listePerfTablo td{padding:8px;border-bottom:1px solid #131f36;text-align:right;
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+  #listePerfTablo th:first-child,#listePerfTablo td:first-child{text-align:left;width:34%}
+  #listePerfTablo th:nth-child(2),#listePerfTablo td:nth-child(2){width:16.5%}
+</style>
+<script src="yenile.js" defer></script>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#080d18">
+<link rel="apple-touch-icon" href="ikon-192.png">
+<link rel="canonical" href="https://uzunvade.net/performans.html">
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head>
+<body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt uv-alt-aktif"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html" aria-current="page"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+
+<div class="wrap" id="icerik">
+  <h1>Sinyal Performansı</h1>
+  <div class="sub" id="alt">Geçmiş sinyallerin bugüne kadarki getirisi (anlık, mark-to-market)</div>
+
+  <div class="kpi" id="kpi"></div>
+
+  <div class="panel" id="olcumPanel"></div>
+
+  <div class="panel">
+    <h2>Getiri dağılımı</h2>
+    <div id="dagilim"></div>
+  </div>
+
+  <div class="panel" style="padding:0;overflow:auto">
+    <div class="arac" style="padding:14px 14px 0">
+      <button class="btn on" data-f="ALL">Tümü</button>
+      <button class="btn" data-f="AL">Güçlü</button>
+      <button class="btn" data-f="KISA">Seçki</button>
+      <button class="btn" id="sirala">Getiriye göre sırala ↓</button>
+    </div>
+    <table id="tablo"></table>
+  </div>
+
+
+  <div class="panel" id="listePerf">
+    <h2>Takip listesinin geçmiş getirisi <span style="color:#41506b;font-weight:600;letter-spacing:0;text-transform:none">mevcut liste · S&amp;P 500 ile</span></h2>
+    <div id="listePerfOzet" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px"></div>
+    <div id="listePerfNot" style="font-size:11.5px;color:#5b6b86;margin-top:10px;line-height:1.7"></div>
+    <div style="overflow:auto;margin-top:10px"><table id="listePerfTablo"></table></div>
+  </div>
+
+  <div class="panel">
+    <h2>Nasıl okunmalı</h2>
+    <div class="mini">
+      • Bu tablo <b>anlık</b> getiriyi gösterir: sinyal günündeki fiyattan bugüne.<br>
+      • Sabit ufuklar (21 / 63 / 126 / 252 işlem günü) ölçüm defterinde ayrıca takip edilir; ilk ufuk <b>3 Aralık 2026</b>'da doluyor.<br>
+      • "Fazla" = hisse getirisi − S&amp;P 500 getirisi (aynı tarihten itibaren). Pozitifse endeksi yenmiş.<br>
+      • Az sayıda sinyalde istatistiksel güç düşüktür; 60+ sinyal birikmeden yorum yapmak yanıltıcı olur.
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const num = (v,n=1) => (v===null||v===undefined||isNaN(v)) ? '—' : Number(v).toLocaleString('tr-TR',{minimumFractionDigits:n,maximumFractionDigits:n});
+const renk = v => v > 0 ? 'var(--grn)' : v < 0 ? 'var(--red)' : 'var(--muted)';
+let VERI = [], FILTRE = 'ALL', SIRA = 'tarih';
+// Eski kodlar (AL/KISA) veride kalabilir; ekranda yalnızca nötr adlar gösterilir.
+const SINYAL_AD = {AL:'Güçlü', KISA:'Seçki', IZLE:'Takip', BEKLE:'Nötr', GEC:'Zayıf', TUT:'Nötr', SAT:'Zayıf'};
+const sinyalAd = x => SINYAL_AD[String(x||'').toUpperCase()] || 'Sinyal';
+
+function ort(a){ return a.length ? a.reduce((x,y)=>x+y,0)/a.length : null; }
+function medyan(a){
+  if (!a.length) return null;
+  const s = [...a].sort((x,y)=>x-y), m = Math.floor(s.length/2);
+  return s.length % 2 ? s[m] : (s[m-1]+s[m])/2;
+}
+
+function ciz(){
+  const d = FILTRE === 'ALL' ? VERI : VERI.filter(x => x.tip === FILTRE);
+  const get = d.map(x => x.getiri).filter(v => v !== null && v !== undefined);
+  const fazla = d.map(x => x.fazla).filter(v => v !== null && v !== undefined);
+  const isabet = get.length ? get.filter(v => v > 0).length / get.length * 100 : null;
+
+  $('kpi').innerHTML = `
+    <div class="k"><div class="lb">Sinyal</div><div class="vl">${d.length}</div></div>
+    <div class="k"><div class="lb">Ortalama getiri</div><div class="vl" style="color:${renk(ort(get))}">${ort(get)===null?'—':(ort(get)>0?'+':'')+num(ort(get))+'%'}</div></div>
+    <div class="k"><div class="lb">Medyan</div><div class="vl" style="color:${renk(medyan(get))}">${medyan(get)===null?'—':(medyan(get)>0?'+':'')+num(medyan(get))+'%'}</div></div>
+    <div class="k"><div class="lb">İsabet</div><div class="vl">${isabet===null?'—':'%'+num(isabet,0)}</div></div>
+    <div class="k"><div class="lb">Endekse göre fazla</div><div class="vl" style="color:${renk(ort(fazla))}">${ort(fazla)===null?'—':(ort(fazla)>0?'+':'')+num(ort(fazla))+'%'}</div></div>`;
+
+  // dagilim: -20 alti, -20..-10, -10..0, 0..10, 10..20, 20 ustu
+  const dilimler = [
+    {ad:'< -20%', min:-1e9, max:-20},
+    {ad:'-20…-10', min:-20, max:-10},
+    {ad:'-10…0', min:-10, max:0},
+    {ad:'0…10', min:0, max:10},
+    {ad:'10…20', min:10, max:20},
+    {ad:'> 20%', min:20, max:1e9},
+  ];
+  const sayilar = dilimler.map(x => get.filter(v => v > x.min && v <= x.max).length);
+  const enBuyuk = Math.max(1, ...sayilar);
+  $('dagilim').innerHTML = dilimler.map((x,i) => {
+    const c = x.max <= 0 ? 'var(--red)' : 'var(--grn)';
+    return `<div class="dagilim"><span class="ad">${x.ad}</span>
+      <div class="bar" style="flex:1"><div style="width:${sayilar[i]/enBuyuk*100}%;background:${c}"></div></div>
+      <span class="sayi">${sayilar[i]}</span></div>`;
+  }).join('') + `<div class="mini" style="margin-top:8px">Toplam ${get.length} sinyal · pozitif ${get.filter(v=>v>0).length} · negatif ${get.filter(v=>v<=0).length}</div>`;
+
+  const sirali = [...d].sort((a,b) => SIRA === 'getiri' ? (b.getiri||0)-(a.getiri||0) : (b.tarih > a.tarih ? 1 : -1));
+  $('tablo').innerHTML = `<thead><tr>
+      <th>Tarih</th><th>Hisse</th><th>Sinyal</th><th>Giriş</th><th>Güncel</th>
+      <th>Getiri</th><th class="gizle-m">Endeks</th><th class="gizle-m">Fazla</th></tr></thead>
+    <tbody>${sirali.map(x => `<tr class="satirTikla" data-t="${x.t}" style="cursor:pointer">
+      <td>${x.tarih}</td>
+      <td><a class="hs" href="hisse.html?t=${encodeURIComponent(x.t)}">${x.t}</a></td>
+      <td><span class="rozet b-${x.tip}">${sinyalAd(x.tip)}</span></td>
+      <td>${num(x.giris,2)}</td>
+      <td>${num(x.guncel,2)}</td>
+      <td style="color:${renk(x.getiri)};font-weight:700">${x.getiri>0?'+':''}${num(x.getiri)}%</td>
+      <td class="gizle-m" style="color:${renk(x.endeks)}">${x.endeks===null?'—':(x.endeks>0?'+':'')+num(x.endeks)+'%'}</td>
+      <td class="gizle-m" style="color:${renk(x.fazla)}">${x.fazla===null?'—':(x.fazla>0?'+':'')+num(x.fazla)+'%'}</td>
+    </tr>`).join('')}</tbody>`;
+}
+
+document.querySelectorAll('[data-f]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-f]').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  FILTRE = b.dataset.f;
+  ciz();
+});
+$('sirala').onclick = () => {
+  SIRA = SIRA === 'getiri' ? 'tarih' : 'getiri';
+  $('sirala').textContent = SIRA === 'getiri' ? 'Tarihe göre sırala ↓' : 'Getiriye göre sırala ↓';
+  ciz();
+};
+
+fetch('veri/_olcum.json').then(r => r.json()).then(oc => {
+  const el = document.getElementById('olcumPanel');
+  if (!el) return;
+  if (!oc || oc.durum !== 'hazir'){
+    // ilk ufuk tarihi: ilk sinyal + 30 takvim gunu (21 islem gunu ~ 30 gun)
+    fetch('veri/_sinyaller.json').then(r => r.json()).then(sg => {
+      const ilk = (sg || []).map(x => x.tarih).sort()[0];
+      let kalan = null;
+      if (ilk){
+        const hedef = new Date(ilk + 'T00:00:00');
+        hedef.setDate(hedef.getDate() + 30);
+        kalan = Math.ceil((hedef - new Date()) / 86400000);
+      }
+      el.innerHTML = `<h2>Sabit ufuk ölçümü <span class="mini" style="text-transform:none">21 / 63 / 126 / 252 işlem günü</span></h2>
+        <div style="color:#8497b3;font-size:13px;line-height:1.7">
+          Henüz hiçbir ufuk dolmadı. İlk sinyal <b>${ilk || '—'}</b> tarihli;
+          21 işlem günü dolduğunda tablo otomatik burada görünecek.
+          ${kalan !== null ? `<br><b>${kalan > 0 ? kalan + ' gün kaldı' : 'doldu — bir sonraki taramada hesaplanacak'}</b>` : ''}
+        </div>`;
+    }).catch(()=>{});
+    return;
+  }
+  const grup = (oc.gruplar || []).map(g =>
+    `<tr><td>${sinyalAd(g.tip)}</td><td>${g.ufuk}</td><td>${g.n}</td>
+     <td style="color:${g.getiri>0?'#10b981':'#ef4444'}">${g.getiri>0?'+':''}${g.getiri.toFixed(1)}%</td>
+     <td style="color:${(g.fazla||0)>0?'#10b981':'#ef4444'}">${g.fazla!=null?((g.fazla>0?'+':'')+g.fazla.toFixed(1)+'%'):'—'}</td>
+     <td>${g.medyan!=null?((g.medyan>0?'+':'')+g.medyan.toFixed(1)+'%'):'—'}</td>
+     <td>${g.pozitif!=null?'%'+g.pozitif:'—'}</td>
+     <td>${g.t!=null?g.t.toFixed(2):'—'}</td></tr>`).join('');
+  const kontrol = (oc.kontrol || []).map(k =>
+    `<tr><td>kontrol</td><td>${k.ufuk}</td><td>${k.n}</td><td>—</td>
+     <td style="color:${(k.fazla||0)>0?'#10b981':'#ef4444'}">${k.fazla!=null?((k.fazla>0?'+':'')+k.fazla.toFixed(1)+'%'):'—'}</td>
+     <td>${k.medyan!=null?((k.medyan>0?'+':'')+k.medyan.toFixed(1)+'%'):'—'}</td><td>—</td><td>—</td></tr>`).join('');
+  el.innerHTML = `<h2>Sabit ufuk ölçümü <span class="mini" style="text-transform:none">güncelleme ${(oc.guncelleme||'').replace('T',' ').slice(0,16)}</span></h2>
+    <div style="overflow:auto"><table><thead><tr><th>Tip</th><th>Ufuk</th><th>n</th>
+    <th>Ort getiri</th><th>Fazla</th><th>Medyan</th><th>&gt;0</th><th>t</th></tr></thead>
+    <tbody>${grup}${kontrol}</tbody></table></div>
+    <div class="mini" style="margin-top:8px">Fazla = hisse getirisi − kendi endeksinin aynı dönemdeki getirisi.
+    <b>t</b> değeri 2'nin üzerindeyse fark istatistiksel olarak anlamlı sayılır (n küçükken temkinli ol).</div>`;
+}).catch(()=>{});
+
+fetch('veri/_sinyaller.json').then(r => r.json()).then(list => {
+  VERI = list || [];
+  $('alt').textContent = `${VERI.length} sinyal · ${VERI.length ? VERI[VERI.length-1].tarih : ''} – ${VERI.length ? VERI[0].tarih : ''} · anlık getiri`;
+  ciz();
+  document.querySelectorAll('.satirTikla').forEach(tr => tr.onclick = () => {
+    location.href = 'hisse.html?t=' + encodeURIComponent(tr.dataset.t);
+  });
+}).catch(() => { $('kpi').innerHTML = '<div class="k"><div class="lb">Hata</div><div class="vl">veri yok</div></div>'; });
+</script>
+<script src="uyelik.js">
+  </script>
+<script>
+// takip listesi gecmis getirisi (_liste_perf.json)
+  fetch("veri/_liste_perf.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j) return;
+    var kutu = document.getElementById("listePerfOzet");
+    var not = document.getElementById("listePerfNot");
+    var sira = ["1 ay", "3 ay", "6 ay", "12 ay"];
+    kutu.innerHTML = sira.map(function(ad){
+      var o = (j.ozet || {})[ad]; if (!o) return "";
+      var fark = o.endeksten_fazla;
+      var renk = fark === null ? "#94a3b8" : (fark >= 0 ? "#34d399" : "#fca5a5");
+      return '<div style="background:#0b1424;border:1px solid #1b2942;border-radius:11px;padding:11px 12px">' +
+        '<div style="font-size:10.5px;color:#5b6b86;font-weight:700;letter-spacing:.7px;text-transform:uppercase">' + ad + '</div>' +
+        '<div style="font-size:20px;font-weight:800;margin-top:4px;color:' + (o.medyan >= 0 ? "#34d399" : "#fca5a5") + '">' +
+          (o.medyan === null ? "—" : (o.medyan > 0 ? "+" : "") + o.medyan + "%") + '</div>' +
+        '<div style="font-size:11px;color:#64748b;margin-top:3px">endeks ' + (o.endeks === null ? "—" : o.endeks + "%") +
+          ' · fark <b style="color:' + renk + '">' + (fark === null ? "—" : (fark > 0 ? "+" : "") + fark + "%") + '</b></div>' +
+        '<div style="font-size:11px;color:#64748b">pozitif: %' + (o.pozitif_oran === null ? "—" : o.pozitif_oran) + ' · n=' + o.adet + '</div>' +
+      '</div>';
+    }).join("");
+    if (not) not.textContent = j.not || "";
+    var t = document.getElementById("listePerfTablo");
+    if (t){
+      var hs = (j.hisseler || []).slice(0, 25);
+      t.innerHTML = '<thead><tr><th>Hisse</th><th class="sag">1 ay</th><th class="sag">3 ay</th>' +
+        '<th class="sag">6 ay</th><th class="sag">12 ay</th></tr></thead><tbody>' +
+        hs.map(function(x){
+          function h(v){ return v === null || v === undefined ? "—" : '<span style="color:' + (v >= 0 ? "#34d399" : "#fca5a5") + '">' + (v > 0 ? "+" : "") + v + "%</span>"; }
+          return '<tr><td><a href="hisse.html?t=' + encodeURIComponent(x.t) + '" style="color:#dbeafe;font-weight:700">' + x.t + '</a></td>' +
+            '<td class="sag">' + h(x["1 ay"]) + '</td><td class="sag">' + h(x["3 ay"]) + '</td>' +
+            '<td class="sag">' + h(x["6 ay"]) + '</td><td class="sag">' + h(x["12 ay"]) + '</td></tr>';
+        }).join("") + '</tbody>';
+    }
+  }).catch(function(){});
+
+</script>
+  <script src="menu.js?v=13" defer></script>
+</body>
+</html>

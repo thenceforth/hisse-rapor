@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temettü Takvimi · Uzun Vade</title>
+<meta name="description" content="Temettü verimi en yüksek hisseler, geçmiş ödeme tarihleri ve yaklaşan tahmini temettü takvimi.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://uzunvade.net/temettu.html">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8;--grn:#34d399;--red:#f87171;--amb:#f59e0b}
+body{margin:0;padding:26px 18px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+     color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto}
+a{color:var(--acc);text-decoration:none}
+.geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.6px}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 18px;max-width:680px;line-height:1.6}
+.kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px;margin-bottom:18px}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.kpi .lb{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.kpi .vl{font-size:21px;font-weight:800;margin-top:5px;letter-spacing:-.5px}
+.kpi .al{font-size:11px;color:#64748b;margin-top:3px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:14px;overflow:hidden}
+h2{font-size:11px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+h2 span{color:#41506b;font-weight:600;text-transform:none;letter-spacing:0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;text-align:right;padding:7px 6px;border-bottom:1px solid #1b2740;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:8px 6px;border-bottom:1px solid #131f36;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:#101b2e}
+.sym{font-weight:700;color:#dbeafe}
+.ad{font-size:10.5px;color:#64748b;display:block;margin-top:2px;white-space:normal}
+.pos{color:var(--grn)}.neg{color:var(--red)}.notr{color:#64748b}
+.rozet{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid #24405f;color:#7dd3fc}
+.tbl-wrap{overflow-x:auto}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.sekmeler button{background:#0b1424;border:1px solid #1b2942;color:#94a3b8;border-radius:999px;padding:6px 12px;font-size:11.5px;font-weight:700;cursor:pointer}
+.sekmeler button.on{background:#16233b;border-color:#2f4a76;color:#dbeafe}
+.not{font-size:11.5px;color:#5b6b86;line-height:1.7;margin-top:10px}
+.uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:10px;padding:10px 12px;color:#fde047;font-size:11.5px;line-height:1.65;margin-top:14px}
+</style>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<script src="yenile.js" defer></script>
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head><body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html" aria-current="page">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+<div class="wrap" id="icerik">
+<h1>Temettü Takvimi</h1>
+<div class="sub">Temettü verimi, geçmiş ödeme tarihleri ve önümüzdeki dönem için tahmini takvim.
+  Tahminler geçmiş ödeme aylarına göre yapılır; şirket kararı değişebilir.</div>
+<div class="kpiler">
+  <div class="kpi"><div class="lb">Taranan hisse</div><div class="vl">113</div><div class="al">global + BIST</div></div>
+  <div class="kpi"><div class="lb">Temettü veren</div><div class="vl">99</div><div class="al">son 12 ayda ödeme</div></div>
+  <div class="kpi"><div class="lb">Ortalama verim</div><div class="vl" style="color:#34d399">2.03%</div><div class="al">temettü verenler arasında</div></div>
+  <div class="kpi"><div class="lb">Veri tarihi</div><div class="vl" style="font-size:14px">2026-11-26</div><div class="al">günlük</div></div>
+</div>
+<div class="panel">
+  <h2>Tahmini temettü takvimi <span>· önümüzdeki 120 gün</span></h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Hisse</th><th>Tarih</th><th>Son tutar</th><th>Durum</th></tr></thead>
+    <tbody><tr><td><span class="sym">FROTO.IS</span><span class="ad">FORD OTOSAN</span></td><td>2026-11-26</td><td><span class="">3.07</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">EXPD</span><span class="ad">Expeditors International of Was</span></td><td>2026-12-01</td><td><span class="">0.81</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">MCK</span><span class="ad">McKesson Corporation</span></td><td>2026-12-01</td><td><span class="">0.94</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">JKHY</span><span class="ad">Jack Henry & Associates, Inc.</span></td><td>2026-12-02</td><td><span class="">0.61</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">MC.PA</span><span class="ad">LVMH</span></td><td>2026-12-02</td><td><span class="">7.50</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">FROTO.IS</span><span class="ad">FORD OTOSAN</span></td><td>2026-12-03</td><td><span class="">3.07</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">LRCX</span><span class="ad">Lam Research Corporation</span></td><td>2026-12-03</td><td><span class="">0.33</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">ODFL</span><span class="ad">Old Dominion Freight Line, Inc.</span></td><td>2026-12-03</td><td><span class="">0.29</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">PJT</span><span class="ad">PJT Partners Inc.</span></td><td>2026-12-03</td><td><span class="">0.25</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">HRB</span><span class="ad">H&R Block, Inc.</span></td><td>2026-12-04</td><td><span class="">0.46</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">NXT.L</span><span class="ad">NEXT PLC ORD 10P</span></td><td>2026-12-04</td><td><span class="">181.00</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">BKNG</span><span class="ad">Booking Holdings Inc. Common St</span></td><td>2026-12-05</td><td><span class="">0.42</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">EXPO</span><span class="ad">Exponent, Inc.</span></td><td>2026-12-05</td><td><span class="">0.31</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">MLI</span><span class="ad">Mueller Industries, Inc.</span></td><td>2026-12-05</td><td><span class="">0.17</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">GOOGL</span><span class="ad">Alphabet Inc.</span></td><td>2026-12-08</td><td><span class="">0.22</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">ROST</span><span class="ad">Ross Stores, Inc.</span></td><td>2026-12-09</td><td><span class="">0.45</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">ADP</span><span class="ad">Automatic Data Processing, Inc.</span></td><td>2026-12-12</td><td><span class="">1.70</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">IBP</span><span class="ad">Installed Building Products, In</span></td><td>2026-12-15</td><td><span class="">0.39</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">BBY</span><span class="ad">Best Buy Co., Inc.</span></td><td>2026-12-16</td><td><span class="">0.96</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">BIMAS.IS</span><span class="ad">BIM MAGAZALAR</span></td><td>2026-12-17</td><td><span class="">2.50</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">TTC</span><span class="ad">Toro Company (The)</span></td><td>2026-12-22</td><td><span class="">0.39</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">SEIC</span><span class="ad">SEI Investments Company</span></td><td>2026-12-29</td><td><span class="">0.52</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">DDS</span><span class="ad">Dillard's, Inc.</span></td><td>2026-12-31</td><td><span class="">0.30</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">LECO</span><span class="ad">Lincoln Electric Holdings, Inc.</span></td><td>2026-12-31</td><td><span class="">0.79</span></td><td><span class="rozet">tahmini</span></td></tr><tr><td><span class="sym">AUTO.L</span><span class="ad">AUTOTRADER GROUP PLC ORD 1P</span></td><td>2027-01-02</td><td><span class="">7.80</span></td><td><span class="rozet">tahmini</span></td></tr></tbody>
+  </table></div>
+</div>
+<div class="panel">
+  <h2>En yüksek temettü verimi <span>· son 12 ay</span></h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Hisse</th><th>Verim</th><th>Yıllık temettü</th><th>Son ödeme</th></tr></thead>
+    <tbody><tr><td><span class="sym">FROTO.IS</span><span class="ad">FORD OTOSAN</span></td><td><span class="">19.07%</span></td><td><span class="">12.76</span></td><td>2026-11-26</td></tr><tr><td><span class="sym">EVO.ST</span><span class="ad">Evolution AB</span></td><td><span class="">11.35%</span></td><td><span class="">99.57</span></td><td>2025-05-12</td></tr><tr><td><span class="sym">LAUR</span><span class="ad">Laureate Education, Inc.</span></td><td><span class="">8.41%</span></td><td><span class="">2.79</span></td><td>2023-11-14</td></tr><tr><td><span class="sym">TUPRS.IS</span><span class="ad">TUPRAS</span></td><td><span class="">5.39%</span></td><td><span class="">17.13</span></td><td>2026-09-30</td></tr><tr><td><span class="sym">DDS</span><span class="ad">Dillard's, Inc.</span></td><td><span class="">5.30%</span></td><td><span class="">31.20</span></td><td>2026-09-30</td></tr><tr><td><span class="sym">HTO.AT</span><span class="ad">OTE S.A.</span></td><td><span class="">4.93%</span></td><td><span class="">0.90</span></td><td>2026-07-01</td></tr><tr><td><span class="sym">ENJSA.IS</span><span class="ad">ENERJISA ENERJI</span></td><td><span class="">4.85%</span></td><td><span class="">5.08</span></td><td>2026-04-13</td></tr><tr><td><span class="sym">IGG.L</span><span class="ad">IG GROUP HOLDINGS PLC ORD 0.005</span></td><td><span class="">4.62%</span></td><td><span class="">42.58</span></td><td>2026-08-13</td></tr><tr><td><span class="sym">ENI.MI</span><span class="ad">ENI</span></td><td><span class="">4.51%</span></td><td><span class="">1.07</span></td><td>2026-11-23</td></tr><tr><td><span class="sym">NXT.L</span><span class="ad">NEXT PLC ORD 10P</span></td><td><span class="">3.98%</span></td><td><span class="">628.00</span></td><td>2026-07-02</td></tr><tr><td><span class="sym">PAYX</span><span class="ad">Paychex, Inc.</span></td><td><span class="">3.92%</span></td><td><span class="">4.65</span></td><td>2026-10-26</td></tr><tr><td><span class="sym">GALP.LS</span><span class="ad">GALP ENERGIA-NOM</span></td><td><span class="">3.82%</span></td><td><span class="">0.68</span></td><td>2026-08-19</td></tr><tr><td><span class="sym">GARAN.IS</span><span class="ad">GARANTI BANKASI</span></td><td><span class="">3.82%</span></td><td><span class="">5.27</span></td><td>2026-04-07</td></tr><tr><td><span class="sym">BBY</span><span class="ad">Best Buy Co., Inc.</span></td><td><span class="">3.73%</span></td><td><span class="">3.83</span></td><td>2026-09-17</td></tr><tr><td><span class="sym">AKBNK.IS</span><span class="ad">AKBANK</span></td><td><span class="">3.63%</span></td><td><span class="">2.20</span></td><td>2026-03-26</td></tr><tr><td><span class="sym">HRB</span><span class="ad">H&R Block, Inc.</span></td><td><span class="">3.63%</span></td><td><span class="">1.72</span></td><td>2026-09-03</td></tr><tr><td><span class="sym">MC.PA</span><span class="ad">LVMH</span></td><td><span class="">3.32%</span></td><td><span class="">13.00</span></td><td>2026-04-28</td></tr><tr><td><span class="sym">CNQ</span><span class="ad">Canadian Natural Resources Limi</span></td><td><span class="">2.96%</span></td><td><span class="">1.35</span></td><td>2026-09-11</td></tr><tr><td><span class="sym">FPE3.DE</span><span class="ad">FUCHS SE                      N</span></td><td><span class="">2.89%</span></td><td><span class="">1.23</span></td><td>2026-05-07</td></tr><tr><td><span class="sym">MGROS.IS</span><span class="ad">MIGROS TICARET</span></td><td><span class="">2.76%</span></td><td><span class="">11.05</span></td><td>2026-11-11</td></tr></tbody>
+  </table></div>
+  <div class="not">Temettü verimi = son 12 ayın temettüsü / güncel fiyat. Yüksek verim her zaman iyi değildir;
+    temettü sürdürülebilirliği (FCF, borç) ayrıca kontrol edilmelidir.</div>
+</div>
+<div class="uyari">Temettü tarihleri tahminidir, kesin değildir. Vergi ve stopaj ülkeye göre değişir. Yatırım tavsiyesi değildir.</div>
+</div>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body></html>

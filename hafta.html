@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haftanın Değişimi · Uzun Vade</title>
+<meta name="description" content="Skoru yükselen ve düşen hisseler, yeni giriş sinyalleri, haftalık değişim özeti.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://uzunvade.net/hafta.html">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#080d18;--bg2:#0e1626;--card:#111c30;--line:#1e2c47;--txt:#e6edf7;--muted:#8497b3;--dim:#5b6b86;--acc:#38bdf8;--grn:#34d399;--red:#f87171;--amb:#f59e0b}
+body{margin:0;padding:26px 18px 70px;background:radial-gradient(1100px 520px at 12% -10%,#13203a 0%,var(--bg) 55%);
+     color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto}
+a{color:var(--acc);text-decoration:none}
+.geri{font-size:13px;color:var(--muted);margin-bottom:10px}
+h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.6px}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 18px;max-width:680px;line-height:1.6}
+.kpiler{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px;margin-bottom:18px}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.kpi .lb{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.kpi .vl{font-size:21px;font-weight:800;margin-top:5px;letter-spacing:-.5px}
+.kpi .al{font-size:11px;color:#64748b;margin-top:3px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:14px;overflow:hidden}
+h2{font-size:11px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+h2 span{color:#41506b;font-weight:600;text-transform:none;letter-spacing:0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;text-align:right;padding:7px 6px;border-bottom:1px solid #1b2740;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:8px 6px;border-bottom:1px solid #131f36;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:#101b2e}
+.sym{font-weight:700;color:#dbeafe}
+.ad{font-size:10.5px;color:#64748b;display:block;margin-top:2px;white-space:normal}
+.pos{color:var(--grn)}.neg{color:var(--red)}.notr{color:#64748b}
+.rozet{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;border:1px solid #24405f;color:#7dd3fc}
+.tbl-wrap{overflow-x:auto}
+.sekmeler{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.sekmeler button{background:#0b1424;border:1px solid #1b2942;color:#94a3b8;border-radius:999px;padding:6px 12px;font-size:11.5px;font-weight:700;cursor:pointer}
+.sekmeler button.on{background:#16233b;border-color:#2f4a76;color:#dbeafe}
+.not{font-size:11.5px;color:#5b6b86;line-height:1.7;margin-top:10px}
+.uyari{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.3);border-radius:10px;padding:10px 12px;color:#fde047;font-size:11.5px;line-height:1.65;margin-top:14px}
+</style>
+<script src="anasayfa.js" defer></script>
+<script src="ui.js?v=13" defer></script>
+<script src="yenile.js" defer></script>
+  <link rel="stylesheet" href="tasarim.css?v=13">
+</head><body>
+
+<a class="uv-atla" href="#icerik">İçeriğe geç</a>
+<header class="uv-nav">
+  <div class="uv-nav-ic">
+    <a class="uv-marka" href="index.html" aria-label="Uzun Vade ana sayfa">
+      <span class="uv-logo" aria-hidden="true"><svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="uv-marka-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+        <path d="M5 36 L17 25 L26 29 L39 15" stroke="url(#uv-marka-g)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33 13 H41 V21" stroke="#7dd3fc" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="uv-marka-metin"><b>Uzun Vade</b><small>kalite · sabır · uzun vade</small></span>
+    </a>
+    <nav class="uv-menu" id="uv-menu" aria-label="Ana menü">
+      <a href="index.html">İzleme</a><a class="uv-bist" href="bist.html"><span class="uv-bist-ikon" aria-hidden="true">₺</span>BIST<span class="uv-bist-etiket">Kalite</span></a><a href="endeks.html">Endeks</a><a href="temettu.html">Temettü</a><a href="etf.html">ETF</a><div class="uv-alt uv-alt-aktif"><button class="uv-alt-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="uv-alt-menu">Araçlar<span class="uv-alt-ok" aria-hidden="true">▾</span></button><div class="uv-alt-menu" id="uv-alt-menu" role="menu"><a role="menuitem" href="hafta.html" aria-current="page"><span class="uv-alt-ad">Haftanın Değişimi</span><small>Haftalık skor ve sinyal özeti</small></a><a role="menuitem" href="performans.html"><span class="uv-alt-ad">Sinyal Performansı</span><small>21/63/126/252 günlük ölçüm</small></a><a role="menuitem" href="takvim.html"><span class="uv-alt-ad">Bilanço Takvimi</span><small>Yaklaşan bilanço tarihleri</small></a><a role="menuitem" href="portfoy.html"><span class="uv-alt-ad">Portföyüm</span><small>Pozisyonlar, ağırlıklar, getiri</small></a><a role="menuitem" href="emeklilik.html"><span class="uv-alt-ad">Emeklilik Simülatörü</span><small>Bileşik getiri ve hedef</small></a><a role="menuitem" href="compare.html"><span class="uv-alt-ad">Karşılaştır</span><small>Hisseleri yan yana kıyasla</small></a></div></div><a href="podcast.html">Podcast</a><a href="sozluk.html">Sözlük</a><a href="metodoloji.html">Metodoloji</a><a href="hakkinda.html">Hakkında</a>
+    </nav>
+    <div class="uv-sag"><span id="uyelikDurum"></span></div>
+    <button class="uv-ac" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="uv-menu">☰</button>
+  </div>
+</header>
+<div class="wrap" id="icerik">
+<h1>Haftanın Değişimi</h1>
+<div class="sub">Giriş skoru yükselen ve düşen hisseler, son 7 günde oluşan yeni sinyaller.
+  Skor değişimi takip listesinin günlük anlık görüntülerinden hesaplanır.</div>
+<div class="kpiler">
+  <div class="kpi"><div class="lb">Takip edilen</div><div class="vl">103</div><div class="al">hisse</div></div>
+  <div class="kpi"><div class="lb">Yükselen</div><div class="vl" style="color:#34d399">20</div><div class="al">+3 puan ve üzeri</div></div>
+  <div class="kpi"><div class="lb">Düşen</div><div class="vl" style="color:#f87171">14</div><div class="al">-3 puan ve üzeri</div></div>
+  <div class="kpi"><div class="lb">Veri günü</div><div class="vl">2</div><div class="al">2026-11-26</div></div>
+</div>
+<div class="panel">
+  <h2>Skoru yükselenler <span>· son karşılaştırma</span></h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Hisse</th><th>Önceki</th><th>Şimdi</th><th>Fark</th><th>Etiket</th></tr></thead>
+    <tbody><tr><td><a href="hisse.html?t=CSCO"><span class="sym">CSCO</span></a></td><td><span class="">43.00</span></td><td><span class="">54.00</span></td><td><span class="pos">+11.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=TTC"><span class="sym">TTC</span></a></td><td><span class="">47.00</span></td><td><span class="">57.00</span></td><td><span class="pos">+10.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=LOPE"><span class="sym">LOPE</span></a></td><td><span class="">74.00</span></td><td><span class="">83.00</span></td><td><span class="pos">+9.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=MEDP"><span class="sym">MEDP</span></a></td><td><span class="">48.00</span></td><td><span class="">56.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=LRCX"><span class="sym">LRCX</span></a></td><td><span class="">36.00</span></td><td><span class="">44.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=ADBE"><span class="sym">ADBE</span></a></td><td><span class="">65.00</span></td><td><span class="">73.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=MLI"><span class="sym">MLI</span></a></td><td><span class="">48.00</span></td><td><span class="">56.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=NTAP"><span class="sym">NTAP</span></a></td><td><span class="">47.00</span></td><td><span class="">55.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=IT"><span class="sym">IT</span></a></td><td><span class="">52.00</span></td><td><span class="">60.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=CDNS"><span class="sym">CDNS</span></a></td><td><span class="">73.00</span></td><td><span class="">81.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=ABBN.SW"><span class="sym">ABBN.SW</span></a></td><td><span class="">57.00</span></td><td><span class="">65.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=KOG.OL"><span class="sym">KOG.OL</span></a></td><td><span class="">57.00</span></td><td><span class="">65.00</span></td><td><span class="pos">+8.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=MCK"><span class="sym">MCK</span></a></td><td><span class="">48.00</span></td><td><span class="">55.00</span></td><td><span class="pos">+7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=ASML.AS"><span class="sym">ASML.AS</span></a></td><td><span class="">52.00</span></td><td><span class="">59.00</span></td><td><span class="pos">+7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=DDS"><span class="sym">DDS</span></a></td><td><span class="">49.00</span></td><td><span class="">56.00</span></td><td><span class="pos">+7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=JBL"><span class="sym">JBL</span></a></td><td><span class="">38.00</span></td><td><span class="">45.00</span></td><td><span class="pos">+7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=CNQ"><span class="sym">CNQ</span></a></td><td><span class="">56.00</span></td><td><span class="">63.00</span></td><td><span class="pos">+7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=KLAC"><span class="sym">KLAC</span></a></td><td><span class="">44.00</span></td><td><span class="">50.00</span></td><td><span class="pos">+6.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=V"><span class="sym">V</span></a></td><td><span class="">43.00</span></td><td><span class="">49.00</span></td><td><span class="pos">+6.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=AMAT"><span class="sym">AMAT</span></a></td><td><span class="">46.00</span></td><td><span class="">52.00</span></td><td><span class="pos">+6.0</span></td><td>—</td></tr></tbody>
+  </table></div>
+  
+</div>
+<div class="panel">
+  <h2>Skoru düşenler <span>· son karşılaştırma</span></h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Hisse</th><th>Önceki</th><th>Şimdi</th><th>Fark</th><th>Etiket</th></tr></thead>
+    <tbody><tr><td><a href="hisse.html?t=BKNG"><span class="sym">BKNG</span></a></td><td><span class="">80.00</span></td><td><span class="">68.00</span></td><td><span class="neg">-12.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=EXPO"><span class="sym">EXPO</span></a></td><td><span class="">58.00</span></td><td><span class="">48.00</span></td><td><span class="neg">-10.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=CHE"><span class="sym">CHE</span></a></td><td><span class="">74.00</span></td><td><span class="">65.00</span></td><td><span class="neg">-9.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=TDC"><span class="sym">TDC</span></a></td><td><span class="">81.00</span></td><td><span class="">72.00</span></td><td><span class="neg">-9.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=MSFT"><span class="sym">MSFT</span></a></td><td><span class="">79.00</span></td><td><span class="">72.00</span></td><td><span class="neg">-7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=AWI"><span class="sym">AWI</span></a></td><td><span class="">69.00</span></td><td><span class="">62.00</span></td><td><span class="neg">-7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=HWDN.L"><span class="sym">HWDN.L</span></a></td><td><span class="">81.00</span></td><td><span class="">74.00</span></td><td><span class="neg">-7.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=ADSK"><span class="sym">ADSK</span></a></td><td><span class="">86.00</span></td><td><span class="">80.00</span></td><td><span class="neg">-6.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=GGG"><span class="sym">GGG</span></a></td><td><span class="">91.00</span></td><td><span class="">85.00</span></td><td><span class="neg">-6.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=ODFL"><span class="sym">ODFL</span></a></td><td><span class="">73.00</span></td><td><span class="">68.00</span></td><td><span class="neg">-5.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=EMSN.SW"><span class="sym">EMSN.SW</span></a></td><td><span class="">52.00</span></td><td><span class="">47.00</span></td><td><span class="neg">-5.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=HRB"><span class="sym">HRB</span></a></td><td><span class="">81.00</span></td><td><span class="">77.00</span></td><td><span class="neg">-4.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=TJX"><span class="sym">TJX</span></a></td><td><span class="">73.00</span></td><td><span class="">70.00</span></td><td><span class="neg">-3.0</span></td><td>—</td></tr><tr><td><a href="hisse.html?t=RACE.MI"><span class="sym">RACE.MI</span></a></td><td><span class="">81.00</span></td><td><span class="">78.00</span></td><td><span class="neg">-3.0</span></td><td>—</td></tr></tbody>
+  </table></div>
+</div>
+<div class="panel">
+  <h2>Yeni sinyaller <span>· son 7 gün</span></h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Hisse</th><th>Tarih</th><th>Sinyal</th><th>Skor</th></tr></thead>
+    <tbody><tr><td><a href="hisse.html?t=CAH"><span class="sym">CAH</span></a></td><td>2026-11-20</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=SEIC"><span class="sym">SEIC</span></a></td><td>2026-11-20</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=PG"><span class="sym">PG</span></a></td><td>2026-11-20</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=AIR.PA"><span class="sym">AIR.PA</span></a></td><td>2026-11-20</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=HTO.AT"><span class="sym">HTO.AT</span></a></td><td>2026-11-22</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=FPE3.DE"><span class="sym">FPE3.DE</span></a></td><td>2026-11-22</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=KOG.OL"><span class="sym">KOG.OL</span></a></td><td>2026-11-23</td><td>Güçlü</td><td><span class="notr">—</span></td></tr><tr><td><a href="hisse.html?t=FHI"><span class="sym">FHI</span></a></td><td>2026-11-22</td><td>Seçki</td><td><span class="notr">—</span></td></tr></tbody>
+  </table></div>
+</div>
+<div class="uyari">Skor değişimi tek başına işlem kararı değildir. Yatırım tavsiyesi değildir.</div>
+</div>
+  <script src="uyelik.js" defer></script>
+  <script src="menu.js?v=13" defer></script>
+</body></html>
